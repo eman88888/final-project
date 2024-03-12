@@ -1,7 +1,10 @@
+import 'package:finalproject/screens/bottomnavbar.dart';
 import 'package:finalproject/widget/custom_Button.dart';
 import 'package:finalproject/widget/custom_TextField.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
 class Signup_Screen extends StatelessWidget {
   //text editing controller
@@ -99,8 +102,26 @@ class Signup_Screen extends StatelessWidget {
             Padding(
                 padding: EdgeInsets.only(bottom: 40),
                 child: GestureDetector(
-                  onTap: () {
-                    /////for firebase
+                  onTap: () async {
+                    try {
+                      final credential = await FirebaseAuth.instance
+                          .createUserWithEmailAndPassword(
+                        email: userController.text,
+                        password: passController.text,
+                      );
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => BottomNavBar()),
+                      );
+                    } on FirebaseAuthException catch (e) {
+                      if (e.code == 'weak-password') {
+                        print('The password provided is too weak.');
+                      } else if (e.code == 'email-already-in-use') {
+                        print('The account already exists for that email.');
+                      }
+                    } catch (e) {
+                      print(e);
+                    }
                   },
                   child: customButton(
                     text: 'Sign Up',

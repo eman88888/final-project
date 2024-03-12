@@ -1,4 +1,6 @@
-import 'package:finalproject/pages/VerificationScreen.dart';
+import 'package:finalproject/pages/changedSuccessfully.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import '../widget/custom_Button.dart';
 
@@ -109,14 +111,16 @@ class _ForgetPass_ScreenState extends State<ForgetPass_Screen> {
           Padding(
             padding: const EdgeInsets.only(top: 64),
             child: GestureDetector(
-                onTap: () {
+                onTap: () async {
+                  await FirebaseAuth.instance
+                      .sendPasswordResetEmail(email: mailAddress.text);
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => VerifyCode_Screen()),
+                        builder: (context) => ChangedSuccessfully_Screen()),
                   );
                 },
-                child: customButton(text: 'Send Code')),
+                child: customButton(text: 'Reset password')),
           ),
         ],
       ),

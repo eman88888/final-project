@@ -1,5 +1,6 @@
 import 'package:finalproject/pages/ForgetPassScreen.dart';
 import 'package:finalproject/pages/signup.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -145,11 +146,24 @@ class _Login_ScreenState extends State<Login_Screen> {
             Padding(
                 padding: EdgeInsets.only(bottom: 56),
                 child: GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => BottomNavBar()),
-                    ); ////for firebase
+                  onTap: () async {
+                    try {
+                      final credential = await FirebaseAuth.instance
+                          .signInWithEmailAndPassword(
+                        email: userController.text,
+                        password: passController.text,
+                      );
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => BottomNavBar()),
+                      );
+                    } on FirebaseAuthException catch (e) {
+                      if (e.code == 'user-not-found') {
+                        print('No user found for that email.');
+                      } else if (e.code == 'wrong-password') {
+                        print('Wrong password provided for that user.');
+                      }
+                    }
                   },
                   child: customButton(
                     text: 'Log In',
