@@ -49,21 +49,22 @@ class _BottomNavBarState extends State<BottomNavBar> {
             Icon(
               Icons.home,
               size: 30,
-              color: Colors.black,
+              color: Colors.white,
             ),
             Icon(
               Icons.settings,
               size: 30,
-              color: Colors.black,
+              color: Colors.white,
             ),
             Icon(
               Icons.person,
               size: 30,
-              color: Colors.black,
+              color: Colors.white,
             ),
           ],
           backgroundColor: Colors.white,
-          color: Color(0xffF4D160),
+          color: Color(0xff1D5D9B),
+          buttonBackgroundColor: Color(0xffF4D160),
           animationCurve: Curves.easeInOut,
           animationDuration: Duration(milliseconds: 600),
           onTap: (int tappedindex) {
