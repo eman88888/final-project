@@ -21,6 +21,7 @@ class _simresultState extends State<simresult>
   bool show = false;
   @override
   Widget build(BuildContext context) {
+    var screenSize = MediaQuery.of(context).size;
     return Scaffold(
         bottomNavigationBar: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -83,8 +84,8 @@ class _simresultState extends State<simresult>
             Positioned(
                 top: 100,
                 child: Container(
-                  height: 800,
-                  width: 411,
+                  width: screenSize.width,
+                  height: screenSize.height,
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(20))),
@@ -205,15 +206,8 @@ class _simresultState extends State<simresult>
                                       backgroundColor: const Color(0xffFFFFFF),
                                       content: Container(
                                         alignment: Alignment.topLeft,
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        height: 431,
-                                        decoration: BoxDecoration(
-                                            color: const Color(0xffFFFFFF),
-                                            borderRadius:
-                                                BorderRadius.circular(25)),
-                                        // wrap content in flutter
-
+                                        width: screenSize.width,
+                                        height: 432,
                                         child: Column(children: [
                                           Padding(
                                             padding: const EdgeInsets.only(

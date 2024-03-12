@@ -19,6 +19,7 @@ class _ToxicityofMolecules_ScreenState
     extends State<ToxicityofMolecules_Screen> {
   @override
   Widget build(BuildContext context) {
+    var screenSize = MediaQuery.of(context).size;
     return Scaffold(
         bottomNavigationBar: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -94,8 +95,8 @@ class _ToxicityofMolecules_ScreenState
             Positioned(
                 top: 100,
                 child: Container(
-                  height: 800,
-                  width: 411,
+                  width: screenSize.width,
+                  height: screenSize.height,
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(20))),

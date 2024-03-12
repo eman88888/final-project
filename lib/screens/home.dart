@@ -7,6 +7,7 @@ import 'package:finalproject/models/liver_toxicity.dart';
 import 'package:finalproject/screens/profile.dart';
 import 'package:finalproject/screens/settings.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class home extends StatefulWidget {
   const home({Key? key}) : super(key: key);
@@ -18,26 +19,37 @@ class home extends StatefulWidget {
 class _tocState extends State<home> {
   @override
   Widget build(BuildContext context) {
+    var screenSize = MediaQuery.of(context).size;
     return Scaffold(
-        backgroundColor: Color(0xff1D5D9B),
-        body: Column(
-          children: [
-            SizedBox(
-              height: 100,
+        body: Stack(
+      clipBehavior: Clip.none,
+      children: [
+        Container(
+          height: 200,
+          color: Color(0xff1D5D9B),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 35),
+          child: Container(
+            alignment: Alignment.topCenter,
+            child: SizedBox(
+              height: 80,
               width: 150,
               child: Image.asset(
                 "assets/screen logo.png",
                 fit: BoxFit.fill,
               ),
             ),
-            Container(
-              height: 755,
-              width: 500,
+          ),
+        ),
+        Positioned(
+            top: 100,
+            child: Container(
+              width: screenSize.width,
+              height: screenSize.height,
               decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20))),
+                  borderRadius: BorderRadius.all(Radius.circular(20))),
               child: Column(
                 children: [
                   Padding(
@@ -228,11 +240,11 @@ class _tocState extends State<home> {
                         ),
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
-            ),
-          ],
-        ));
+            )),
+      ],
+    ));
   }
 }
