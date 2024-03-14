@@ -1,16 +1,18 @@
 import 'dart:io';
-
+//////////////
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:path/path.dart';
+/////////////
 import 'package:finalproject/screens/bottomnavbar.dart';
 import 'package:finalproject/screens/settings.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-
+////////////
 import '../widget/custom_TextFormField.dart';
+//firebase
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class EditProfile_Page extends StatefulWidget {
   EditProfile_Page({super.key});
@@ -20,7 +22,7 @@ class EditProfile_Page extends StatefulWidget {
 }
 
 class _PickImageState extends State<EditProfile_Page> {
-  /////////UserName
+  /////////////UserName
   String _userName = '';
   TextEditingController _userNameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
@@ -28,10 +30,26 @@ class _PickImageState extends State<EditProfile_Page> {
   TextEditingController _countryController = TextEditingController();
   TextEditingController _mobileController = TextEditingController();
 
+  CollectionReference users = FirebaseFirestore.instance.collection('users');
+////adduser
+  Future<void> addUser() async {
+    // Call the user's CollectionReference to add a new user
+    return users
+        .add({
+          "name": _userNameController.text,
+          "email": _emailController.text,
+          "job": _JobController.text,
+          "country": _countryController.text,
+          "mobile": _mobileController.text,
+        })
+        .then((value) => print("User Added"))
+        .catchError((error) => print("Failed to add user: $error"));
+  }
+
   ////////For image
   Uint8List? _image;
   File? selectedIMage;
-  File? file;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,8 +81,7 @@ class _PickImageState extends State<EditProfile_Page> {
                         radius: 90, backgroundImage: MemoryImage(_image!))
                     : const CircleAvatar(
                         radius: 90,
-                        backgroundImage:
-                            AssetImage("assets/images/Profile.png"),
+                        backgroundImage: AssetImage("assets/profile.png"),
                       ),
                 Positioned(
                     bottom: -0,
@@ -93,6 +110,7 @@ class _PickImageState extends State<EditProfile_Page> {
                     ))
               ],
             ),
+
             /////// Display the user's name below the input field
             Text(
               '$_userName',
@@ -244,6 +262,7 @@ class _PickImageState extends State<EditProfile_Page> {
                       GestureDetector(
                         onTap: () {
                           ////logic for firebase
+                          addUser();
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -287,7 +306,7 @@ class _PickImageState extends State<EditProfile_Page> {
                   Expanded(
                     child: InkWell(
                       onTap: () {
-                        getimage();
+                        _pickImageFromGallery();
                       },
                       child: const SizedBox(
                         child: Column(
@@ -305,7 +324,7 @@ class _PickImageState extends State<EditProfile_Page> {
                   Expanded(
                     child: InkWell(
                       onTap: () {
-                        getimage();
+                        _pickImageFromCamera();
                       },
                       child: const SizedBox(
                         child: Column(
@@ -327,19 +346,27 @@ class _PickImageState extends State<EditProfile_Page> {
         });
   }
 
-  getimage() async {
-    final ImagePicker picker = ImagePicker();
-// Pick an image.
-    final XFile? imagegallery =
-        await picker.pickImage(source: ImageSource.gallery);
-    if (imagegallery != null) {
-      file = File(imagegallery!.path);
-      //upload image
-      var imagename = basename(imagegallery!.path);
+  //Gallery
+  Future _pickImageFromGallery() async {
+    final returnImage =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (returnImage == null) return;
+    setState(() {
+      selectedIMage = File(returnImage.path);
+      _image = File(returnImage.path).readAsBytesSync();
+    });
+    Navigator.of(context).pop(); //close the model sheet
+  }
 
-      var refstorage = FirebaseStorage.instance.ref(imagename);
-      await refstorage.putFile(file!);
-    }
-    setState(() {});
+//Camera
+  Future _pickImageFromCamera() async {
+    final returnImage =
+        await ImagePicker().pickImage(source: ImageSource.camera);
+    if (returnImage == null) return;
+    setState(() {
+      selectedIMage = File(returnImage.path);
+      _image = File(returnImage.path).readAsBytesSync();
+    });
+    Navigator.of(context).pop();
   }
 }
