@@ -1,8 +1,8 @@
 import 'dart:io';
-//////////////
+
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-/////////////
+
 import 'package:finalproject/screens/bottomnavbar.dart';
 import 'package:finalproject/screens/settings.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -13,6 +13,7 @@ import 'package:image_picker/image_picker.dart';
 import '../widget/custom_TextFormField.dart';
 //firebase
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class EditProfile_Page extends StatefulWidget {
   EditProfile_Page({super.key});
@@ -29,27 +30,14 @@ class _PickImageState extends State<EditProfile_Page> {
   TextEditingController _JobController = TextEditingController();
   TextEditingController _countryController = TextEditingController();
   TextEditingController _mobileController = TextEditingController();
-
+  /////build collection in firestore
   CollectionReference users = FirebaseFirestore.instance.collection('users');
-////adduser
-  Future<void> addUser() async {
-    // Call the user's CollectionReference to add a new user
-    return users
-        .add({
-          "name": _userNameController.text,
-          "email": _emailController.text,
-          "job": _JobController.text,
-          "country": _countryController.text,
-          "mobile": _mobileController.text,
-        })
-        .then((value) => print("User Added"))
-        .catchError((error) => print("Failed to add user: $error"));
-  }
 
   ////////For image
   Uint8List? _image;
   File? selectedIMage;
-
+  ///////
+  GlobalKey<FormState> formKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -368,5 +356,40 @@ class _PickImageState extends State<EditProfile_Page> {
       _image = File(returnImage.path).readAsBytesSync();
     });
     Navigator.of(context).pop();
+  }
+
+/////addusers
+  Future<void> addUser() async {
+    // Check for null values in required fields
+    if (_userNameController.text.isEmpty ||
+        _emailController.text.isEmpty ||
+        _JobController.text.isEmpty ||
+        _countryController.text.isEmpty ||
+        _mobileController.text.isEmpty) {
+      // Show an error message indicating required fields are empty
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Please fill in all required fields.'),
+          duration: Duration(seconds: 2),
+        ),
+      );
+      return;
+    }
+
+    // Add user data to Firestore
+    await users.add({
+      "name": _userNameController.text,
+      "email": _emailController.text,
+      "job": _JobController.text,
+      "country": _countryController.text,
+      "mobile": _mobileController.text,
+    }).then((value) {
+      print("User Added");
+      // Navigate back to Setting_Page
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Setting_Page()),
+      );
+    }).catchError((error) => print("Failed to add user: $error"));
   }
 }
