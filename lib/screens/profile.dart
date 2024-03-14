@@ -1,5 +1,7 @@
 import 'package:finalproject/pages/history.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -9,8 +11,49 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  String _userName = '';
+  String _username = '';
+  String _email = '';
+  String _job = '';
+  String _country = '';
+  String _mobile = '';
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  //////////////
+  @override
+  void initState() {
+    super.initState();
+    // Call a function to fetch user data
+    fetchUserData();
+  }
 
+  Future<void> fetchUserData() async {
+    // Get the currently authenticated user
+    User? user = FirebaseAuth.instance.currentUser;
+
+    if (user != null) {
+      // Retrieve the document with the user's ID
+      DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .get();
+
+      // Check if the document exists
+      if (documentSnapshot.exists) {
+        // Get user data from the document
+        Map<String, dynamic> userData =
+            documentSnapshot.data() as Map<String, dynamic>;
+
+        setState(() {
+          _username = userData['name'] ?? '';
+          _email = userData['email'] ?? '';
+          _job = userData['job'] ?? '';
+          _country = userData['country'] ?? '';
+          _mobile = userData['mobile'] ?? '';
+        });
+      }
+    }
+  }
+
+  /////////////////////////
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,8 +73,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               EdgeInsets.only(left: 120, right: 120, top: 60),
                           child: CircleAvatar(
                             radius: 90,
-                            // backgroundImage:
-                            //  AssetImage("assets/hagar.jpg"),
+                            backgroundImage: AssetImage("assets/profile.png"),
                           ),
                         ),
                         Positioned(
@@ -42,7 +84,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                'Hagar Yusuf',
+                                _username,
                                 style: TextStyle(
                                   fontSize: 30,
                                   fontFamily: 'Pacifico-Regular',
@@ -103,7 +145,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       size: 30,
                     ),
                     title: Text(
-                      'Hagar Muhammad Ali Yusuf ',
+                      _username,
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.black,
@@ -122,7 +164,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     leading: Icon(Icons.email_outlined,
                         color: Color(0xFF1D5D9B), size: 30),
                     title: Text(
-                      'hagarysusf1@gmail.com ',
+                      _email,
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.black,
@@ -141,7 +183,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     leading: Icon(Icons.work_outline_outlined,
                         color: Color(0xFF1D5D9B), size: 30),
                     title: Text(
-                      'Teaching at university',
+                      _job,
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.black,
@@ -160,7 +202,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     leading: Icon(Icons.location_on_outlined,
                         color: Color(0xFF1D5D9B), size: 30),
                     title: Text(
-                      'Egypt',
+                      _country,
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.black,
@@ -179,7 +221,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     leading: Icon(Icons.phone_enabled_outlined,
                         color: Color(0xFF1D5D9B), size: 30),
                     title: Text(
-                      '01222579576',
+                      _mobile,
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.black,

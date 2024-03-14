@@ -30,12 +30,74 @@ class _PickImageState extends State<EditProfile_Page> {
   TextEditingController _JobController = TextEditingController();
   TextEditingController _countryController = TextEditingController();
   TextEditingController _mobileController = TextEditingController();
+
   /////build collection in firestore
   CollectionReference users = FirebaseFirestore.instance.collection('users');
-
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   ////////For image
   Uint8List? _image;
   File? selectedIMage;
+  ///////
+
+  @override
+  void initState() {
+    super.initState();
+    // Call a function to fetch user data
+    fetchUserData();
+  }
+
+  /////
+  Future<void> fetchUserData() async {
+    // Get the currently authenticated user
+    User? user = _auth.currentUser;
+
+    if (user != null) {
+      // Retrieve the document with the user's ID
+      DocumentSnapshot documentSnapshot = await users.doc(user.uid).get();
+
+      // Check if the document exists
+      if (documentSnapshot.exists) {
+        // Get user data from the document
+        Map<String, dynamic> userData =
+            documentSnapshot.data() as Map<String, dynamic>;
+
+        // Set user data into text controllers
+        _userNameController.text = userData['name'] ?? '';
+        _emailController.text = userData['email'] ?? '';
+        _JobController.text = userData['job'] ?? '';
+        _countryController.text = userData['country'] ?? '';
+        _mobileController.text = userData['mobile'] ?? '';
+      }
+    }
+  }
+
+  Future<void> updateUserProfile() async {
+    // Get the currently authenticated user
+    User? user = _auth.currentUser;
+
+    if (user != null) {
+      try {
+        // Update user data in Firestore
+        await users.doc(user.uid).set({
+          "name": _userNameController.text,
+          "email": _emailController.text,
+          "job": _JobController.text,
+          "country": _countryController.text,
+          "mobile": _mobileController.text,
+        });
+
+        // Data updated successfully
+        print("User data updated successfully");
+
+        // Navigate back to the setting page
+        Navigator.of(context).pop();
+      } catch (error) {
+        // Failed to update data
+        print("Failed to update user data: $error");
+      }
+    }
+  }
+
   ///////
   GlobalKey<FormState> formKey = GlobalKey();
   @override
@@ -249,8 +311,8 @@ class _PickImageState extends State<EditProfile_Page> {
                       ///////////////////Button for save changes
                       GestureDetector(
                         onTap: () {
-                          ////logic for firebase
-                          addUser();
+                          updateUserProfile();
+                          Navigator.of(context).pop();
                         },
                         child: Container(
                           decoration: BoxDecoration(

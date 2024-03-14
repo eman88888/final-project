@@ -2,6 +2,8 @@ import 'package:finalproject/pages/EditProfilePage.dart';
 import 'package:finalproject/pages/change_pass.dart';
 import 'package:finalproject/pages/info.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Setting_Page extends StatefulWidget {
   const Setting_Page({super.key});
@@ -13,6 +15,38 @@ class Setting_Page extends StatefulWidget {
 class _SettingPageState extends State<Setting_Page> {
   /////////UserName
   String _userName = '';
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+/////////////////
+  @override
+  void initState() {
+    super.initState();
+    // Call a function to fetch user data
+    fetchUserData();
+  }
+
+  Future<void> fetchUserData() async {
+    // Get the currently authenticated user
+    User? user = FirebaseAuth.instance.currentUser;
+
+    if (user != null) {
+      // Retrieve the document with the user's ID
+      DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .get();
+
+      // Check if the document exists
+      if (documentSnapshot.exists) {
+        // Get user data from the document
+        Map<String, dynamic> userData =
+            documentSnapshot.data() as Map<String, dynamic>;
+
+        setState(() {
+          _userName = userData['name'] ?? '';
+        });
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +84,7 @@ class _SettingPageState extends State<Setting_Page> {
               children: [
                 CircleAvatar(
                   radius: 90,
-                  //  backgroundImage: AssetImage("assets/images/Profile.png"),
+                  backgroundImage: AssetImage("assets/ofile.png"),
                 ),
               ],
             ),
@@ -58,7 +92,7 @@ class _SettingPageState extends State<Setting_Page> {
 
           //////////Username Text
           Text(
-            'Hagar Yusuf',
+            _userName,
             style: TextStyle(
               fontSize: 30,
               fontFamily: 'Pacifico',
