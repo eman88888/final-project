@@ -1,0 +1,53 @@
+{
+   "checksum": "385eed73ae103e08449e1a29fd195132",
+   "roots": {
+      "bookmark_bar": {
+         "children": [ {
+            "date_added": "13340902064792637",
+            "date_last_used": "13350145716856507",
+            "guid": "35d4a544-d09e-48c9-b10d-c95d35e2990f",
+            "id": "7",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "MMPApp - Platform",
+            "show_icon": false,
+            "source": "sync",
+            "type": "url",
+            "url": "https://mmp.aucegypt.edu/home/homepage"
+         } ],
+         "date_added": "13354984105944010",
+         "date_last_used": "0",
+         "date_modified": "13340902064792637",
+         "guid": "0bc5d13f-2cba-5d74-951f-3f233fe6c908",
+         "id": "1",
+         "name": "Favorites bar",
+         "source": "unknown",
+         "type": "folder"
+      },
+      "other": {
+         "children": [  ],
+         "date_added": "13354984105944015",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "82b081ec-3dd3-529c-8475-ab6c344590dd",
+         "id": "2",
+         "name": "Other favorites",
+         "source": "unknown",
+         "type": "folder"
+      },
+      "synced": {
+         "children": [  ],
+         "date_added": "13354984105944019",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "4cf2e351-0e85-532b-bb37-df045d8f8d0f",
+         "id": "3",
+         "name": "Mobile favorites",
+         "source": "unknown",
+         "type": "folder"
+      }
+   },
+   "sync_metadata": "CjEKDgiIgQISCGV4X0KOAQAAEgAqGDhocUQwQ1ZjS3dQZ3pWcVNlbmlvclE9PUgDoAYMEqcBCAcSogEKHHBudUZWR2JlcXh1MFBhNzZuZlNqbVBlYWJtRT0SJDM1ZDRhNTQ0LWQwOWUtNDhjOS1iMTBkLWM5NWQzNWUyOTkwZhgAIAIoAjDk8P2S5DE4poiR2K8xQI/n/ZLkMUocdXdoektoNHNEOFdQbnU5NHcvYURRYlQzYTRBPVoeIhxHam1WZUwvb1lRVFJYdGpQQW5GZ1licW95aHc9ZUXy7M8SiQEIARKEAQoceXhKLzZmdmtlY3I3a3A1RVF6QjR0V0xwZGJFPRIkNTQ3NmYwYjQtOTllNi01ZDcwLThiNmMtNDVhMDkxOTc2ZjQwGAAgACgAMPOXhqKQMDj6mIaikDBA+piGopAwShxhUkNXTGdoRjliNUlucUtJRHZ1Si9qdlFrRmM9WgBlAAAAABKJAQgCEoQBChxZY1NUb252RVNQd3FDczRMMmNyVmh2NjhMOTg9EiRhNTMzYzg4Yi1iZTQzLTVlNWYtOTFiZi1kM2YyNmU5ZGFlMTMYACAAKAAw85eGopAwOJqZhqKQMECamYaikDBKHG9QVmtod0JSYlY2NUtDV1IyK0lPTkhXb091OD1aAGUAAAAAEokBCAMShAEKHG5qZ0R1ODhlQ3J2WHA4NnBEN2ZIR2NxRnA4OD0SJDlmN2MzMTI4LTY5MzMtNWRiZC05ZWMzLTI4ZmJkMzgyODU1NBgAIAAoADDzl4aikDA4h5qGopAwQIeahqKQMEoceXpOQjAxY241NEE3Y1JVMHVUKy9QZ21UdFVvPVoAZQAAAAAwADgA",
+   "version": 1
+}

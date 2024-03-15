@@ -16,7 +16,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   String _job = '';
   String _country = '';
   String _mobile = '';
+  /////////
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  bool isLoading = false;
   //////////////
   @override
   void initState() {
@@ -27,6 +29,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Future<void> fetchUserData() async {
     // Get the currently authenticated user
+
     User? user = FirebaseAuth.instance.currentUser;
 
     if (user != null) {
@@ -48,6 +51,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           _job = userData['job'] ?? '';
           _country = userData['country'] ?? '';
           _mobile = userData['mobile'] ?? '';
+          isLoading = false;
         });
       }
     }
@@ -281,6 +285,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       if (confirmed == true) {
                         // Perform logout action
                         // Add your logout logic here
+                        await _auth.signOut();
+                        Navigator.pushNamedAndRemoveUntil(
+                            context, '/', (route) => false);
                       }
                     },
                   ),
@@ -323,7 +330,8 @@ class Global {
               ),
             ),
             TextButton(
-              onPressed: () {
+              onPressed: () async {
+                await FirebaseAuth.instance.signOut();
                 Navigator.of(context).pop(true); // Confirm the logout
               },
               child: Text(

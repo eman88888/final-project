@@ -3,6 +3,7 @@ import 'package:finalproject/pages/signup.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 import '../screens/bottomnavbar.dart';
 import '../widget/custom_Button.dart';
@@ -19,291 +20,316 @@ class _Login_ScreenState extends State<Login_Screen> {
   //text editing controllers
   final userController = TextEditingController();
   final passController = TextEditingController();
-  bool rememberUser = false;
+
+  bool isLoading = false;
+
+  GlobalKey<FormState> formKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            ///Stack for Clippath (Curve) and Text (Login Here) Text (Welcome Back)
-            Stack(
+    return ModalProgressHUD(
+      inAsyncCall: isLoading,
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Form(
+            key: formKey,
+            child: Column(
               children: [
-                ClipPath(
-                  clipper: MyClipper(),
-                  child: Container(
-                    width: 500,
-                    height: 300,
-                    color: Color(0xFFF1F4FF),
+                ///Stack for Clippath (Curve) and Text (Login Here) Text (Welcome Back)
+                Stack(
+                  children: [
+                    ClipPath(
+                      clipper: MyClipper(),
+                      child: Container(
+                        width: 500,
+                        height: 300,
+                        color: Color(0xFFF1F4FF),
+                      ),
+                    ),
+                    Positioned(
+                      top: 120,
+                      right: 120,
+                      child: Transform.rotate(
+                        angle: 0, // 45 degrees in radians
+                        child: Text(
+                          'Login Here',
+                          style: TextStyle(
+                            fontFamily: 'MulishRomanBold',
+                            color: Color(0xFF1D5D9B),
+                            fontSize: 40,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      top: 180,
+                      right: 130,
+                      child: Transform.rotate(
+                        angle: 0, // 45 degrees in radians
+                        child: Text(
+                          'Welcome Back',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontFamily: 'MulishRomanBold',
+                            fontSize: 25,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+
+                ////Textfield for Email
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 32),
+                  child: CustomTextFormField2(
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your email';
+                      }
+                    },
+                    controller: userController,
+                    hintText: 'Email',
                   ),
                 ),
-                Positioned(
-                  top: 120,
-                  right: 120,
-                  child: Transform.rotate(
-                    angle: 0, // 45 degrees in radians
+
+                ////Textfield for Password
+                Padding(
+                  padding: EdgeInsets.only(bottom: 9),
+                  child: CustomTextFormField2(
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your password';
+                      }
+                    },
+                    obscureText: true,
+                    controller: passController,
+                    hintText: 'Password',
+                  ),
+                ),
+
+//// Text Forgot password
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ForgetPass_Screen()),
+                    );
+                  },
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.only(left: 165, top: 3, bottom: 25),
                     child: Text(
-                      'Login Here',
+                      'forgot your password?',
                       style: TextStyle(
-                        fontFamily: 'MulishRomanBold',
-                        color: Color(0xFF1D5D9B),
-                        fontSize: 40,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red,
+                        fontSize: 15,
                       ),
                     ),
                   ),
                 ),
-                Positioned(
-                  top: 180,
-                  right: 130,
-                  child: Transform.rotate(
-                    angle: 0, // 45 degrees in radians
-                    child: Text(
-                      'Welcome Back',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontFamily: 'MulishRomanBold',
-                        fontSize: 25,
-                      ),
+
+                ////Login Button
+                Padding(
+                  padding: EdgeInsets.only(bottom: 56),
+                  child: GestureDetector(
+                    onTap: () async {
+                      if (formKey.currentState!.validate()) {
+                        setState(() {
+                          isLoading =
+                              true; // Update isLoading state before awaiting Firebase authentication
+                        });
+                        try {
+                          final credential = await FirebaseAuth.instance
+                              .signInWithEmailAndPassword(
+                            email: userController.text,
+                            password: passController.text,
+                          );
+
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => BottomNavBar()),
+                          );
+                        } on FirebaseAuthException catch (ex) {
+                          if (ex.code == 'user-not-found') {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                backgroundColor: Color(0xFF1D5D9B),
+                                content: Text(
+                                  'No user found for that email.',
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    color: Color(0xFFF1F4FF),
+                                  ),
+                                ),
+                              ),
+                            );
+                          } else if (ex.code == 'wrong-password') {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                backgroundColor: Color(0xFF1D5D9B),
+                                content: Text(
+                                  'Wrong password provided for that user.',
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    color: Color(0xFFF1F4FF),
+                                  ),
+                                ),
+                              ),
+                            );
+                          }
+                        }
+                        setState(() {
+                          isLoading =
+                              false; // Update isLoading state after Firebase authentication
+                        });
+                      } else {}
+                    },
+                    child: customButton(
+                      text: 'Log In',
                     ),
                   ),
                 ),
-              ],
-            ),
 
-            ////Textfield for Email
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 32),
-              child: CustomTextField(
-                controller: userController,
-                hintText: 'Email',
-              ),
-            ),
-
-            ////Textfield for Password
-            Padding(
-              padding: EdgeInsets.only(bottom: 9),
-              child: CustomTextField(
-                obscureText: true,
-                controller: passController,
-                hintText: 'Password',
-              ),
-            ),
-
-            ////Checkbox and Text Forgot password
-
-            Padding(
-              padding: const EdgeInsets.only(bottom: 32),
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 30),
-                    child: Checkbox(
-                      activeColor: Color(0xFF1D5D9B),
-                      value: rememberUser,
-                      onChanged: (value) {
-                        setState(
-                          () {
-                            rememberUser = value!;
-                          },
-                        );
-                      },
-                    ),
-                  ),
-                  Text(
-                    'Remember Me',
+                ////-Or continue with-
+                Padding(
+                  padding: EdgeInsets.only(bottom: 25),
+                  child: Text(
+                    '-Or continue with-',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Color(0xFF1D5D9B),
-                      fontSize: 15,
+                      fontSize: 19,
                     ),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ForgetPass_Screen()),
-                      );
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 45),
-                      child: Text(
-                        'forgot your password?',
+                ),
+
+////Row for google, facebook, twitter sign in Button
+                Row(
+                  children: [
+                    ///////Google
+                    SizedBox(
+                      width: 40,
+                    ),
+                    Expanded(
+                      child: Container(
+                          alignment: Alignment.center,
+                          height: 55,
+                          decoration: BoxDecoration(
+                            color: Color(0xFFF1F4FF),
+                            borderRadius: BorderRadius.circular(16),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.2),
+                                blurRadius: 10,
+                              ),
+                            ],
+                          ),
+                          child: SvgPicture.asset(
+                            'assets/GoogleLogo_icon.svg',
+                            height: 25,
+                          )),
+                    ),
+                    SizedBox(
+                      width: 30,
+                    ),
+                    ///////Facebook
+                    Expanded(
+                      child: Container(
+                          alignment: Alignment.center,
+                          height: 55,
+                          decoration: BoxDecoration(
+                            color: Color(0xFFF1F4FF),
+                            borderRadius: BorderRadius.circular(16),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.2),
+                                blurRadius: 10,
+                              ),
+                            ],
+                          ),
+                          child: SvgPicture.asset(
+                            'assets/FacebookLogo_icon.svg',
+                            height: 25,
+                          )),
+                    ),
+                    SizedBox(
+                      width: 30,
+                    ),
+                    /////////Twitter
+                    Expanded(
+                      child: Container(
+                          alignment: Alignment.center,
+                          height: 55,
+                          decoration: BoxDecoration(
+                            color: Color(0xFFF1F4FF),
+                            borderRadius: BorderRadius.circular(16),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.2),
+                                blurRadius: 10,
+                              ),
+                            ],
+                          ),
+                          child: SvgPicture.asset(
+                            'assets/TwitterLogo_icon.svg',
+                            height: 25,
+                          )),
+                    ),
+                    SizedBox(
+                      width: 40,
+                    ),
+                  ],
+                ),
+
+////Row for 2 texts don't have an account? and signup
+                Padding(
+                  padding: EdgeInsets.only(top: 32),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "don't have an account?",
                         style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.red,
-                          fontSize: 15,
+                          fontFamily: 'MulishRomanBold',
+                          color: Colors.black,
+                          fontSize: 16,
                         ),
                       ),
-                    ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 10),
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Signup_Screen()),
+                            );
+                          },
+                          child: Text(
+                            'Signup',
+                            style: TextStyle(
+                              fontFamily: 'MulishRomanBold',
+                              color: Color(0xFF1D5D9B),
+                              height: 1.7,
+                              fontSize: 18,
+                              decoration: TextDecoration.underline,
+                              decorationColor: Color(0xFF1D5D9B),
+                              decorationThickness: 2.0,
+                              decorationStyle: TextDecorationStyle.solid,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            ),
-
-            ////Login Button
-            Padding(
-                padding: EdgeInsets.only(bottom: 56),
-                child: GestureDetector(
-                  onTap: () async {
-                    try {
-                      final credential = await FirebaseAuth.instance
-                          .signInWithEmailAndPassword(
-                        email: userController.text,
-                        password: passController.text,
-                      );
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => BottomNavBar()),
-                      );
-                    } on FirebaseAuthException catch (e) {
-                      if (e.code == 'user-not-found') {
-                        print('No user found for that email.');
-                      } else if (e.code == 'wrong-password') {
-                        print('Wrong password provided for that user.');
-                      }
-                    }
-                  },
-                  child: customButton(
-                    text: 'Log In',
-                  ),
-                )),
-
-            ////-Or continue with-
-            Padding(
-              padding: EdgeInsets.only(bottom: 25),
-              child: Text(
-                '-Or continue with-',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF1D5D9B),
-                  fontSize: 19,
-                ),
-              ),
-            ),
-
-            ////Row for google, facebook, twitter sign in Button
-            Row(
-              children: [
-                ///////Google
-                SizedBox(
-                  width: 40,
-                ),
-                Expanded(
-                  child: Container(
-                      alignment: Alignment.center,
-                      height: 55,
-                      decoration: BoxDecoration(
-                        color: Color(0xFFF1F4FF),
-                        borderRadius: BorderRadius.circular(16),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.2),
-                            blurRadius: 10,
-                          ),
-                        ],
-                      ),
-                      child: SvgPicture.asset(
-                        'assets/GoogleLogo_icon.svg',
-                        height: 25,
-                      )),
-                ),
-                SizedBox(
-                  width: 30,
-                ),
-                ///////Facebook
-                Expanded(
-                  child: Container(
-                      alignment: Alignment.center,
-                      height: 55,
-                      decoration: BoxDecoration(
-                        color: Color(0xFFF1F4FF),
-                        borderRadius: BorderRadius.circular(16),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.2),
-                            blurRadius: 10,
-                          ),
-                        ],
-                      ),
-                      child: SvgPicture.asset(
-                        'assets/FacebookLogo_icon.svg',
-                        height: 25,
-                      )),
-                ),
-                SizedBox(
-                  width: 30,
-                ),
-                /////////Twitter
-                Expanded(
-                  child: Container(
-                      alignment: Alignment.center,
-                      height: 55,
-                      decoration: BoxDecoration(
-                        color: Color(0xFFF1F4FF),
-                        borderRadius: BorderRadius.circular(16),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.2),
-                            blurRadius: 10,
-                          ),
-                        ],
-                      ),
-                      child: SvgPicture.asset(
-                        'assets/TwitterLogo_icon.svg',
-                        height: 25,
-                      )),
-                ),
-                SizedBox(
-                  width: 40,
                 ),
               ],
             ),
-
-            ////Row for 2 texts don't have an account? and signup
-            Padding(
-              padding: EdgeInsets.only(top: 32),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "don't have an account?",
-                    style: TextStyle(
-                      fontFamily: 'MulishRomanBold',
-                      color: Colors.black,
-                      fontSize: 16,
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 10),
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => Signup_Screen()),
-                        );
-                      },
-                      child: Text(
-                        'Signup',
-                        style: TextStyle(
-                          fontFamily: 'MulishRomanBold',
-                          color: Color(0xFF1D5D9B),
-                          height: 1.7,
-                          fontSize: 18,
-                          decoration: TextDecoration.underline,
-                          decorationColor: Color(0xFF1D5D9B),
-                          decorationThickness: 2.0,
-                          decorationStyle: TextDecorationStyle.solid,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );

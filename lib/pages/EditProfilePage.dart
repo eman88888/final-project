@@ -163,7 +163,7 @@ class _PickImageState extends State<EditProfile_Page> {
 
             /////// Display the user's name below the input field
             Text(
-              '$_userName',
+              _userName,
               style: TextStyle(
                 fontSize: 30,
                 fontFamily: 'Pacifico',

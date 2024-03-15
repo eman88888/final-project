@@ -1,0 +1,47 @@
+{
+   "checksum": "11f7f233a6d6a6db096c545286cda5f8",
+   "roots": {
+      "bookmark_bar": {
+         "children": [ {
+            "date_added": "13340902064792637",
+            "date_last_used": "13350145716856507",
+            "guid": "35d4a544-d09e-48c9-b10d-c95d35e2990f",
+            "id": "7",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "MMPApp - Platform",
+            "type": "url",
+            "url": "https://mmp.aucegypt.edu/home/homepage"
+         } ],
+         "date_added": "13354984105944010",
+         "date_last_used": "0",
+         "date_modified": "13340902064792637",
+         "guid": "0bc5d13f-2cba-5d74-951f-3f233fe6c908",
+         "id": "1",
+         "name": "Bookmarks bar",
+         "type": "folder"
+      },
+      "other": {
+         "children": [  ],
+         "date_added": "13354984105944015",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "82b081ec-3dd3-529c-8475-ab6c344590dd",
+         "id": "2",
+         "name": "Other bookmarks",
+         "type": "folder"
+      },
+      "synced": {
+         "children": [  ],
+         "date_added": "13354984105944019",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "4cf2e351-0e85-532b-bb37-df045d8f8d0f",
+         "id": "3",
+         "name": "Mobile bookmarks",
+         "type": "folder"
+      }
+   },
+   "version": 1
+}

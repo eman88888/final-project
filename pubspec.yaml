@@ -26,6 +26,7 @@ dependencies:
   firebase_storage: ^11.6.9
   firebase_messaging: ^14.7.19
   google_sign_in: ^6.2.1
+  modal_progress_hud_nsn: ^0.5.1
  
   
   

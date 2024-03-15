@@ -84,7 +84,7 @@ class _SettingPageState extends State<Setting_Page> {
               children: [
                 CircleAvatar(
                   radius: 90,
-                  backgroundImage: AssetImage("assets/ofile.png"),
+                  backgroundImage: AssetImage("assets/profile.png"),
                 ),
               ],
             ),
