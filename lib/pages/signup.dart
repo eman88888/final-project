@@ -88,7 +88,7 @@ class _Signup_ScreenState extends State<Signup_Screen> {
                   ],
                 ),
 
-////Textfield for Full Name
+                ////Textfield for Full Name
                 CustomTextFormField2(
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -149,14 +149,16 @@ class _Signup_ScreenState extends State<Signup_Screen> {
                   ),
                 ),
 
-////Signup Button
+                ////Signup Button
                 Padding(
                   padding: EdgeInsets.only(bottom: 40),
                   child: GestureDetector(
                     onTap: () async {
                       if (formKey.currentState!.validate()) {
-                        isLoading = true;
-                        setState(() {});
+                        setState(() {
+                          isLoading =
+                              true; // Update isLoading state before awaiting Firebase authentication
+                        });
                         try {
                           final credential = await FirebaseAuth.instance
                               .createUserWithEmailAndPassword(
@@ -185,7 +187,7 @@ class _Signup_ScreenState extends State<Signup_Screen> {
                                 content: Text(
                                   'The password provided is too weak.',
                                   style: TextStyle(
-                                    fontSize: 15,
+                                    fontSize: 18,
                                     color: Color(0xFFF1F4FF),
                                   ),
                                 ),
@@ -198,7 +200,7 @@ class _Signup_ScreenState extends State<Signup_Screen> {
                                 content: Text(
                                   'Email already exists.',
                                   style: TextStyle(
-                                    fontSize: 10,
+                                    fontSize: 18,
                                     color: Color(0xFFF1F4FF),
                                   ),
                                 ),
@@ -207,9 +209,24 @@ class _Signup_ScreenState extends State<Signup_Screen> {
                           }
                         }
 
-                        isLoading = false;
-                        setState(() {});
-                      } else {}
+                         setState(() {
+                          isLoading =
+                              false; // Update isLoading state after Firebase authentication
+                        });
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      backgroundColor: Color(0xFF1D5D9B),
+      content: Text(
+        'Please fill in all required fields correctly.',
+        style: TextStyle(
+          fontSize: 18,
+          color: Color(0xFFF1F4FF),
+        ),
+      ),
+    ),
+  );
+                      }
                     },
                     child: customButton(
                       text: 'Sign Up',
@@ -230,7 +247,7 @@ class _Signup_ScreenState extends State<Signup_Screen> {
                   ),
                 ),
 
-////Row for google, facebook, twitter sign in Button
+                ////Row for google, facebook, twitter sign in Button
                 Row(
                   children: [
                     ///////Google

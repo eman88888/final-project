@@ -108,7 +108,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                   ),
                 ),
 
-//// Text Forgot password
+                //// Text Forgot password
                 GestureDetector(
                   onTap: () {
                     Navigator.push(
@@ -161,7 +161,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                                 content: Text(
                                   'No user found for that email.',
                                   style: TextStyle(
-                                    fontSize: 15,
+                                    fontSize: 18,
                                     color: Color(0xFFF1F4FF),
                                   ),
                                 ),
@@ -174,7 +174,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                                 content: Text(
                                   'Wrong password provided for that user.',
                                   style: TextStyle(
-                                    fontSize: 10,
+                                    fontSize: 18,
                                     color: Color(0xFFF1F4FF),
                                   ),
                                 ),
@@ -186,7 +186,18 @@ class _Login_ScreenState extends State<Login_Screen> {
                           isLoading =
                               false; // Update isLoading state after Firebase authentication
                         });
-                      } else {}
+                      } else {ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      backgroundColor: Color(0xFF1D5D9B),
+      content: Text(
+        'Please fill in all required fields correctly.',
+        style: TextStyle(
+          fontSize: 18,
+          color: Color(0xFFF1F4FF),
+        ),
+      ),
+    ),
+  );}
                     },
                     child: customButton(
                       text: 'Log In',
@@ -207,7 +218,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                   ),
                 ),
 
-////Row for google, facebook, twitter sign in Button
+               ////Row for google, facebook, twitter sign in Button
                 Row(
                   children: [
                     ///////Google
@@ -285,7 +296,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                   ],
                 ),
 
-////Row for 2 texts don't have an account? and signup
+                ////Row for 2 texts don't have an account? and signup
                 Padding(
                   padding: EdgeInsets.only(top: 32),
                   child: Row(
