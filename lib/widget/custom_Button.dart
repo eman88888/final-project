@@ -18,7 +18,7 @@ class customButton extends StatelessWidget {
       child: Center(
         child: Text(
           text,
-          style: TextStyle(fontSize: 25, fontFamily: 'MulishRomanBold'),
+          style: TextStyle(fontSize: 25, fontFamily: 'MulishRomanBold',fontWeight: FontWeight.bold),
         ),
       ),
     );

@@ -4,6 +4,7 @@ import 'package:finalproject/models/Mutagenicity.dart';
 import 'package:finalproject/models/Similarity_map.dart';
 import 'package:finalproject/models/ToxicityofMolecules.dart';
 import 'package:finalproject/models/liver_toxicity.dart';
+import 'package:finalproject/pages/EditProfilePage.dart';
 import 'package:finalproject/pages/change_pass.dart';
 import 'package:finalproject/pages/info.dart';
 
@@ -16,6 +17,8 @@ import 'package:finalproject/result/similarty_result.dart';
 import 'package:finalproject/screens/bottomnavbar.dart';
 
 import 'package:finalproject/screens/home.dart';
+import 'package:finalproject/screens/profile.dart';
+import 'package:finalproject/screens/settings.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -43,6 +46,6 @@ class _appState extends State<app> {
     return GetMaterialApp(
         theme: ThemeData(fontFamily: 'Poppins'),
         debugShowCheckedModeBanner: false,
-        home: startscreen());
+        home: Login_Screen());
   }
 }

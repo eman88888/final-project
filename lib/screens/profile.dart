@@ -74,20 +74,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       children: [
                         Container(
                           margin:
-                              EdgeInsets.only(left: 120, right: 120, top: 60),
+                              EdgeInsets.only(left: 120, right: 120, top: 80),
                           child: CircleAvatar(
                             radius: 90,
                             backgroundImage: AssetImage("assets/profile.png"),
                           ),
                         ),
                         Positioned(
-                          bottom: 100,
+                          bottom: 80,
                           left: 0,
                           right: 0,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              /////// Display text Researcher
+                              /////// Display name and text Researcher
+                               Text(
+                                _username,
+                                style: TextStyle(
+                                  fontSize: 30,
+                                  fontFamily: 'Pacifico',
+                                  color: Colors.white,
+                                ),
+                              ),
+                              Padding(padding: EdgeInsets.only(bottom: 10)),
                               Text(
                                 'Researcher',
                                 style: TextStyle(
@@ -151,8 +160,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
 
                   Divider(
-                    thickness: 0.1,
-                    color: Colors.grey[350],
+                    thickness: 0.6,
+                    color: Colors.grey,
                   ),
 
                   ListTile(
@@ -170,8 +179,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
 
                   Divider(
-                    thickness: 0.1,
-                    color: Colors.grey[350],
+                     thickness: 0.6,
+                    color: Colors.grey,
                   ),
 
                   ListTile(
@@ -189,8 +198,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
 
                   Divider(
-                    thickness: 0.1,
-                    color: Colors.grey[350],
+                     thickness: 0.6,
+                    color: Colors.grey,
                   ),
 
                   ListTile(
@@ -208,8 +217,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
 
                   Divider(
-                    thickness: 0.1,
-                    color: Colors.grey[350],
+                    thickness: 0.6,
+                    color: Colors.grey,
                   ),
 
                   ListTile(
@@ -227,8 +236,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
 
                   Divider(
-                    thickness: 0.1,
-                    color: Colors.grey[350],
+                    thickness: 0.6,
+                    color: Colors.grey,
                   ),
 
                   ListTile(
@@ -256,8 +265,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
 
                   Divider(
-                    thickness: 0.1,
-                    color: Colors.grey[350],
+                    thickness: 0.6,
+                    color: Colors.grey,
                   ),
 
                   ListTile(

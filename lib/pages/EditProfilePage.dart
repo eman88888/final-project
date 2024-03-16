@@ -159,7 +159,15 @@ class _PickImageState extends State<EditProfile_Page> {
               ],
             ),
 
-            /////// Display text Researcher
+            /////// Display the user's name below the input field
+            Text(
+               _userNameController.text,
+              style: TextStyle(
+                fontSize: 30,
+                fontFamily: 'Pacifico',
+                color: Colors.white,
+              ),
+            ),
             Padding(padding: EdgeInsets.only(bottom: 3)),
             Text(
               'Researcher',
