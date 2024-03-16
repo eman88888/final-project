@@ -8,6 +8,7 @@ import 'package:finalproject/pages/change_pass.dart';
 import 'package:finalproject/pages/info.dart';
 
 import 'package:finalproject/pages/login_screen.dart';
+import 'package:finalproject/pages/signup.dart';
 import 'package:finalproject/pages/startscreen.dart';
 import 'package:finalproject/result/liver_result.dart';
 import 'package:finalproject/result/mutagenicity_result.dart';
@@ -42,6 +43,6 @@ class _appState extends State<app> {
     return GetMaterialApp(
         theme: ThemeData(fontFamily: 'Poppins'),
         debugShowCheckedModeBanner: false,
-        home: Login_Screen());
+        home: Signup_Screen());
   }
 }

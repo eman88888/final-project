@@ -118,7 +118,7 @@ class _ForgetPass_ScreenState extends State<ForgetPass_Screen> {
                     context,
                     MaterialPageRoute(
                         builder: (context) => ChangedSuccessfully_Screen()),
-                  );
+                  ); //////email#######
                 },
                 child: customButton(text: 'Reset password')),
           ),

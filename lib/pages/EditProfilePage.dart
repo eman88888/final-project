@@ -78,7 +78,7 @@ class _PickImageState extends State<EditProfile_Page> {
     if (user != null) {
       try {
         // Update user data in Firestore
-        await users.doc(user.uid).set({
+        await users.doc(user.uid).update({
           "name": _userNameController.text,
           "email": _emailController.text,
           "job": _JobController.text,
@@ -163,7 +163,7 @@ class _PickImageState extends State<EditProfile_Page> {
 
             /////// Display the user's name below the input field
             Text(
-              _userName,
+              _userNameController.text,
               style: TextStyle(
                 fontSize: 30,
                 fontFamily: 'Pacifico',
