@@ -87,15 +87,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
-                                _username,
-                                style: TextStyle(
-                                  fontSize: 30,
-                                  fontFamily: 'Pacifico-Regular',
-                                  color: Colors.white,
-                                ),
-                              ),
-                              Padding(padding: EdgeInsets.only(bottom: 5)),
+                              /////// Display text Researcher
                               Text(
                                 'Researcher',
                                 style: TextStyle(

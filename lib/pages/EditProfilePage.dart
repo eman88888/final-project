@@ -1,16 +1,14 @@
 import 'dart:io';
 
 import 'package:flutter/widgets.dart';
-import 'package:get/get.dart';
 
 import 'package:finalproject/screens/bottomnavbar.dart';
 import 'package:finalproject/screens/settings.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 ////////////
-import '../widget/custom_TextFormField.dart';
+import '../widget/custom_TextFormField1.dart';
 //firebase
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -161,15 +159,7 @@ class _PickImageState extends State<EditProfile_Page> {
               ],
             ),
 
-            /////// Display the user's name below the input field
-            Text(
-              _userNameController.text,
-              style: TextStyle(
-                fontSize: 30,
-                fontFamily: 'Pacifico',
-                color: Colors.white,
-              ),
-            ),
+            /////// Display text Researcher
             Padding(padding: EdgeInsets.only(bottom: 3)),
             Text(
               'Researcher',

@@ -89,17 +89,7 @@ class _SettingPageState extends State<Setting_Page> {
               ],
             ),
           ),
-
-          //////////Username Text
-          Text(
-            _userName,
-            style: TextStyle(
-              fontSize: 30,
-              fontFamily: 'Pacifico',
-              color: Colors.white,
-            ),
-          ),
-
+          
           Padding(padding: EdgeInsets.only(bottom: 10)),
 
           ////////////////////////////////Bottom Container

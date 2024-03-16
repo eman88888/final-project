@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finalproject/pages/login_screen.dart';
 import 'package:finalproject/screens/bottomnavbar.dart';
 import 'package:finalproject/widget/custom_Button.dart';
-import 'package:finalproject/widget/custom_TextField.dart';
+import 'package:finalproject/widget/custom_TextFormField2.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
