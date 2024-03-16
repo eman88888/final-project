@@ -187,7 +187,7 @@ class _Signup_ScreenState extends State<Signup_Screen> {
                                 content: Text(
                                   'The password provided is too weak.',
                                   style: TextStyle(
-                                    fontSize: 18,
+                                    fontSize: 17,
                                     color: Color(0xFFF1F4FF),
                                   ),
                                 ),
@@ -209,24 +209,11 @@ class _Signup_ScreenState extends State<Signup_Screen> {
                           }
                         }
 
-                         setState(() {
+                        setState(() {
                           isLoading =
                               false; // Update isLoading state after Firebase authentication
                         });
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(
-      backgroundColor: Color(0xFF1D5D9B),
-      content: Text(
-        'Please fill in all required fields correctly.',
-        style: TextStyle(
-          fontSize: 18,
-          color: Color(0xFFF1F4FF),
-        ),
-      ),
-    ),
-  );
-                      }
+                      } else {}
                     },
                     child: customButton(
                       text: 'Sign Up',
