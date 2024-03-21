@@ -1,5 +1,8 @@
 import 'dart:io';
 
+import 'package:finalproject/widget/custom_TextFormField2.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 
 import 'package:finalproject/screens/bottomnavbar.dart';
@@ -28,6 +31,7 @@ class _PickImageState extends State<EditProfile_Page> {
   TextEditingController _JobController = TextEditingController();
   TextEditingController _countryController = TextEditingController();
   TextEditingController _mobileController = TextEditingController();
+  String? url;
 
   /////build collection in firestore
   CollectionReference users = FirebaseFirestore.instance.collection('users');
@@ -59,7 +63,12 @@ class _PickImageState extends State<EditProfile_Page> {
         Map<String, dynamic> userData =
             documentSnapshot.data() as Map<String, dynamic>;
 
+        setState(() {
+          _userName = userData['name'] ?? '';
+        });
+
         // Set user data into text controllers
+
         _userNameController.text = userData['name'] ?? '';
         _emailController.text = userData['email'] ?? '';
         _JobController.text = userData['job'] ?? '';
@@ -73,8 +82,11 @@ class _PickImageState extends State<EditProfile_Page> {
     // Get the currently authenticated user
     User? user = _auth.currentUser;
 
-    if (user != null) {
+    if (user != null && mounted) {
       try {
+        // Verify the new email before updating
+        await user.verifyBeforeUpdateEmail(_emailController.text);
+
         // Update user data in Firestore
         await users.doc(user.uid).update({
           "name": _userNameController.text,
@@ -86,13 +98,60 @@ class _PickImageState extends State<EditProfile_Page> {
 
         // Data updated successfully
         print("User data updated successfully");
-
-        // Navigate back to the setting page
-        Navigator.of(context).pop();
+        // Show snackbar with the message
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'Update done',
+              style: TextStyle(color: Color(0xFFF1F4FF), fontSize: 15),
+            ),
+            backgroundColor: Color(0xFF1D5D9B),
+            duration: Duration(seconds: 2),
+          ),
+        );
       } catch (error) {
         // Failed to update data
         print("Failed to update user data: $error");
+        // Show snackbar with the message
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'Update failed',
+              style: TextStyle(color: Color(0xFFF1F4FF), fontSize: 15),
+            ),
+            backgroundColor: Color(0xFF1D5D9B),
+            duration: Duration(seconds: 2),
+          ),
+        );
       }
+    }
+  } ////////////////////////
+
+  Future<String?> uploadImageToFirebase() async {
+    if (_image == null) {
+      print('No image selected.');
+      return null;
+    }
+
+    try {
+      final currentUser = FirebaseAuth.instance.currentUser;
+      if (currentUser == null) {
+        print('User not signed in.');
+        return null;
+      }
+      Reference storageReference = FirebaseStorage.instance.ref().child(
+          "user_images/${currentUser.uid}/${DateTime.now().toIso8601String()}");
+      await storageReference.putFile(selectedIMage!);
+      final imageUrl = await storageReference.getDownloadURL();
+      setState(() {
+        url = imageUrl;
+      });
+
+      print('File uploaded successfully. Image URL: $url');
+      return imageUrl;
+    } on FirebaseException catch (e) {
+      print('Error uploading file: $e');
+      return null;
     }
   }
 
@@ -112,7 +171,7 @@ class _PickImageState extends State<EditProfile_Page> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => BottomNavBar()),
+                    MaterialPageRoute(builder: (context) => Setting_Page()),
                   );
                 },
                 icon: const Icon(
@@ -132,42 +191,47 @@ class _PickImageState extends State<EditProfile_Page> {
                         backgroundImage: AssetImage("assets/profile.png"),
                       ),
                 Positioned(
-                    bottom: -0,
-                    left: 140,
-                    child: Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(
-                          color: Colors.blue, // Border color
-                          width: 2.0, // Border width
-                        ),
-                        borderRadius:
-                            BorderRadius.circular(30), // Border radius
+                  bottom: -0,
+                  left: 140,
+                  child: Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(
+                        color: Colors.blue, // Border color
+                        width: 2.0, // Border width
                       ),
-                      child: IconButton(
-                          color: Color(0xFF1D5D9B),
-                          iconSize: 20,
-                          onPressed: () {
-                            showImagePickerOption(context);
-                          },
-                          icon: const Icon(
-                            Icons.add_a_photo,
-                          )),
-                    ))
+                      borderRadius: BorderRadius.circular(30), // Border radius
+                    ),
+                    child: IconButton(
+                      color: Color(0xFF1D5D9B),
+                      iconSize: 20,
+                      onPressed: () {
+                        showImagePickerOption(context);
+                      },
+                      icon: const Icon(
+                        Icons.add_a_photo,
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
 
-            /////// Display the user's name below the input field
-            Text(
-               _userNameController.text,
-              style: TextStyle(
-                fontSize: 30,
-                fontFamily: 'Pacifico',
-                color: Colors.white,
+            ///// Display the user's name below the input field
+            Padding(
+              padding: const EdgeInsets.only(top: 10, bottom: 7),
+              child: Text(
+                _userName,
+                style: TextStyle(
+                  fontSize: 30,
+                  fontFamily: 'Pacifico',
+                  color: Colors.white,
+                ),
               ),
             ),
+
             Padding(padding: EdgeInsets.only(bottom: 3)),
             Text(
               'Researcher',
@@ -179,7 +243,6 @@ class _PickImageState extends State<EditProfile_Page> {
               ),
             ),
             Padding(padding: EdgeInsets.only(bottom: 5)),
-
             ///////////////////Container with TextField UserName
             Expanded(
               child: Container(
@@ -262,9 +325,7 @@ class _PickImageState extends State<EditProfile_Page> {
 
                       Padding(
                         padding: EdgeInsets.only(bottom: 30),
-                      ),
-
-                      /////////////////// TextField Job
+                      ), /////////////////// TextField Job
                       CustomTextFormField(
                         controller: _JobController,
                         iconData: Icons.edit_outlined,
@@ -308,9 +369,15 @@ class _PickImageState extends State<EditProfile_Page> {
 
                       ///////////////////Button for save changes
                       GestureDetector(
-                        onTap: () {
-                          updateUserProfile();
-                          Navigator.of(context).pop();
+                        onTap: () async {
+                          String? uploadedImageUrl =
+                              await uploadImageToFirebase();
+                          if (uploadedImageUrl != null) {
+                            setState(() {
+                              url = uploadedImageUrl;
+                            });
+                            updateUserProfile();
+                          }
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -421,7 +488,7 @@ class _PickImageState extends State<EditProfile_Page> {
 /////addusers
   Future<void> addUser() async {
     // Check for null values in required fields
-    if (_userNameController.text.isEmpty ||
+    if (_userNameController.text.isEmpty || // <- Add a comma here
         _emailController.text.isEmpty ||
         _JobController.text.isEmpty ||
         _countryController.text.isEmpty ||

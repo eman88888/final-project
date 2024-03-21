@@ -119,7 +119,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                   },
                   child: Padding(
                     padding:
-                        const EdgeInsets.only(left: 165, top: 3, bottom: 25),
+                        const EdgeInsets.only(left: 170, top: 3, bottom: 25),
                     child: Text(
                       'forgot your password?',
                       style: TextStyle(

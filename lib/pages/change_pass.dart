@@ -257,6 +257,8 @@ class _changeState extends State<change> {
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please confirm your password';
+                          } else if (value != newpassController.text) {
+                            return 'Passwords do not match';
                           }
                         },
                         obscureText: passwordVisible2,

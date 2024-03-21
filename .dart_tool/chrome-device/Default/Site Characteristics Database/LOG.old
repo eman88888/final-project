@@ -1,34 +1,14 @@
-2024/03/16-21:27:01.437 4994 Reusing MANIFEST C:\Users\hagar\AppData\Local\Temp\flutter_tools.6ff88e8a\flutter_tools_chrome_device.d6e1db2b\Default\Site Characteristics Database/MANIFEST-000001
-2024/03/16-21:27:01.438 4994 Recovering log #3
-2024/03/16-21:27:01.438 4994 Level-0 table #29: started
-2024/03/16-21:27:01.441 4994 Level-0 table #29: 453 bytes OK
-2024/03/16-21:27:01.442 4994 Recovering log #6
-2024/03/16-21:27:01.442 4994 Level-0 table #30: started
-2024/03/16-21:27:01.447 4994 Level-0 table #30: 313 bytes OK
-2024/03/16-21:27:01.447 4994 Recovering log #10
-2024/03/16-21:27:01.448 4994 Level-0 table #31: started
-2024/03/16-21:27:01.452 4994 Level-0 table #31: 602 bytes OK
-2024/03/16-21:27:01.452 4994 Recovering log #19
-2024/03/16-21:27:01.453 4994 Level-0 table #32: started
-2024/03/16-21:27:01.455 4994 Level-0 table #32: 172 bytes OK
-2024/03/16-21:27:01.456 4994 Recovering log #26
-2024/03/16-21:27:01.456 4994 Reusing old log C:\Users\hagar\AppData\Local\Temp\flutter_tools.6ff88e8a\flutter_tools_chrome_device.d6e1db2b\Default\Site Characteristics Database/000026.log 
-2024/03/16-21:27:01.458 4994 Delete type=0 #3
-2024/03/16-21:27:01.458 4994 Delete type=2 #4
-2024/03/16-21:27:01.458 4994 Delete type=2 #6
-2024/03/16-21:27:01.458 4994 Delete type=0 #6
-2024/03/16-21:27:01.458 4994 Delete type=0 #10
-2024/03/16-21:27:01.458 4994 Delete type=2 #11
-2024/03/16-21:27:01.458 4994 Delete type=2 #13
-2024/03/16-21:27:01.458 4994 Delete type=2 #14
-2024/03/16-21:27:01.458 4994 Delete type=0 #19
-2024/03/16-21:27:01.458 4994 Delete type=2 #20
-2024/03/16-21:27:01.460 3324 Compacting 4@0 + 1@1 files
-2024/03/16-21:27:01.463 3324 Generated table #33@0: 2 keys, 201 bytes
-2024/03/16-21:27:01.463 3324 Compacted 4@0 + 1@1 files => 201 bytes
-2024/03/16-21:27:01.465 3324 compacted to: files[ 0 1 0 0 0 0 0 ]
-2024/03/16-21:27:01.465 3324 Delete type=2 #27
-2024/03/16-21:27:01.465 3324 Delete type=2 #29
-2024/03/16-21:27:01.466 3324 Delete type=2 #30
-2024/03/16-21:27:01.466 3324 Delete type=2 #31
-2024/03/16-21:27:01.466 3324 Delete type=2 #32
+2024/03/17-00:18:17.666 2ee0 Reusing MANIFEST C:\Users\hagar\AppData\Local\Temp\flutter_tools.fa175da\flutter_tools_chrome_device.ce3162cc\Default\Site Characteristics Database/MANIFEST-000001
+2024/03/17-00:18:17.666 2ee0 Recovering log #26
+2024/03/17-00:18:17.667 2ee0 Reusing old log C:\Users\hagar\AppData\Local\Temp\flutter_tools.fa175da\flutter_tools_chrome_device.ce3162cc\Default\Site Characteristics Database/000026.log 
+2024/03/17-00:18:17.667 2ee0 Delete type=0 #3
+2024/03/17-00:18:17.667 2ee0 Delete type=2 #4
+2024/03/17-00:18:17.667 2ee0 Delete type=2 #6
+2024/03/17-00:18:17.668 2ee0 Delete type=0 #6
+2024/03/17-00:18:17.668 2ee0 Delete type=0 #10
+2024/03/17-00:18:17.668 2ee0 Delete type=2 #11
+2024/03/17-00:18:17.668 2ee0 Delete type=2 #13
+2024/03/17-00:18:17.669 2ee0 Delete type=2 #14
+2024/03/17-00:18:17.669 2ee0 Delete type=0 #19
+2024/03/17-00:18:17.669 2ee0 Delete type=2 #20
+2024/03/17-00:18:17.669 2ee0 Delete type=2 #27
