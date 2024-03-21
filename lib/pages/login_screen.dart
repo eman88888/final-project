@@ -158,6 +158,13 @@ class _Login_ScreenState extends State<Login_Screen> {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 backgroundColor: Color(0xFF1D5D9B),
+                                duration: Duration(seconds: 3),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(
+                                      10), 
+                                  side:
+                                      BorderSide(color: Colors.white, width: 2),
+                                ),
                                 content: Text(
                                   'No user found for that email.',
                                   style: TextStyle(
@@ -171,6 +178,13 @@ class _Login_ScreenState extends State<Login_Screen> {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 backgroundColor: Color(0xFF1D5D9B),
+                                duration: Duration(seconds: 3),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(
+                                      10), 
+                                  side:
+                                      BorderSide(color: Colors.white, width: 2),
+                                ),
                                 content: Text(
                                   'Wrong password provided for that user.',
                                   style: TextStyle(
@@ -207,7 +221,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                   ),
                 ),
 
-               ////Row for google, facebook, twitter sign in Button
+                ////Row for google, facebook, twitter sign in Button
                 Row(
                   children: [
                     ///////Google

@@ -1,15 +1,14 @@
-2024/03/16-20:17:15.522 12f4 Reusing MANIFEST C:\Users\hagar\AppData\Local\Temp\flutter_tools.2dc18b0e\flutter_tools_chrome_device.e702b623\Default\Site Characteristics Database/MANIFEST-000001
-2024/03/16-20:17:15.524 2f4c Compacting 10@0 + 0@1 files
-2024/03/16-20:17:15.527 2f4c Generated table #27@0: 2 keys, 201 bytes
-2024/03/16-20:17:15.528 2f4c Compacted 10@0 + 0@1 files => 201 bytes
-2024/03/16-20:17:15.529 2f4c compacted to: files[ 0 1 0 0 0 0 0 ]
-2024/03/16-20:17:15.529 2f4c Delete type=2 #4
-2024/03/16-20:17:15.530 2f4c Delete type=2 #6
-2024/03/16-20:17:15.530 2f4c Delete type=2 #11
-2024/03/16-20:17:15.530 2f4c Delete type=2 #13
-2024/03/16-20:17:15.530 2f4c Delete type=2 #14
-2024/03/16-20:17:15.530 2f4c Delete type=2 #20
-2024/03/16-20:17:15.530 2f4c Delete type=2 #21
-2024/03/16-20:17:15.530 2f4c Delete type=2 #22
-2024/03/16-20:17:15.531 2f4c Delete type=2 #23
-2024/03/16-20:17:15.531 2f4c Delete type=2 #24
+2024/03/17-00:18:17.666 2ee0 Reusing MANIFEST C:\Users\hagar\AppData\Local\Temp\flutter_tools.fa175da\flutter_tools_chrome_device.ce3162cc\Default\Site Characteristics Database/MANIFEST-000001
+2024/03/17-00:18:17.666 2ee0 Recovering log #26
+2024/03/17-00:18:17.667 2ee0 Reusing old log C:\Users\hagar\AppData\Local\Temp\flutter_tools.fa175da\flutter_tools_chrome_device.ce3162cc\Default\Site Characteristics Database/000026.log 
+2024/03/17-00:18:17.667 2ee0 Delete type=0 #3
+2024/03/17-00:18:17.667 2ee0 Delete type=2 #4
+2024/03/17-00:18:17.667 2ee0 Delete type=2 #6
+2024/03/17-00:18:17.668 2ee0 Delete type=0 #6
+2024/03/17-00:18:17.668 2ee0 Delete type=0 #10
+2024/03/17-00:18:17.668 2ee0 Delete type=2 #11
+2024/03/17-00:18:17.668 2ee0 Delete type=2 #13
+2024/03/17-00:18:17.669 2ee0 Delete type=2 #14
+2024/03/17-00:18:17.669 2ee0 Delete type=0 #19
+2024/03/17-00:18:17.669 2ee0 Delete type=2 #20
+2024/03/17-00:18:17.669 2ee0 Delete type=2 #27

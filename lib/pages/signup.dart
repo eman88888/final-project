@@ -184,6 +184,13 @@ class _Signup_ScreenState extends State<Signup_Screen> {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 backgroundColor: Color(0xFF1D5D9B),
+                                 duration: Duration(seconds: 3),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(
+                                      10), 
+                                  side:
+                                      BorderSide(color: Colors.white, width: 2),
+                                ),
                                 content: Text(
                                   'The password provided is too weak.',
                                   style: TextStyle(
@@ -197,6 +204,13 @@ class _Signup_ScreenState extends State<Signup_Screen> {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 backgroundColor: Color(0xFF1D5D9B),
+                                 duration: Duration(seconds: 3),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(
+                                      10), 
+                                  side:
+                                      BorderSide(color: Colors.white, width: 2),
+                                ),
                                 content: Text(
                                   'Email already exists.',
                                   style: TextStyle(
