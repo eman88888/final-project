@@ -178,24 +178,7 @@ class _infoState extends State<info> {
                       ),
                     ),
                   ),
-                  Container(
-                    alignment: Alignment.bottomLeft,
-                    child: Padding(
-                        padding: const EdgeInsets.only(left: 5.0, top: 20),
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => BottomNavBar()),
-                            );
-                          },
-                          child: SvgPicture.asset(
-                            "assets/homepages_icon.svg",
-                            height: 35,
-                          ),
-                        )),
-                  ),
+                  
                 ],
               ),
             ),

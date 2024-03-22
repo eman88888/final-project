@@ -136,7 +136,7 @@ class _changeState extends State<change> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 4, right: 4),
+                      padding: const EdgeInsets.only(left: 10, right: 10),
                       child: TextFormField(
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -194,7 +194,7 @@ class _changeState extends State<change> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 4, right: 4),
+                      padding: const EdgeInsets.only(left: 10, right: 10),
                       child: TextFormField(
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -252,7 +252,7 @@ class _changeState extends State<change> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 4, right: 4),
+                      padding: const EdgeInsets.only(left: 10, right: 10),
                       child: TextFormField(
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -303,9 +303,9 @@ class _changeState extends State<change> {
                     ),
                     Padding(padding: EdgeInsets.all(30)),
                     Container(
-                      margin: const EdgeInsets.all(8),
+                      margin: const EdgeInsets.all(50),
                       height: 60,
-                      width: 262,
+                      width: 60,
                       child: MaterialButton(
                           child: const Text(
                             'Change',
@@ -331,7 +331,7 @@ class _changeState extends State<change> {
                     Container(
                       alignment: Alignment.bottomLeft,
                       child: Padding(
-                          padding: const EdgeInsets.only(left: 5.0, top: 140),
+                          padding: const EdgeInsets.only(left: 5.0, top: 55),
                           child: InkWell(
                             onTap: () {
                               Navigator.push(
