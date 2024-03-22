@@ -143,12 +143,7 @@ class _ForgetPass_ScreenState extends State<ForgetPass_Screen> {
                             email: mailAddress.text,
                           );
                           // Show snackbar to inform the user that the password reset email has been sent
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                  'Password reset email sent. Please check your email.'),
-                            ),
-                          );
+                         
                           // Navigate to login page
                           Navigator.push(
                       context,

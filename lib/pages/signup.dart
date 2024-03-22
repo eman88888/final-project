@@ -184,7 +184,7 @@ class _Signup_ScreenState extends State<Signup_Screen> {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 backgroundColor: Color(0xFF1D5D9B),
-                                 duration: Duration(seconds: 3),
+                                 duration: Duration(seconds: 2),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(
                                       10), 
@@ -204,7 +204,7 @@ class _Signup_ScreenState extends State<Signup_Screen> {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 backgroundColor: Color(0xFF1D5D9B),
-                                 duration: Duration(seconds: 3),
+                                 duration: Duration(seconds: 2),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(
                                       10), 

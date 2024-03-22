@@ -14,7 +14,7 @@ class mutresult extends StatefulWidget {
 }
 
 class _mutresultState extends State<mutresult> {
-  bool result = false;
+  bool result = true;
   bool textcolor = false;
   @override
   Widget build(BuildContext context) {

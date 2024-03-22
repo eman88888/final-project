@@ -127,33 +127,33 @@ class _PickImageState extends State<EditProfile_Page> {
     }
   } ////////////////////////
 
-  Future<String?> uploadImageToFirebase() async {
-    if (_image == null) {
-      print('No image selected.');
-      return null;
-    }
+  // // Future<String?> uploadImageToFirebase() async {
+  // //   if (_image == null) {
+  // //     print('No image selected.');
+  // //     return null;
+  // //   }
 
-    try {
-      final currentUser = FirebaseAuth.instance.currentUser;
-      if (currentUser == null) {
-        print('User not signed in.');
-        return null;
-      }
-      Reference storageReference = FirebaseStorage.instance.ref().child(
-          "user_images/${currentUser.uid}/${DateTime.now().toIso8601String()}");
-      await storageReference.putFile(selectedIMage!);
-      final imageUrl = await storageReference.getDownloadURL();
-      setState(() {
-        url = imageUrl;
-      });
+  //   try {
+  //     final currentUser = FirebaseAuth.instance.currentUser;
+  //     if (currentUser == null) {
+  //       print('User not signed in.');
+  //       return null;
+  //     }
+  //     Reference storageReference = FirebaseStorage.instance.ref().child(
+  //         "user_images/${currentUser.uid}/${DateTime.now().toIso8601String()}");
+  //     await storageReference.putFile(selectedIMage!);
+  //     final imageUrl = await storageReference.getDownloadURL();
+  //     setState(() {
+  //       url = imageUrl;
+  //     });
 
-      print('File uploaded successfully. Image URL: $url');
-      return imageUrl;
-    } on FirebaseException catch (e) {
-      print('Error uploading file: $e');
-      return null;
-    }
-  }
+  //     print('File uploaded successfully. Image URL: $url');
+  //     return imageUrl;
+  //   } on FirebaseException catch (e) {
+  //     print('Error uploading file: $e');
+  //     return null;
+  //   }
+  // }
 
   ///////
   GlobalKey<FormState> formKey = GlobalKey();
@@ -370,14 +370,15 @@ class _PickImageState extends State<EditProfile_Page> {
                       ///////////////////Button for save changes
                       GestureDetector(
                         onTap: () async {
-                          String? uploadedImageUrl =
-                              await uploadImageToFirebase();
-                          if (uploadedImageUrl != null) {
-                            setState(() {
-                              url = uploadedImageUrl;
-                            });
-                            updateUserProfile();
-                          }
+                          // String? uploadedImageUrl =
+                          //     await uploadImageToFirebase();
+                          // if (uploadedImageUrl != null) {
+                          //   setState(() {
+                          //     url = uploadedImageUrl;
+                          //   });
+                         
+                          // }
+                             updateUserProfile();
                         },
                         child: Container(
                           decoration: BoxDecoration(

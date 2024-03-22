@@ -1,5 +1,6 @@
 import 'package:finalproject/pages/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import '../widget/custom_Button.dart';
 
@@ -15,27 +16,24 @@ class ChangedSuccessfully_Screen extends StatelessWidget {
           //////Put image
           Padding(
             padding: const EdgeInsets.only(top: 140, bottom: 32),
-            child: Image.asset('assets/change2.png'),
+            child: Image.asset('assets/send.jpg'),
           ),
 
-          /////Text for Password Changed!
-          Text(
-            'Password Changed!',
-            style: TextStyle(
-              fontSize: 30,
-              color: Color(0xFF1D5D9B),
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+          
 
           /////Text for Your password has been changed
-          Text(
-            'Your password has been changed \n                  successfully.',
-            style: TextStyle(
-              fontSize: 15,
-              color: Color(0xFF7CA3C9),
-              fontWeight: FontWeight.bold,
-              fontFamily: "MulishRomanBold",
+          Padding(
+            padding: const EdgeInsets.only(top: 50),
+            child: Center(
+              child: Text(
+                'Password reset email sent! \n  Please check your email.',
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Color(0xFF1D5D9B),
+                  fontWeight: FontWeight.bold,
+                  fontFamily: "MulishRomanBold",
+                ),
+              ),
             ),
           ),
 
