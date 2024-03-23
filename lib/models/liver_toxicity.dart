@@ -29,10 +29,10 @@ class _liverState extends State<liver> {
                         MaterialPageRoute(builder: (context) => BottomNavBar()),
                       );
                     },
-                    child: SvgPicture.asset(
-                      "assets/homepages_icon.svg",
-                      height: 35,
-                    ),
+                    child:  Image.asset(
+                              "assets/home icon.png",
+                              height: 35,
+                            ),
                   )),
             ),
             InkWell(

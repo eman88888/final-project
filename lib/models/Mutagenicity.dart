@@ -44,10 +44,10 @@ class _mutagenicityState extends State<mutagenicity> {
                         MaterialPageRoute(builder: (context) => BottomNavBar()),
                       );
                     },
-                    child: SvgPicture.asset(
-                      "assets/homepages_icon.svg",
-                      height: 35,
-                    ),
+                    child: Image.asset(
+                              "assets/home icon.png",
+                              height: 35,
+                            ),
                   )),
             ),
             InkWell(

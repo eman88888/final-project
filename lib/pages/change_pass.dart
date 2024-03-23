@@ -70,7 +70,7 @@ class _changeState extends State<change> {
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
     return Scaffold(
-      // backgroundColor: Color(0xff1D5D9B),
+      
       body: Form(
         key: formKey,
         child: Stack(
@@ -96,7 +96,7 @@ class _changeState extends State<change> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 40),
+              padding: const EdgeInsets.only(top: 30),
               child: Container(
                 alignment: Alignment.center,
                 margin: EdgeInsets.only(bottom: 20),
@@ -128,7 +128,7 @@ class _changeState extends State<change> {
                     ),
                     Padding(padding: EdgeInsets.all(10)),
                     Container(
-                      padding: EdgeInsets.only(left: 10, bottom: 10),
+                      padding: EdgeInsets.only(left: 20, bottom: 10),
                       alignment: Alignment.centerLeft,
                       child: Text(
                         " password",
@@ -136,7 +136,7 @@ class _changeState extends State<change> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      padding: const EdgeInsets.only(left: 20, right: 20),
                       child: TextFormField(
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -149,13 +149,13 @@ class _changeState extends State<change> {
                           fillColor: Color(0xffF1F4FF),
                           filled: true,
                           focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
+                            borderRadius: BorderRadius.circular(25),
                             borderSide: BorderSide(
                               color: Color(0xFF047EB0),
                             ),
                           ),
                           enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
+                            borderRadius: BorderRadius.circular(25),
                             borderSide: BorderSide(
                               color: Color(0xFFF1F4FF),
                             ),
@@ -186,7 +186,7 @@ class _changeState extends State<change> {
                     ),
                     Padding(padding: EdgeInsets.all(10)),
                     Container(
-                      padding: EdgeInsets.only(left: 10, bottom: 10),
+                       padding: EdgeInsets.only(left: 20, bottom: 10),
                       alignment: Alignment.centerLeft,
                       child: Text(
                         " New password",
@@ -194,7 +194,7 @@ class _changeState extends State<change> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      padding: const EdgeInsets.only(left: 20, right: 20),
                       child: TextFormField(
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -207,13 +207,13 @@ class _changeState extends State<change> {
                           fillColor: Color(0xffF1F4FF),
                           filled: true,
                           focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
+                            borderRadius: BorderRadius.circular(25),
                             borderSide: BorderSide(
                               color: Color(0xFF047EB0),
                             ),
                           ),
                           enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
+                            borderRadius: BorderRadius.circular(25),
                             borderSide: BorderSide(
                               color: Color(0xFFF1F4FF),
                             ),
@@ -244,7 +244,7 @@ class _changeState extends State<change> {
                     ),
                     Padding(padding: EdgeInsets.all(10)),
                     Container(
-                      padding: EdgeInsets.only(left: 10, bottom: 10),
+                      padding: EdgeInsets.only(left: 20, bottom: 10),
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "Confirm New password",
@@ -252,7 +252,7 @@ class _changeState extends State<change> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      padding: const EdgeInsets.only(left: 20, right: 20),
                       child: TextFormField(
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -266,13 +266,13 @@ class _changeState extends State<change> {
                           fillColor: Color(0xffF1F4FF),
                           filled: true,
                           focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
+                            borderRadius: BorderRadius.circular(25),
                             borderSide: BorderSide(
                               color: Color(0xFF047EB0),
                             ),
                           ),
                           enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
+                            borderRadius: BorderRadius.circular(25),
                             borderSide: BorderSide(
                               color: Color(0xFFF1F4FF),
                             ),
@@ -303,7 +303,7 @@ class _changeState extends State<change> {
                     ),
                     Padding(padding: EdgeInsets.all(30)),
                     Container(
-                      margin: const EdgeInsets.all(50),
+                      margin: const EdgeInsets.only(left:80,right: 80,bottom: 50,top: 50),
                       height: 60,
                       width: 60,
                       child: MaterialButton(
@@ -340,8 +340,8 @@ class _changeState extends State<change> {
                                     builder: (context) => BottomNavBar()),
                               );
                             },
-                            child: SvgPicture.asset(
-                              "assets/homepages_icon.svg",
+                            child: Image.asset(
+                              "assets/home icon.png",
                               height: 35,
                             ),
                           )),

@@ -36,10 +36,10 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
                       MaterialPageRoute(builder: (context) => BottomNavBar()),
                     );
                   },
-                  child: SvgPicture.asset(
-                    "assets/homepages_icon.svg",
-                    height: 35,
-                  ),
+                  child:  Image.asset(
+                              "assets/home icon.png",
+                              height: 35,
+                            ),
                 )),
           ),
           InkWell(

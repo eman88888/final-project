@@ -17,11 +17,18 @@ class info extends StatefulWidget {
 class _infoState extends State<info> {
   @override
   Widget build(BuildContext context) {
+    var screenSize = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Color(0xff1D5D9B),
-      body: Column(
-        children: [
-          Row(
+      
+      body: Stack(
+        clipBehavior: Clip.none,
+          children: [
+            Container(
+              height:200,
+              color: Color(0xff1D5D9B),
+            ),
+           
+           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
@@ -52,8 +59,9 @@ class _infoState extends State<info> {
             ],
           ),
           Padding(
-            padding: const EdgeInsets.all(2),
+            padding: const EdgeInsets.only(top: 30,left: 120),
             child: Container(
+             
               child: Text(
                 'information',
                 style: TextStyle(
@@ -64,17 +72,18 @@ class _infoState extends State<info> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 40),
-            child: Container(
-              height: 788,
-              width: 500,
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
+            Positioned(
+              top: 100,
+              child: Container(
+                width: screenSize.width,
+                height: screenSize.height,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20))),
-              child: Column(
+                      topRight: Radius.circular(20),
+                    )),
+                child: ListView(
                 children: [
                   Padding(padding: EdgeInsets.all(20)),
                   Padding(
@@ -178,13 +187,31 @@ class _infoState extends State<info> {
                       ),
                     ),
                   ),
-                  
+                  Container(
+                      alignment: Alignment.bottomLeft,
+                      child: Padding(
+                          padding: const EdgeInsets.only(left: 5.0, top: 50),
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => BottomNavBar()),
+                              );
+                            },
+                            child: Image.asset(
+                              "assets/home icon.png",
+                              height: 35,
+                            ),
+                          )),
+                    ),
                 ],
+                
+              ),
               ),
             ),
-          ),
-        ],
-      ),
+          ],
+        ),
     );
   }
 }
