@@ -15,7 +15,7 @@ class mutresult extends StatefulWidget {
 
 class _mutresultState extends State<mutresult> {
   bool result = true;
-  bool textcolor = false;
+  bool textcolor = true;
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;

@@ -398,6 +398,12 @@
       "languageVersion": "3.2"
     },
     {
+      "name": "modal_bottom_sheet",
+      "rootUri": "file:///C:/Users/Al3almya/AppData/Local/Pub/Cache/hosted/pub.dev/modal_bottom_sheet-3.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.3"
+    },
+    {
       "name": "modal_progress_hud_nsn",
       "rootUri": "file:///C:/Users/Al3almya/AppData/Local/Pub/Cache/hosted/pub.dev/modal_progress_hud_nsn-0.5.1",
       "packageUri": "lib/",
@@ -566,7 +572,7 @@
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2024-03-22T22:53:42.381183Z",
+  "generated": "2024-04-12T06:46:24.815513Z",
   "generator": "pub",
   "generatorVersion": "3.3.2"
 }
