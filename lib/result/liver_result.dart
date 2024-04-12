@@ -1,4 +1,5 @@
 import 'package:finalproject/models/liver_toxicity.dart';
+import 'package:finalproject/pages/convert.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -79,6 +80,22 @@ class _livresultState extends State<livresult> {
               ),
             ),
           ),
+           Padding(
+              padding: const EdgeInsets.only(top: 5),
+              child: InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => converter()),
+                  );
+                },
+                child: Container(
+                  alignment: Alignment.topRight,
+                  child: Image.asset("convert_icon.png",width: 25,height: 30,),
+                  ),
+              ),
+            ),
+           
           Padding(
             padding: const EdgeInsets.only(top: 35),
             child: Container(

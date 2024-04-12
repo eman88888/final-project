@@ -1,3 +1,4 @@
+import 'package:finalproject/pages/convert.dart';
 import 'package:finalproject/pages/robot.dart';
 import 'package:finalproject/screens/bottomnavbar.dart';
 import 'package:finalproject/widget/result_contanier.dart';
@@ -82,6 +83,21 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
               ),
             ),
           ),
+           Padding(
+              padding: const EdgeInsets.only(top: 5),
+              child: InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => converter()),
+                  );
+                },
+                child: Container(
+                  alignment: Alignment.topRight,
+                  child: Image.asset("convert_icon.png",width: 25,height: 30,),
+                  ),
+              ),
+            ),
           Padding(
             padding: const EdgeInsets.only(top: 35),
             child: Container(

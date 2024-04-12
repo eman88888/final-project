@@ -49,6 +49,6 @@ class _appState extends State<app> {
     return GetMaterialApp(
         theme: ThemeData(fontFamily: 'Poppins'),
         debugShowCheckedModeBanner: false,
-        home: converter());
+        home: BottomNavBar());
   }
 }

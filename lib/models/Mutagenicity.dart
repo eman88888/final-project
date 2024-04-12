@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:dotted_border/dotted_border.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:finalproject/pages/convert.dart';
 import 'package:finalproject/pages/robot.dart';
 import 'package:finalproject/result/mutagenicity_result.dart';
 import 'package:finalproject/screens/bottomnavbar.dart';
@@ -89,6 +90,22 @@ class _mutagenicityState extends State<mutagenicity> {
                 ),
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.only(top: 5),
+              child: InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => converter()),
+                  );
+                },
+                child: Container(
+                  alignment: Alignment.topRight,
+                  child: Image.asset("convert_icon.png",width: 25,height: 30,),
+                  ),
+              ),
+            ),
+            
             Padding(
               padding: const EdgeInsets.only(top: 35),
               child: Container(

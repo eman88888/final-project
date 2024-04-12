@@ -1,3 +1,4 @@
+import 'package:finalproject/pages/convert.dart';
 import 'package:finalproject/pages/robot.dart';
 import 'package:finalproject/screens/bottomnavbar.dart';
 import 'package:flutter/material.dart';
@@ -77,6 +78,21 @@ class _ToxicityofMolecules_ScreenState
                   Icons.arrow_back_ios,
                   color: Colors.white,
                 ),
+              ),
+            ),
+             Padding(
+              padding: const EdgeInsets.only(top: 5),
+              child: InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => converter()),
+                  );
+                },
+                child: Container(
+                  alignment: Alignment.topRight,
+                  child: Image.asset("convert_icon.png",width: 25,height: 30,),
+                  ),
               ),
             ),
             Padding(
