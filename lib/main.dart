@@ -1,5 +1,7 @@
 import 'dart:collection';
+import 'dart:js';
 
+import 'package:finalproject/cubit/convert_cubit.dart';
 import 'package:finalproject/models/Mutagenicity.dart';
 import 'package:finalproject/models/Similarity_map.dart';
 import 'package:finalproject/models/ToxicityofMolecules.dart';
@@ -25,6 +27,7 @@ import 'package:finalproject/screens/profile.dart';
 import 'package:finalproject/screens/settings.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -34,7 +37,13 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const app());
+  runApp(
+    MultiBlocProvider(
+      providers:[
+        BlocProvider(create: (context)=>ConvertCubit(),),
+      ] ,
+     child: const app())
+  );
 }
 
 class app extends StatefulWidget {
@@ -50,6 +59,7 @@ class _appState extends State<app> {
     return GetMaterialApp(
         theme: ThemeData(fontFamily: 'Poppins'),
         debugShowCheckedModeBanner: false,
-        home:convertScreen());
+        home: convertScreen(),
+        );
   }
 }
