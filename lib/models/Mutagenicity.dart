@@ -96,7 +96,7 @@ class _mutagenicityState extends State<mutagenicity> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => converter()),
+                    MaterialPageRoute(builder: (context) => convertScreen()),
                   );
                 },
                 child: Container(

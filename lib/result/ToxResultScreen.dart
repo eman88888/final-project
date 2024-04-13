@@ -89,7 +89,7 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => converter()),
+                    MaterialPageRoute(builder: (context) => convertScreen()),
                   );
                 },
                 child: Container(

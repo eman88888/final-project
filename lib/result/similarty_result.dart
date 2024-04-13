@@ -88,7 +88,7 @@ class _simresultState extends State<simresult>
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => converter()),
+                    MaterialPageRoute(builder: (context) => convertScreen()),
                   );
                 },
                 child: Container(

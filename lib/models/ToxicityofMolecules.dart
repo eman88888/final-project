@@ -86,7 +86,7 @@ class _ToxicityofMolecules_ScreenState
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => converter()),
+                    MaterialPageRoute(builder: (context) => convertScreen()),
                   );
                 },
                 child: Container(
