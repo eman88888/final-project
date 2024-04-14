@@ -40,12 +40,12 @@ file:///C:/Users/hagar/AppData/Local/Pub/Cache/hosted/pub.dev/cloud_firestore-4.
 file:///C:/Users/hagar/AppData/Local/Pub/Cache/hosted/pub.dev/cloud_firestore-4.15.8/lib/
 cloud_firestore_platform_interface
 2.18
-file:///C:/Users/hagar/AppData/Local/Pub/Cache/hosted/pub.dev/cloud_firestore_platform_interface-6.1.9/
-file:///C:/Users/hagar/AppData/Local/Pub/Cache/hosted/pub.dev/cloud_firestore_platform_interface-6.1.9/lib/
+file:///C:/Users/hagar/AppData/Local/Pub/Cache/hosted/pub.dev/cloud_firestore_platform_interface-6.1.13/
+file:///C:/Users/hagar/AppData/Local/Pub/Cache/hosted/pub.dev/cloud_firestore_platform_interface-6.1.13/lib/
 cloud_firestore_web
 3.2
-file:///C:/Users/hagar/AppData/Local/Pub/Cache/hosted/pub.dev/cloud_firestore_web-3.10.8/
-file:///C:/Users/hagar/AppData/Local/Pub/Cache/hosted/pub.dev/cloud_firestore_web-3.10.8/lib/
+file:///C:/Users/hagar/AppData/Local/Pub/Cache/hosted/pub.dev/cloud_firestore_web-3.11.1/
+file:///C:/Users/hagar/AppData/Local/Pub/Cache/hosted/pub.dev/cloud_firestore_web-3.11.1/lib/
 collection
 2.18
 file:///C:/Users/hagar/AppData/Local/Pub/Cache/hosted/pub.dev/collection-1.18.0/
@@ -238,10 +238,6 @@ intl
 3.0
 file:///C:/Users/hagar/AppData/Local/Pub/Cache/hosted/pub.dev/intl-0.19.0/
 file:///C:/Users/hagar/AppData/Local/Pub/Cache/hosted/pub.dev/intl-0.19.0/lib/
-js
-2.19
-file:///C:/Users/hagar/AppData/Local/Pub/Cache/hosted/pub.dev/js-0.6.7/
-file:///C:/Users/hagar/AppData/Local/Pub/Cache/hosted/pub.dev/js-0.6.7/lib/
 leak_tracker
 3.1
 file:///C:/Users/hagar/AppData/Local/Pub/Cache/hosted/pub.dev/leak_tracker-10.0.0/

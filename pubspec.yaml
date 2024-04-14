@@ -33,6 +33,7 @@ dependencies:
   http: ^1.2.1
   chat_gpt_sdk: ^3.0.4
   chat_bubbles: ^1.6.0
+  cloud_firestore_web: ^3.11.1
  
   
   
