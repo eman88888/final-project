@@ -1,3 +1,5 @@
+import 'package:finalproject/pages/chat.dart';
+import 'package:finalproject/screens/bottomnavbar.dart';
 import 'package:flutter/material.dart';
 
 class robot extends StatefulWidget {
@@ -18,9 +20,23 @@ class _robotState extends State<robot> {
             child: Container(
               height: 15,
               alignment: Alignment.topLeft,
-              child: const Icon(
-                Icons.menu,
-                color: Colors.black,
+              child: GestureDetector(
+                onTap: () {
+                  
+                   ///main page of Home
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return BottomNavBar();
+                      },
+                    ),
+                  );
+                },
+                child: const Icon(
+                  Icons.menu,
+                  color: Colors.black,
+                ),
               ),
             ),
           ),
@@ -107,7 +123,16 @@ class _robotState extends State<robot> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
-                onPressed: () {}),
+                onPressed: () {
+                   Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return Chat_Page();
+                      },
+                    ),
+                  );
+                }),
           ),
         ],
       ),

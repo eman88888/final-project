@@ -14,6 +14,7 @@ import 'package:finalproject/pages/convert.dart';
 import 'package:finalproject/pages/info.dart';
 
 import 'package:finalproject/pages/login_screen.dart';
+import 'package:finalproject/pages/robot.dart';
 
 import 'package:finalproject/pages/signup.dart';
 import 'package:finalproject/pages/startscreen.dart';
@@ -59,7 +60,7 @@ class _appState extends State<app> {
     return GetMaterialApp(
         theme: ThemeData(fontFamily: 'Poppins'),
         debugShowCheckedModeBanner: false,
-        home: Login_Screen(),
+        home: robot(),
         );
   }
 }
