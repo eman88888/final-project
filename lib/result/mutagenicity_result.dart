@@ -15,8 +15,8 @@ class mutresult extends StatefulWidget {
 }
 
 class _mutresultState extends State<mutresult> {
-  bool result = true;
-  bool textcolor = true;
+  bool result = false;
+  bool textcolor = false;
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
@@ -79,19 +79,21 @@ class _mutresultState extends State<mutresult> {
               ),
             ),
           ),
-           Padding(
-              padding: const EdgeInsets.only(top: 5),
-              child: InkWell(
-                onTap: () {
+           Container(
+              alignment: Alignment.topRight,
+              child: IconButton(
+                onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => convertScreen()),
                   );
                 },
-                child: Container(
-                  alignment: Alignment.topRight,
-                  child: Image.asset("convert_icon.png",width: 25,height: 30,),
-                  ),
+                icon:  Image.asset(
+                  "convert.png",
+                  height: 30,
+                  width: 35,
+                  color: Colors.white,
+                ),
               ),
             ),
           Padding(
@@ -123,7 +125,7 @@ class _mutresultState extends State<mutresult> {
                         Padding(
                           padding: const EdgeInsets.only(left: 20, top: 100),
                           child: resultwidgetcontainer(
-                            isDark: true,
+                            
                             result: result,
                             text: "Mutagenic",
                             textcolor: textcolor,
@@ -132,7 +134,7 @@ class _mutresultState extends State<mutresult> {
                         Padding(
                           padding: const EdgeInsets.only(right: 20, top: 100),
                           child: resultwidgetcontainer(
-                            isDark: true,
+                            
                             result: !result,
                             text: "Non-Mutagenic",
                             textcolor: !textcolor,

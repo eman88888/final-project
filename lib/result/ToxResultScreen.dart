@@ -83,19 +83,21 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
               ),
             ),
           ),
-           Padding(
-              padding: const EdgeInsets.only(top: 5),
-              child: InkWell(
-                onTap: () {
+           Container(
+              alignment: Alignment.topRight,
+              child: IconButton(
+                onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => convertScreen()),
                   );
                 },
-                child: Container(
-                  alignment: Alignment.topRight,
-                  child: Image.asset("convert_icon.png",width: 25,height: 30,),
-                  ),
+                icon:  Image.asset(
+                  "convert.png",
+                  height: 30,
+                  width: 35,
+                  color: Colors.white,
+                ),
               ),
             ),
           Padding(
@@ -127,7 +129,7 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
                         Padding(
                           padding: const EdgeInsets.only(left: 20, top: 50),
                           child: resultwidgetcontainer(
-                            isDark: true,
+                            
                             result: result,
                             text: "Toxic",
                             textcolor: textcolor,
@@ -136,7 +138,7 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
                         Padding(
                           padding: const EdgeInsets.only(right: 20, top: 50),
                           child: resultwidgetcontainer(
-                            isDark: true,
+                           
                             result: !result,
                             text: "Non-Toxic",
                             textcolor: !textcolor,

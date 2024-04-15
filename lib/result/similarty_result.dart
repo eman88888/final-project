@@ -82,19 +82,21 @@ class _simresultState extends State<simresult>
                 ),
               ),
             ),
-             Padding(
-              padding: const EdgeInsets.only(top: 5),
-              child: InkWell(
-                onTap: () {
+              Container(
+              alignment: Alignment.topRight,
+              child: IconButton(
+                onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => convertScreen()),
                   );
                 },
-                child: Container(
-                  alignment: Alignment.topRight,
-                  child: Image.asset("convert_icon.png",width: 25,height: 30,),
-                  ),
+                icon:  Image.asset(
+                  "convert.png",
+                  height: 30,
+                  width: 35,
+                  color: Colors.white,
+                ),
               ),
             ),
             Positioned(
