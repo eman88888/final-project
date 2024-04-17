@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:chat_bubbles/bubbles/bubble_normal.dart';
 import 'package:finalproject/models/messages.dart';
+import 'package:finalproject/pages/info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
@@ -118,10 +119,13 @@ class _ChatPageState extends State<Chat_Page> {
               ),
               //info page
               GestureDetector(
-                onTap: () {
-                  // Navigate to info page
-                },
-                child: Padding(
+                   onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => info()),
+              );
+            },
+            child: Padding(
                   padding: const EdgeInsets.only(left: 180),
                   child: SvgPicture.asset(
                     'assets/information.svg',

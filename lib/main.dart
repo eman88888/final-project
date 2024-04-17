@@ -9,6 +9,7 @@ import 'package:finalproject/models/liver_toxicity.dart';
 import 'package:finalproject/pages/EditProfilePage.dart';
 import 'package:finalproject/pages/change_pass.dart';
 import 'package:finalproject/pages/changedSuccessfully.dart';
+import 'package:finalproject/pages/chat.dart';
 import 'package:finalproject/pages/convert.dart';
 
 import 'package:finalproject/pages/info.dart';
@@ -60,7 +61,7 @@ class _appState extends State<app> {
     return GetMaterialApp(
         theme: ThemeData(fontFamily: 'Poppins'),
         debugShowCheckedModeBanner: false,
-        home: BottomNavBar(),
+        home: info(),
         );
   }
 }
