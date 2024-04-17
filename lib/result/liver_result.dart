@@ -180,7 +180,7 @@ class _livresultState extends State<livresult> {
                                         child: Column(children: [
                                           Padding(
                                             padding: const EdgeInsets.only(
-                                                left: 265),
+                                                left: 300),
                                             child: MaterialButton(
                                               height: 24,
                                               minWidth: 24,
@@ -188,7 +188,7 @@ class _livresultState extends State<livresult> {
                                                 Navigator.pop(context);
                                               },
                                               child: Container(
-                                                color: Color(0xff1D5D9B),
+                                                color: Colors.red,
                                                 height: 24,
                                                 width: 24,
                                                 child: Icon(
@@ -232,6 +232,7 @@ class _livresultState extends State<livresult> {
                                                 "Atomic Number :  ",
                                                 style: TextStyle(
                                                   color: Color(0xff1D5D9B),
+                                                  fontWeight: FontWeight.bold,
                                                 ),
                                               ),
                                             ],
@@ -253,7 +254,8 @@ class _livresultState extends State<livresult> {
                                               const Text(
                                                 "Number of Atoms :  ",
                                                 style: TextStyle(
-                                                    color: Color(0xff1D5D9B)),
+                                                    color: Color(0xff1D5D9B),
+                                                    fontWeight: FontWeight.bold,),
                                               ),
                                             ],
                                           ),
@@ -274,7 +276,8 @@ class _livresultState extends State<livresult> {
                                               const Text(
                                                 "Bonds Types :  :  ",
                                                 style: TextStyle(
-                                                    color: Color(0xff1D5D9B)),
+                                                    color: Color(0xff1D5D9B),
+                                                    fontWeight: FontWeight.bold,),
                                               ),
                                             ],
                                           )

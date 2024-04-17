@@ -178,7 +178,7 @@ class _mutresultState extends State<mutresult> {
                                         child: Column(children: [
                                           Padding(
                                             padding: const EdgeInsets.only(
-                                                left: 265),
+                                                left: 300),
                                             child: MaterialButton(
                                               height: 24,
                                               minWidth: 24,
@@ -186,7 +186,7 @@ class _mutresultState extends State<mutresult> {
                                                 Navigator.pop(context);
                                               },
                                               child: Container(
-                                                color: Color(0xff1D5D9B),
+                                                color: Colors.red,
                                                 height: 24,
                                                 width: 24,
                                                 child: Icon(
@@ -230,6 +230,7 @@ class _mutresultState extends State<mutresult> {
                                                 "Atomic Number :  ",
                                                 style: TextStyle(
                                                   color: Color(0xff1D5D9B),
+                                                  fontWeight: FontWeight.bold,
                                                 ),
                                               ),
                                             ],
@@ -250,8 +251,10 @@ class _mutresultState extends State<mutresult> {
                                               ),
                                               const Text(
                                                 "Number of Atoms :  ",
+                                                
                                                 style: TextStyle(
-                                                    color: Color(0xff1D5D9B)),
+                                                    color: Color(0xff1D5D9B),
+                                                    fontWeight: FontWeight.bold,),
                                               ),
                                             ],
                                           ),
@@ -272,7 +275,8 @@ class _mutresultState extends State<mutresult> {
                                               const Text(
                                                 "Bonds Types :  :  ",
                                                 style: TextStyle(
-                                                    color: Color(0xff1D5D9B)),
+                                                    color: Color(0xff1D5D9B),
+                                                    fontWeight: FontWeight.bold,),
                                               ),
                                             ],
                                           )

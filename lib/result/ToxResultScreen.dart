@@ -213,7 +213,7 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
                                         child: Column(children: [
                                           Padding(
                                             padding: const EdgeInsets.only(
-                                                left: 280),
+                                                left: 300),
                                             child: MaterialButton(
                                               height: 24,
                                               minWidth: 24,
@@ -221,7 +221,7 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
                                                 Navigator.pop(context);
                                               },
                                               child: Container(
-                                                color: Color(0xff1D5D9B),
+                                                color: Colors.red,
                                                 height: 24,
                                                 width: 24,
                                                 child: Icon(
@@ -265,6 +265,7 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
                                                 "Atomic Number :  ",
                                                 style: TextStyle(
                                                   color: Color(0xff1D5D9B),
+                                                  fontWeight: FontWeight.bold,
                                                 ),
                                               ),
                                             ],
@@ -286,7 +287,8 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
                                               const Text(
                                                 "Number of Atoms :  ",
                                                 style: TextStyle(
-                                                    color: Color(0xff1D5D9B)),
+                                                    color: Color(0xff1D5D9B),
+                                                    fontWeight: FontWeight.bold,),
                                               ),
                                             ],
                                           ),
@@ -307,7 +309,8 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
                                               const Text(
                                                 "Bonds Types :  :  ",
                                                 style: TextStyle(
-                                                    color: Color(0xff1D5D9B)),
+                                                    color: Color(0xff1D5D9B),
+                                                    fontWeight: FontWeight.bold,),
                                               ),
                                             ],
                                           )

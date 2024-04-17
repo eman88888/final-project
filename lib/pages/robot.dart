@@ -16,7 +16,7 @@ class _robotState extends State<robot> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.all(5.0),
+            padding: const EdgeInsets.all(10.0),
             child: Container(
               height: 15,
               alignment: Alignment.topLeft,
@@ -41,7 +41,7 @@ class _robotState extends State<robot> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 60.0),
+            padding: const EdgeInsets.only(top: 80.0),
             child: Container(
               alignment: Alignment.center,
               child: Text(

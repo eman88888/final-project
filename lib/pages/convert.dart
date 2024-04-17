@@ -1,6 +1,7 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:finalproject/cubit/convert_cubit.dart';
+import 'package:finalproject/screens/bottomnavbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,11 +25,28 @@ class _convertScreenState extends State<convertScreen> {
       backgroundColor: Color(0xff1D5D9B),
       body: Column(
         children: [
+
+         Container(
+              alignment: Alignment.topLeft,
+              padding: EdgeInsets.all(10),
+              child: IconButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => BottomNavBar()),
+                  );
+                },
+                icon: const Icon(
+                  Icons.arrow_back_ios,
+                  color: Colors.white,
+                ),
+              ),
+            ),
           Padding(
-            padding: const EdgeInsets.only(top: 66),
+            padding: const EdgeInsets.only(top: 45),
             child: Container(
               alignment: Alignment.center,
-              child: Image.asset("convert.png",width: 180,height: 140,)),
+              child: Image.asset("convertIcon.png",width: 230,height: 230,)),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 100),
@@ -371,7 +389,9 @@ class _convertScreenState extends State<convertScreen> {
                  child: Text("SDF TO SMILE ",style: TextStyle(fontSize: 25,fontWeight: FontWeight.w700),),
               ),
             ),
-          )
+            
+          ),
+          
         ],
       ),
     );

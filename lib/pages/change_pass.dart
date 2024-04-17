@@ -70,7 +70,6 @@ class _changeState extends State<change> {
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
     return Scaffold(
-      
       body: Form(
         key: formKey,
         child: Stack(
@@ -81,6 +80,7 @@ class _changeState extends State<change> {
             ),
             Container(
               alignment: Alignment.topLeft,
+              padding: EdgeInsets.only(top: 10),
               // height: 10,
               child: IconButton(
                 onPressed: () {
@@ -96,7 +96,7 @@ class _changeState extends State<change> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 30),
+              padding: const EdgeInsets.only(top: 60),
               child: Container(
                 alignment: Alignment.center,
                 margin: EdgeInsets.only(bottom: 20),
@@ -105,7 +105,7 @@ class _changeState extends State<change> {
               ),
             ),
             Positioned(
-              top: 200,
+              top: 250,
               child: Container(
                 width: screenSize.width,
                 height: screenSize.height,
@@ -331,7 +331,7 @@ class _changeState extends State<change> {
                     Container(
                       alignment: Alignment.bottomLeft,
                       child: Padding(
-                          padding: const EdgeInsets.only(left: 5.0, top: 55),
+                          padding: const EdgeInsets.only(left: 5.5),
                           child: InkWell(
                             onTap: () {
                               Navigator.push(

@@ -16,7 +16,7 @@ class ChangedSuccessfully_Screen extends StatelessWidget {
           //////Put image
           Padding(
             padding: const EdgeInsets.only(top: 140, bottom: 32),
-            child: Image.asset('assets/send.jpg'),
+            child: Image.asset('assets/emailIcon.jpg'),
           ),
 
           
