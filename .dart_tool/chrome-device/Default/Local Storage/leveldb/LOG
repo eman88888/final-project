@@ -1,5 +1,8 @@
-2024/04/17-16:15:38.461 6bb0 Reusing MANIFEST C:\Users\hagar\AppData\Local\Temp\flutter_tools.42f0d300\flutter_tools_chrome_device.ac918773\Default\Local Storage\leveldb/MANIFEST-000001
-2024/04/17-16:15:38.464 6bb0 Recovering log #4
-2024/04/17-16:15:38.466 6bb0 Reusing old log C:\Users\hagar\AppData\Local\Temp\flutter_tools.42f0d300\flutter_tools_chrome_device.ac918773\Default\Local Storage\leveldb/000004.log 
-2024/04/17-16:15:38.467 6bb0 Delete type=0 #3
-2024/04/17-16:15:38.468 6bb0 Delete type=2 #5
+2024/04/17-16:52:58.455 6b48 Reusing MANIFEST C:\Users\hagar\AppData\Local\Temp\flutter_tools.7450118a\flutter_tools_chrome_device.d6f1c5e\Default\Local Storage\leveldb/MANIFEST-000001
+2024/04/17-16:52:58.460 6b48 Recovering log #4
+2024/04/17-16:52:58.465 6b48 Reusing old log C:\Users\hagar\AppData\Local\Temp\flutter_tools.7450118a\flutter_tools_chrome_device.d6f1c5e\Default\Local Storage\leveldb/000004.log 
+2024/04/17-16:52:58.467 6b48 Delete type=0 #3
+2024/04/17-16:52:58.467 6b48 Delete type=2 #5
+2024/04/17-17:09:03.109 3c44 Level-0 table #7: started
+2024/04/17-17:09:03.126 3c44 Level-0 table #7: 13166 bytes OK
+2024/04/17-17:09:03.127 3c44 Delete type=0 #4
