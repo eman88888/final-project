@@ -3,7 +3,7 @@ import 'package:finalproject/pages/robot.dart';
 import 'package:finalproject/result/liver_result.dart';
 import 'package:finalproject/screens/bottomnavbar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+
 ///////////
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -81,7 +81,7 @@ class _liverState extends State<liver> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => robot()),
+                  MaterialPageRoute(builder: (context) => const robot()),
                 );
               },
               child: Container(
@@ -99,7 +99,7 @@ class _liverState extends State<liver> {
           children: [
             Container(
               height: 200,
-              color: Color(0xff1D5D9B),
+              color: const Color(0xff1D5D9B),
             ),
             Container(
               alignment: Alignment.topLeft,
@@ -122,7 +122,8 @@ class _liverState extends State<liver> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => convertScreen()),
+                    MaterialPageRoute(
+                        builder: (context) => const convertScreen()),
                   );
                 },
                 icon: Image.asset(
@@ -151,15 +152,16 @@ class _liverState extends State<liver> {
                 child: Container(
                   width: screenSize.width,
                   height: screenSize.height,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(20))),
                   child: Column(
                     children: [
                       Container(
-                        padding: EdgeInsets.only(left: 20, top: 30, bottom: 10),
+                        padding: const EdgeInsets.only(
+                            left: 20, top: 30, bottom: 10),
                         alignment: Alignment.centerLeft,
-                        child: Text(
+                        child: const Text(
                           "Input",
                           style: TextStyle(
                               fontSize: 24, fontWeight: FontWeight.w700),
