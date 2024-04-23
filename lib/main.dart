@@ -1,32 +1,6 @@
-import 'dart:collection';
-import 'dart:js';
-
 import 'package:finalproject/cubit/convert_cubit.dart';
-import 'package:finalproject/models/Mutagenicity.dart';
-import 'package:finalproject/models/Similarity_map.dart';
-import 'package:finalproject/models/ToxicityofMolecules.dart';
-import 'package:finalproject/models/liver_toxicity.dart';
-import 'package:finalproject/pages/EditProfilePage.dart';
-import 'package:finalproject/pages/change_pass.dart';
-import 'package:finalproject/pages/changedSuccessfully.dart';
-import 'package:finalproject/pages/chat.dart';
-import 'package:finalproject/pages/convert.dart';
 
-import 'package:finalproject/pages/info.dart';
-
-import 'package:finalproject/pages/login_screen.dart';
 import 'package:finalproject/pages/robot.dart';
-
-import 'package:finalproject/pages/signup.dart';
-import 'package:finalproject/pages/startscreen.dart';
-import 'package:finalproject/result/liver_result.dart';
-import 'package:finalproject/result/mutagenicity_result.dart';
-import 'package:finalproject/result/similarty_result.dart';
-import 'package:finalproject/screens/bottomnavbar.dart';
-
-import 'package:finalproject/screens/home.dart';
-import 'package:finalproject/screens/profile.dart';
-import 'package:finalproject/screens/settings.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -39,29 +13,27 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(
-    MultiBlocProvider(
-      providers:[
-        BlocProvider(create: (context)=>ConvertCubit(),),
-      ] ,
-     child: const app())
-  );
+  runApp(MultiBlocProvider(providers: [
+    BlocProvider(
+      create: (context) => ConvertCubit(),
+    ),
+  ], child: const Tox_app()));
 }
 
-class app extends StatefulWidget {
-  const app({super.key});
+class Tox_app extends StatefulWidget {
+  const Tox_app({super.key});
 
   @override
-  State<app> createState() => _appState();
+  State<Tox_app> createState() => _appState();
 }
 
-class _appState extends State<app> {
+class _appState extends State<Tox_app> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-        theme: ThemeData(fontFamily: 'Poppins'),
-        debugShowCheckedModeBanner: false,
-        home: robot(),
-        );
+      theme: ThemeData(fontFamily: 'Poppins'),
+      debugShowCheckedModeBanner: false,
+      home: const robot(),
+    );
   }
 }
