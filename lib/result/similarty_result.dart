@@ -277,11 +277,11 @@ class _simresultState extends State<simresult>
                                               onPressed: () {
                                                 Navigator.pop(context);
                                                 setState(() {
-                                                  show = false;
+                                                  //show = true;
                                                 });
                                               },
                                               child: Container(
-                                                color: Color(0xff1D5D9B),
+                                                color: Colors.red,
                                                 height: 24,
                                                 width: 24,
                                                 child: Icon(
