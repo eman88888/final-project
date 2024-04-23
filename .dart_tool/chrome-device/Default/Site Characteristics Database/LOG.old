@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 2024/04/23-07:18:11.323 2368 Reusing MANIFEST C:\Users\FreeComp\AppData\Local\Temp\flutter_tools.3f71670c\flutter_tools_chrome_device.d039e342\Default\Site Characteristics Database/MANIFEST-000001
 2024/04/23-07:18:11.360 2368 Recovering log #116
 2024/04/23-07:18:11.424 2368 Reusing old log C:\Users\FreeComp\AppData\Local\Temp\flutter_tools.3f71670c\flutter_tools_chrome_device.d039e342\Default\Site Characteristics Database/000116.log 
@@ -27,3 +28,31 @@
 2024/04/23-07:18:11.459 2368 Delete type=2 #95
 2024/04/23-07:18:11.459 2368 Delete type=2 #105
 2024/04/23-07:18:11.460 2368 Delete type=2 #117
+=======
+2024/04/17-16:15:38.413 7d8 Reusing MANIFEST C:\Users\hagar\AppData\Local\Temp\flutter_tools.42f0d300\flutter_tools_chrome_device.ac918773\Default\Site Characteristics Database/MANIFEST-000001
+2024/04/17-16:15:38.414 7d8 Recovering log #94
+2024/04/17-16:15:38.414 7d8 Reusing old log C:\Users\hagar\AppData\Local\Temp\flutter_tools.42f0d300\flutter_tools_chrome_device.ac918773\Default\Site Characteristics Database/000094.log 
+2024/04/17-16:15:38.414 7d8 Delete type=0 #3
+2024/04/17-16:15:38.415 7d8 Delete type=2 #4
+2024/04/17-16:15:38.415 7d8 Delete type=2 #6
+2024/04/17-16:15:38.417 7d8 Delete type=0 #6
+2024/04/17-16:15:38.418 7d8 Delete type=0 #10
+2024/04/17-16:15:38.418 7d8 Delete type=2 #11
+2024/04/17-16:15:38.418 7d8 Delete type=2 #13
+2024/04/17-16:15:38.418 7d8 Delete type=2 #14
+2024/04/17-16:15:38.418 7d8 Delete type=0 #19
+2024/04/17-16:15:38.418 7d8 Delete type=2 #20
+2024/04/17-16:15:38.418 7d8 Delete type=0 #26
+2024/04/17-16:15:38.419 7d8 Delete type=2 #27
+2024/04/17-16:15:38.419 7d8 Delete type=2 #33
+2024/04/17-16:15:38.419 7d8 Delete type=0 #40
+2024/04/17-16:15:38.419 7d8 Delete type=2 #41
+2024/04/17-16:15:38.419 7d8 Delete type=2 #48
+2024/04/17-16:15:38.419 7d8 Delete type=0 #56
+2024/04/17-16:15:38.419 7d8 Delete type=2 #57
+2024/04/17-16:15:38.419 7d8 Delete type=2 #65
+2024/04/17-16:15:38.419 7d8 Delete type=0 #74
+2024/04/17-16:15:38.419 7d8 Delete type=2 #75
+2024/04/17-16:15:38.419 7d8 Delete type=2 #84
+2024/04/17-16:15:38.419 7d8 Delete type=2 #95
+>>>>>>> 7e4aed48e6224ed35f9bb4d2a4aa4764ce4aff95
