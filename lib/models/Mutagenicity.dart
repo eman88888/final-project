@@ -8,10 +8,9 @@ import 'package:finalproject/pages/robot.dart';
 import 'package:finalproject/result/mutagenicity_result.dart';
 import 'package:finalproject/screens/bottomnavbar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 //////////////
-import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 //////////////
 
