@@ -25,30 +25,34 @@ class _simresultState extends State<simresult>
     with SingleTickerProviderStateMixin {
   TextEditingController _smiles1Controller = TextEditingController();
   TextEditingController _smiles2Controller = TextEditingController();
+  //////////
   bool Resultrox = true;
-  bool show = false;
+  bool Show = true;
 
-  Future<bool> fetchResultFromServer(TextEditingController smiles1controller,
-      TextEditingController smiles2controller) async {
+  @override
+  void dispose() {
+    _smiles1Controller.dispose();
+    _smiles2Controller.dispose();
+    super.dispose();
+  }
+
+  Future<bool> fetchResultFromServer(String smiles1, String smiles2) async {
     try {
       final response = await http.post(
         Uri.parse('http://localhost:5000/generate_similarity_map'),
         headers: {
           'Content-Type': 'application/json',
         },
-        body: jsonEncode({
-          'smiles1': smiles1controller.text,
-          'smiles2': smiles2controller.text,
-        }),
+        body: jsonEncode({'smiles1': smiles1, 'smiles2': smiles2}),
       );
 
       if (response.statusCode == 200) {
         Map<String, dynamic> data = jsonDecode(response.body);
-        bool show = data['prediction'] == 1;
+        bool result = data['prediction'] == 1;
         setState(() {
-          Resultrox = show;
+          Resultrox = result;
         });
-        return show;
+        return result;
       } else {
         throw Exception('Failed to fetch result: ${response.statusCode}');
       }
@@ -254,7 +258,7 @@ class _simresultState extends State<simresult>
                             ),
                             onPressed: () {
                               setState(() {
-                                Resultrox = show;
+                                Show = false;
                                 showDialog(
                                   context: context,
                                   builder: (context) {
@@ -274,10 +278,18 @@ class _simresultState extends State<simresult>
                                             child: MaterialButton(
                                               height: 24,
                                               minWidth: 24,
-                                              onPressed: () {
-                                                Navigator.pop(context);
+                                              onPressed: () async {
                                                 setState(() {
-                                                  show = false;
+                                                  Show = false;
+                                                });
+                                                String smiles1 =
+                                                    _smiles1Controller.text;
+                                                String smiles2 =
+                                                    _smiles2Controller.text;
+                                                await fetchResultFromServer(
+                                                    smiles1, smiles2);
+                                                setState(() {
+                                                  Show = true;
                                                 });
                                               },
                                               child: Container(
@@ -302,7 +314,7 @@ class _simresultState extends State<simresult>
                             }),
                       ),
                       Visibility(
-                        visible: show,
+                        visible: Show,
                         child: Container(
                           height: 179,
                           width: 179,
