@@ -22,10 +22,8 @@ class resultwidgetcontainer extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(
             color:
-                isDark ? Color(0xff1D5D9B)
-                       : Color.fromARGB(222, 164, 215, 244),
+                isDark ? Color(0xff1D5D9B) : Color.fromARGB(222, 164, 215, 244),
             width: 2),
-            
         color: result
             ? isDark
                 ? Color(0xff5C8AB7)

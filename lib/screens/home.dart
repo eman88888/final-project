@@ -1,4 +1,3 @@
-import 'dart:html';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:finalproject/models/Mutagenicity.dart';
 import 'package:finalproject/models/Similarity_map.dart';

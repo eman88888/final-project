@@ -9,14 +9,13 @@ import '../screens/bottomnavbar.dart';
 import '../widget/result_contanier.dart';
 
 class livresult extends StatefulWidget {
-  const livresult({Key? key}) : super(key: key);
-
+  livresult({super.key, required this.result});
+  bool result = true;
   @override
   State<livresult> createState() => _livresultState();
 }
 
 class _livresultState extends State<livresult> {
-  bool result = true;
   bool textcolor = true;
   @override
   Widget build(BuildContext context) {
@@ -35,10 +34,10 @@ class _livresultState extends State<livresult> {
                       MaterialPageRoute(builder: (context) => BottomNavBar()),
                     );
                   },
-                  child:  Image.asset(
-                              "assets/home icon.png",
-                              height: 35,
-                            ),
+                  child: Image.asset(
+                    "assets/home icon.png",
+                    height: 35,
+                  ),
                 )),
           ),
           InkWell(
@@ -80,24 +79,23 @@ class _livresultState extends State<livresult> {
               ),
             ),
           ),
-           Container(
-              alignment: Alignment.topRight,
-              child: IconButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => convertScreen()),
-                  );
-                },
-                icon:  Image.asset(
-                  "convert.png",
-                  height: 30,
-                  width: 35,
-                  color: Colors.white,
-                ),
+          Container(
+            alignment: Alignment.topRight,
+            child: IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => convertScreen()),
+                );
+              },
+              icon: Image.asset(
+                "convert.png",
+                height: 30,
+                width: 35,
+                color: Colors.white,
               ),
             ),
-           
+          ),
           Padding(
             padding: const EdgeInsets.only(top: 35),
             child: Container(
@@ -124,20 +122,18 @@ class _livresultState extends State<livresult> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20, top: 100),
+                       Padding(
+                          padding: const EdgeInsets.only(left: 20, top: 50),
                           child: resultwidgetcontainer(
-                            
-                            result: result,
+                            result: widget.result,
                             text: "Positive",
                             textcolor: textcolor,
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(right: 20, top: 100),
+                          padding: const EdgeInsets.only(right: 20, top: 50),
                           child: resultwidgetcontainer(
-                           
-                            result: !result,
+                            result: !widget.result,
                             text: "Negative",
                             textcolor: !textcolor,
                           ),
@@ -254,8 +250,9 @@ class _livresultState extends State<livresult> {
                                               const Text(
                                                 "Number of Atoms :  ",
                                                 style: TextStyle(
-                                                    color: Color(0xff1D5D9B),
-                                                    fontWeight: FontWeight.bold,),
+                                                  color: Color(0xff1D5D9B),
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                               ),
                                             ],
                                           ),
@@ -276,8 +273,9 @@ class _livresultState extends State<livresult> {
                                               const Text(
                                                 "Bonds Types :  :  ",
                                                 style: TextStyle(
-                                                    color: Color(0xff1D5D9B),
-                                                    fontWeight: FontWeight.bold,),
+                                                  color: Color(0xff1D5D9B),
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                               ),
                                             ],
                                           )

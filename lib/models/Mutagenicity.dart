@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:ui';
 
 import 'package:dotted_border/dotted_border.dart';
@@ -9,14 +10,58 @@ import 'package:finalproject/screens/bottomnavbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+//////////////
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+//////////////
+
 class mutagenicity extends StatefulWidget {
-  const mutagenicity({Key? key}) : super(key: key);
+  const mutagenicity({super.key});
 
   @override
   State<mutagenicity> createState() => _mutagenicityState();
 }
 
 class _mutagenicityState extends State<mutagenicity> {
+  TextEditingController _smilesController = TextEditingController();
+
+//////////predict csv
+  @override
+  void dispose() {
+    _smilesController.dispose();
+    super.dispose();
+  }
+
+  bool Resultrox = true;
+
+  Future<bool> fetchResultFromServer(String smiles) async {
+    try {
+      final response = await http.post(
+        Uri.parse('http://localhost:5000/predictcsv'),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode({'smiles': smiles}),
+      );
+
+      if (response.statusCode == 200) {
+        Map<String, dynamic> data = jsonDecode(response.body);
+        bool result = data['prediction'] == 1;
+        setState(() {
+          Resultrox = result;
+        });
+        return result;
+      } else {
+        throw Exception('Failed to fetch result: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error fetching result: $e');
+      throw Exception('Failed to fetch result');
+    }
+  }
+
+//////////
+
   void openfiles() async {
     FilePickerResult? resultfile = await FilePicker.platform.pickFiles();
     if (resultfile != null) {
@@ -46,9 +91,9 @@ class _mutagenicityState extends State<mutagenicity> {
                       );
                     },
                     child: Image.asset(
-                              "assets/home icon.png",
-                              height: 35,
-                            ),
+                      "assets/home icon.png",
+                      height: 35,
+                    ),
                   )),
             ),
             InkWell(
@@ -99,7 +144,7 @@ class _mutagenicityState extends State<mutagenicity> {
                     MaterialPageRoute(builder: (context) => convertScreen()),
                   );
                 },
-                icon:  Image.asset(
+                icon: Image.asset(
                   "convert.png",
                   height: 30,
                   width: 35,
@@ -107,7 +152,6 @@ class _mutagenicityState extends State<mutagenicity> {
                 ),
               ),
             ),
-            
             Padding(
               padding: const EdgeInsets.only(top: 35),
               child: Container(
@@ -147,6 +191,7 @@ class _mutagenicityState extends State<mutagenicity> {
                           width: 326,
                           height: 38.44,
                           child: TextFormField(
+                            controller: _smilesController,
                             keyboardType: TextInputType.multiline,
                             decoration: const InputDecoration(
                               fillColor: Color(0xfffefcfc),
@@ -191,23 +236,30 @@ class _mutagenicityState extends State<mutagenicity> {
                         height: 60,
                         width: 300,
                         child: MaterialButton(
-                            child: const Text(
-                              'Submit',
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
-                            ),
-                            color: const Color(0xffF4D160),
-                            textColor: Colors.black,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => mutresult()),
-                              );
-                            }),
+                          child: const Text(
+                            'Submit',
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                          color: const Color(0xffF4D160),
+                          textColor: Colors.black,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          onPressed: () async {
+                            String smiles = _smilesController.text;
+                            bool result = await fetchResultFromServer(smiles);
+
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => mutresult(
+                                  result: Resultrox,
+                                ),
+                              ),
+                            );
+                          },
+                        ),
                       ),
                     ],
                   ),

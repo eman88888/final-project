@@ -9,7 +9,11 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import 'liver_result.dart';
+//////////////
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
+//////////////
 class simresult extends StatefulWidget {
   const simresult({Key? key}) : super(key: key);
 
@@ -19,7 +23,41 @@ class simresult extends StatefulWidget {
 
 class _simresultState extends State<simresult>
     with SingleTickerProviderStateMixin {
+  TextEditingController _smiles1Controller = TextEditingController();
+  TextEditingController _smiles2Controller = TextEditingController();
+  bool Resultrox = true;
   bool show = false;
+
+  Future<bool> fetchResultFromServer(TextEditingController smiles1controller,
+      TextEditingController smiles2controller) async {
+    try {
+      final response = await http.post(
+        Uri.parse('http://localhost:5000/generate_similarity_map'),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode({
+          'smiles1': smiles1controller.text,
+          'smiles2': smiles2controller.text,
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        Map<String, dynamic> data = jsonDecode(response.body);
+        bool show = data['prediction'] == 1;
+        setState(() {
+          Resultrox = show;
+        });
+        return show;
+      } else {
+        throw Exception('Failed to fetch result: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error fetching result: $e');
+      throw Exception('Failed to fetch result');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
@@ -38,9 +76,9 @@ class _simresultState extends State<simresult>
                       );
                     },
                     child: Image.asset(
-                              "assets/home icon.png",
-                              height: 35,
-                            ),
+                      "assets/home icon.png",
+                      height: 35,
+                    ),
                   )),
             ),
             InkWell(
@@ -82,7 +120,7 @@ class _simresultState extends State<simresult>
                 ),
               ),
             ),
-              Container(
+            Container(
               alignment: Alignment.topRight,
               child: IconButton(
                 onPressed: () {
@@ -91,7 +129,7 @@ class _simresultState extends State<simresult>
                     MaterialPageRoute(builder: (context) => convertScreen()),
                   );
                 },
-                icon:  Image.asset(
+                icon: Image.asset(
                   "convert.png",
                   height: 30,
                   width: 35,
@@ -138,6 +176,7 @@ class _simresultState extends State<simresult>
                           width: 326,
                           height: 38.44,
                           child: TextFormField(
+                            controller: _smiles1Controller,
                             keyboardType: TextInputType.multiline,
                             decoration: const InputDecoration(
                               fillColor: Color(0xfffefcfc),
@@ -174,6 +213,7 @@ class _simresultState extends State<simresult>
                           width: 326,
                           height: 38.44,
                           child: TextFormField(
+                            controller: _smiles2Controller,
                             keyboardType: TextInputType.multiline,
                             decoration: const InputDecoration(
                               fillColor: Color(0xfffefcfc),
@@ -214,6 +254,7 @@ class _simresultState extends State<simresult>
                             ),
                             onPressed: () {
                               setState(() {
+                                Resultrox = show;
                                 showDialog(
                                   context: context,
                                   builder: (context) {

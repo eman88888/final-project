@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:finalproject/screens/home.dart';
 import 'package:finalproject/screens/profile.dart';
 import 'package:finalproject/screens/settings.dart';

@@ -8,15 +8,15 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../widget/result_contanier.dart';
 
 class mutresult extends StatefulWidget {
-  const mutresult({Key? key}) : super(key: key);
-
+  mutresult({super.key, required this.result});
+  bool result = true;
   @override
   State<mutresult> createState() => _mutresultState();
 }
 
 class _mutresultState extends State<mutresult> {
-  bool result = false;
-  bool textcolor = false;
+  //bool result = false;
+  bool textcolor = true;
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
@@ -35,9 +35,9 @@ class _mutresultState extends State<mutresult> {
                     );
                   },
                   child: Image.asset(
-                              "assets/home icon.png",
-                              height: 35,
-                            ),
+                    "assets/home icon.png",
+                    height: 35,
+                  ),
                 )),
           ),
           InkWell(
@@ -79,23 +79,23 @@ class _mutresultState extends State<mutresult> {
               ),
             ),
           ),
-           Container(
-              alignment: Alignment.topRight,
-              child: IconButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => convertScreen()),
-                  );
-                },
-                icon:  Image.asset(
-                  "convert.png",
-                  height: 30,
-                  width: 35,
-                  color: Colors.white,
-                ),
+          Container(
+            alignment: Alignment.topRight,
+            child: IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => convertScreen()),
+                );
+              },
+              icon: Image.asset(
+                "convert.png",
+                height: 30,
+                width: 35,
+                color: Colors.white,
               ),
             ),
+          ),
           Padding(
             padding: const EdgeInsets.only(top: 35),
             child: Container(
@@ -123,19 +123,17 @@ class _mutresultState extends State<mutresult> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(left: 20, top: 100),
+                          padding: const EdgeInsets.only(left: 20, top: 50),
                           child: resultwidgetcontainer(
-                            
-                            result: result,
+                            result: widget.result,
                             text: "Mutagenic",
                             textcolor: textcolor,
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(right: 20, top: 100),
+                          padding: const EdgeInsets.only(right: 20, top: 50),
                           child: resultwidgetcontainer(
-                            
-                            result: !result,
+                            result: !widget.result,
                             text: "Non-Mutagenic",
                             textcolor: !textcolor,
                           ),
@@ -251,10 +249,10 @@ class _mutresultState extends State<mutresult> {
                                               ),
                                               const Text(
                                                 "Number of Atoms :  ",
-                                                
                                                 style: TextStyle(
-                                                    color: Color(0xff1D5D9B),
-                                                    fontWeight: FontWeight.bold,),
+                                                  color: Color(0xff1D5D9B),
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                               ),
                                             ],
                                           ),
@@ -275,8 +273,9 @@ class _mutresultState extends State<mutresult> {
                                               const Text(
                                                 "Bonds Types :  :  ",
                                                 style: TextStyle(
-                                                    color: Color(0xff1D5D9B),
-                                                    fontWeight: FontWeight.bold,),
+                                                  color: Color(0xff1D5D9B),
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                               ),
                                             ],
                                           )

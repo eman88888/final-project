@@ -2,12 +2,14 @@ import 'package:finalproject/pages/convert.dart';
 import 'package:finalproject/pages/robot.dart';
 import 'package:finalproject/screens/bottomnavbar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 import '../result/ToxResultScreen.dart';
 
-import '../widget/custom_Button.dart';
+//////////////
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
+//////////////
 class ToxicityofMolecules_Screen extends StatefulWidget {
   const ToxicityofMolecules_Screen({super.key});
 
@@ -18,6 +20,42 @@ class ToxicityofMolecules_Screen extends StatefulWidget {
 
 class _ToxicityofMolecules_ScreenState
     extends State<ToxicityofMolecules_Screen> {
+  TextEditingController _smilesController = TextEditingController();
+
+  @override
+  void dispose() {
+    _smilesController.dispose();
+    super.dispose();
+  }
+
+  bool Resultrox = true;
+
+  Future<bool> fetchResultFromServer(String smiles) async {
+    try {
+      final response = await http.post(
+        Uri.parse('http://localhost:5000/predicttoxcity'),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode({'smiles': smiles}),
+      );
+
+      if (response.statusCode == 200) {
+        Map<String, dynamic> data = jsonDecode(response.body);
+        bool result = data['prediction'] == 1;
+        setState(() {
+          Resultrox = result;
+        });
+        return result;
+      } else {
+        throw Exception('Failed to fetch result: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error fetching result: $e');
+      throw Exception('Failed to fetch result');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
@@ -35,10 +73,10 @@ class _ToxicityofMolecules_ScreenState
                         MaterialPageRoute(builder: (context) => BottomNavBar()),
                       );
                     },
-                    child:  Image.asset(
-                              "assets/home icon.png",
-                              height: 35,
-                            ),
+                    child: Image.asset(
+                      "assets/home icon.png",
+                      height: 35,
+                    ),
                   )),
             ),
             InkWell(
@@ -80,7 +118,7 @@ class _ToxicityofMolecules_ScreenState
                 ),
               ),
             ),
-             Container(
+            Container(
               alignment: Alignment.topRight,
               child: IconButton(
                 onPressed: () {
@@ -89,7 +127,7 @@ class _ToxicityofMolecules_ScreenState
                     MaterialPageRoute(builder: (context) => convertScreen()),
                   );
                 },
-                icon:  Image.asset(
+                icon: Image.asset(
                   "convert.png",
                   height: 30,
                   width: 35,
@@ -136,6 +174,7 @@ class _ToxicityofMolecules_ScreenState
                           width: 326,
                           height: 38.44,
                           child: TextFormField(
+                            controller: _smilesController,
                             keyboardType: TextInputType.multiline,
                             decoration: const InputDecoration(
                               hintText: "Smile",
@@ -176,11 +215,17 @@ class _ToxicityofMolecules_ScreenState
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15),
                             ),
-                            onPressed: () {
+                            onPressed: () async {
+                              String smiles = _smilesController.text;
+                              bool result = await fetchResultFromServer(smiles);
+
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => ToxResult_Screen()),
+                                  builder: (context) => ToxResult_Screen(
+                                    result: Resultrox,
+                                  ),
+                                ),
                               );
                             }),
                       ),

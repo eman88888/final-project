@@ -10,14 +10,13 @@ import '../models/ToxicityofMolecules.dart';
 import '../utilities/CircularPercentage.dart';
 
 class ToxResult_Screen extends StatefulWidget {
-  const ToxResult_Screen({super.key});
-
+  ToxResult_Screen({super.key, required this.result});
+  bool result = true;
   @override
   State<ToxResult_Screen> createState() => _ToxResult_ScreenState();
 }
 
 class _ToxResult_ScreenState extends State<ToxResult_Screen> {
-  bool result = true;
   bool textcolor = true;
 
   @override
@@ -37,10 +36,10 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
                       MaterialPageRoute(builder: (context) => BottomNavBar()),
                     );
                   },
-                  child:  Image.asset(
-                              "assets/home icon.png",
-                              height: 35,
-                            ),
+                  child: Image.asset(
+                    "assets/home icon.png",
+                    height: 35,
+                  ),
                 )),
           ),
           InkWell(
@@ -83,23 +82,23 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
               ),
             ),
           ),
-           Container(
-              alignment: Alignment.topRight,
-              child: IconButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => convertScreen()),
-                  );
-                },
-                icon:  Image.asset(
-                  "convert.png",
-                  height: 30,
-                  width: 35,
-                  color: Colors.white,
-                ),
+          Container(
+            alignment: Alignment.topRight,
+            child: IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => convertScreen()),
+                );
+              },
+              icon: Image.asset(
+                "convert.png",
+                height: 30,
+                width: 35,
+                color: Colors.white,
               ),
             ),
+          ),
           Padding(
             padding: const EdgeInsets.only(top: 35),
             child: Container(
@@ -129,8 +128,7 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
                         Padding(
                           padding: const EdgeInsets.only(left: 20, top: 50),
                           child: resultwidgetcontainer(
-                            
-                            result: result,
+                            result: widget.result,
                             text: "Toxic",
                             textcolor: textcolor,
                           ),
@@ -138,8 +136,7 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
                         Padding(
                           padding: const EdgeInsets.only(right: 20, top: 50),
                           child: resultwidgetcontainer(
-                           
-                            result: !result,
+                            result: !widget.result,
                             text: "Non-Toxic",
                             textcolor: !textcolor,
                           ),
@@ -287,8 +284,9 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
                                               const Text(
                                                 "Number of Atoms :  ",
                                                 style: TextStyle(
-                                                    color: Color(0xff1D5D9B),
-                                                    fontWeight: FontWeight.bold,),
+                                                  color: Color(0xff1D5D9B),
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                               ),
                                             ],
                                           ),
@@ -309,8 +307,9 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
                                               const Text(
                                                 "Bonds Types :  :  ",
                                                 style: TextStyle(
-                                                    color: Color(0xff1D5D9B),
-                                                    fontWeight: FontWeight.bold,),
+                                                  color: Color(0xff1D5D9B),
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                               ),
                                             ],
                                           )
