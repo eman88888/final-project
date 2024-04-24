@@ -280,7 +280,6 @@ class _simresultState extends State<simresult>
                                               minWidth: 24,
                                               onPressed: () async {
                                                 setState(() {
-<<<<<<< HEAD
                                                   Show = false;
                                                 });
                                                 String smiles1 =
@@ -291,9 +290,8 @@ class _simresultState extends State<simresult>
                                                     smiles1, smiles2);
                                                 setState(() {
                                                   Show = true;
-=======
+
                                                   //show = true;
->>>>>>> ab15e97dbe9772540895cc699b6d003148194aa7
                                                 });
                                               },
                                               child: Container(
