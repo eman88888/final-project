@@ -288,11 +288,7 @@ class _simresultState extends State<simresult>
                                                     _smiles2Controller.text;
                                                 await fetchResultFromServer(
                                                     smiles1, smiles2);
-                                                setState(() {
-                                                  Show = true;
-
-                                                  //show = true;
-                                                });
+                                                setState(() {});
                                               },
                                               child: Container(
                                                 color: Colors.red,
