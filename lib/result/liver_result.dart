@@ -9,8 +9,16 @@ import '../screens/bottomnavbar.dart';
 import '../widget/result_contanier.dart';
 
 class livresult extends StatefulWidget {
-  livresult({super.key, required this.result});
+  livresult(
+      {super.key,
+      required this.result,
+      required this.resultAtom,
+      required this.resulBond});
+
   bool result = true;
+  final String resultAtom;
+  final String resulBond;
+
   @override
   State<livresult> createState() => _livresultState();
 }
@@ -122,7 +130,7 @@ class _livresultState extends State<livresult> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                       Padding(
+                        Padding(
                           padding: const EdgeInsets.only(left: 20, top: 50),
                           child: resultwidgetcontainer(
                             result: widget.result,
@@ -224,13 +232,15 @@ class _livresultState extends State<livresult> {
                                                   width: 27,
                                                 ),
                                               ),
-                                              const Text(
-                                                "Atomic Number :  ",
-                                                style: TextStyle(
-                                                  color: Color(0xff1D5D9B),
-                                                  fontWeight: FontWeight.bold,
+                                              Expanded(
+                                                child: Text(
+                                                  "Atomic Number: ${widget.resultAtom}",
+                                                  style: TextStyle(
+                                                    color: Color(0xff1D5D9B),
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
                                                 ),
-                                              ),
+                                              )
                                             ],
                                           ),
                                           SizedBox(height: 50),
@@ -270,8 +280,8 @@ class _livresultState extends State<livresult> {
                                                   width: 27,
                                                 ),
                                               ),
-                                              const Text(
-                                                "Bonds Types :  :  ",
+                                              Text(
+                                                "Bonds Types : ${widget.resulBond}  ",
                                                 style: TextStyle(
                                                   color: Color(0xff1D5D9B),
                                                   fontWeight: FontWeight.bold,

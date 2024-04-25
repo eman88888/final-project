@@ -10,8 +10,17 @@ import '../models/ToxicityofMolecules.dart';
 import '../utilities/CircularPercentage.dart';
 
 class ToxResult_Screen extends StatefulWidget {
-  ToxResult_Screen({super.key, required this.result});
-  bool result = true;
+  final bool result;
+  final double resulttox;
+  final double resultsa;
+
+  ToxResult_Screen({
+    Key? key,
+    required this.result,
+    required this.resulttox,
+    required this.resultsa,
+  }) : super(key: key);
+
   @override
   State<ToxResult_Screen> createState() => _ToxResult_ScreenState();
 }
@@ -151,8 +160,9 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
                           Column(
                             children: [
                               MolPercent(
-                                  progressColor: Color(0xFF191D88),
-                                  percent: 0.2),
+                                progressColor: Color(0xFF191D88),
+                                percent: widget.resulttox,
+                              ),
                               Text(
                                 'Tox Score',
                                 style: TextStyle(
@@ -163,7 +173,9 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
                           Column(
                             children: [
                               MolPercent(
-                                  progressColor: Colors.red, percent: 0.25),
+                                progressColor: Colors.red,
+                                percent: widget.resultsa,
+                              ),
                               Text(
                                 'SA Score',
                                 style: TextStyle(

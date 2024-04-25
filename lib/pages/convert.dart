@@ -17,85 +17,77 @@ class convertScreen extends StatefulWidget {
 
 class _convertScreenState extends State<convertScreen> {
   final TextEditingController _smilesController = TextEditingController();
+  final TextEditingController _smiles1Controller = TextEditingController();
   //////////
-  bool Resultrox = true;
-  Future<bool> fetchResultFromServersmiletosdf(String smiles) async {
+
+  String resultrox = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _smilesController.addListener(_onTextChange);
+  }
+
+  @override
+  void dispose() {
+    _smilesController.dispose();
+    super.dispose();
+  }
+
+  void _onTextChange() {
+    String text = _smilesController.text;
+    // Perform actions based on the text input
+    if (text.length > 10) {
+      // Do something...
+    } else {
+      // Do something else...
+    }
+  }
+
+  ////
+
+  Future<String> convertSMILEStoSDF2D(String smiles) async {
     try {
-      final response = await http.post(
-        Uri.parse('http://localhost:5000/convert'),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: jsonEncode({'smiles': smiles}),
-      );
+      var url = 'http://localhost:5000/convert';
+      var response = await http.post(Uri.parse(url),
+          headers: {'Content-Type': 'application/json'},
+          body: jsonEncode({'smiles': smiles}));
 
       if (response.statusCode == 200) {
-        Map<String, dynamic> data = jsonDecode(response.body);
-        bool result = data['prediction'] == 1;
-        setState(() {
-          Resultrox = result;
-        });
-        return result;
+        var jsonResponse = jsonDecode(response.body);
+        var sdf2dData = jsonResponse['sdf2d'];
+        return sdf2dData;
       } else {
-        throw Exception('Failed to fetch result: ${response.statusCode}');
+        print('Request failed with status: ${response.statusCode}.');
+        return ''; // Return an empty string or handle the error as needed
       }
     } catch (e) {
-      print('Error fetching result: $e');
-      throw Exception('Failed to fetch result');
+      print('Exception during conversion: $e');
+      return ''; // Return an empty string or handle the error as needed
     }
   }
 
 //////////////////
-  Future<bool> fetchResultFromServersmiletopdb(String smiles) async {
+  String _resultpdb = '';
+
+  Future<String> generatePDB(String smiles) async {
     try {
-      final response = await http.post(
-        Uri.parse('http://localhost:5000/generate_pdb'),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: jsonEncode({'smiles': smiles}),
-      );
+      var url = 'http://localhost:5000//generate_pdb';
+      var response = await http.post(Uri.parse(url),
+          headers: {'Content-Type': 'application/json'},
+          body: jsonEncode({'smiles': smiles}));
 
       if (response.statusCode == 200) {
-        Map<String, dynamic> data = jsonDecode(response.body);
-        bool result = data['prediction'] == 1;
-        setState(() {
-          Resultrox = result;
-        });
-        return result;
+        var jsonResponse = jsonDecode(response.body);
+        var pdbData = jsonResponse['pdb'];
+        return pdbData;
       } else {
-        throw Exception('Failed to fetch result: ${response.statusCode}');
+        print('Request failed with status: ${response.statusCode}.');
+        return ''; // Or handle the error case as needed
       }
     } catch (e) {
-      print('Error fetching result: $e');
-      throw Exception('Failed to fetch result');
-    }
-  }
-/////////////////
-
-  Future<bool> fetchResultFromServersdftosmile(String smiles) async {
-    try {
-      final response = await http.post(
-        Uri.parse('http://localhost:5000/converttosmile'),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: jsonEncode({'smiles': smiles}),
-      );
-
-      if (response.statusCode == 200) {
-        Map<String, dynamic> data = jsonDecode(response.body);
-        bool result = data['prediction'] == 1;
-        setState(() {
-          Resultrox = result;
-        });
-        return result;
-      } else {
-        throw Exception('Failed to fetch result: ${response.statusCode}');
-      }
-    } catch (e) {
-      print('Error fetching result: $e');
-      throw Exception('Failed to fetch result');
+      print('Exception during PDB generation: $e');
+      return ''; // Or handle the error case as needed
     }
   }
 
@@ -224,10 +216,13 @@ class _convertScreenState extends State<convertScreen> {
                                       width: 285,
                                       child: MaterialButton(
                                         onPressed: () {
-                                          setState(() {
-                                            ConvertCubit.get(context)
-                                                .convertAndDownload(
-                                                    _smilesController.text);
+                                          String smiles =
+                                              _smilesController.text;
+                                          convertSMILEStoSDF2D(smiles)
+                                              .then((output) {
+                                            setState(() {
+                                              _smilesController.text = output;
+                                            });
                                           });
                                         },
                                         child: const Text(
@@ -339,7 +334,7 @@ class _convertScreenState extends State<convertScreen> {
                                             const EdgeInsets.symmetric(
                                                 vertical: 60, horizontal: 10),
                                       ),
-                                      controller: _smilesController,
+                                      controller: _smiles1Controller,
                                     ),
                                   ),
                                   Padding(
@@ -350,10 +345,12 @@ class _convertScreenState extends State<convertScreen> {
                                       width: 285,
                                       child: MaterialButton(
                                         onPressed: () {
-                                          setState(() {
-                                            ConvertCubit.get(context)
-                                                .convertAndDownload(
-                                                    _smilesController.text);
+                                          String smiles =
+                                              _smiles1Controller.text;
+                                          generatePDB(smiles).then((output) {
+                                            setState(() {
+                                              _smiles1Controller.text = output;
+                                            });
                                           });
                                         },
                                         child: const Text(

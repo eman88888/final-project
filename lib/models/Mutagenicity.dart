@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:dotted_border/dotted_border.dart';
@@ -7,6 +8,7 @@ import 'package:finalproject/pages/convert.dart';
 import 'package:finalproject/pages/robot.dart';
 import 'package:finalproject/result/mutagenicity_result.dart';
 import 'package:finalproject/screens/bottomnavbar.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 //////////////
@@ -59,18 +61,90 @@ class _mutagenicityState extends State<mutagenicity> {
     }
   }
 
-//////////
+////////////
+  PlatformFile? selectedFile;
 
   void openfiles() async {
     FilePickerResult? resultfile = await FilePicker.platform.pickFiles();
     if (resultfile != null) {
       PlatformFile file = resultfile.files.first;
       print(file.name);
-      print(file.path);
+
+      if (kIsWeb) {
+        // For web, use the bytes property instead of path
+        Uint8List? bytes = file.bytes;
+        if (bytes != null) {
+          // Call uploadFile function with the selected file
+          await uploadFile(file, bytes);
+        } else {
+          print('Failed to read file bytes');
+        }
+      } else {
+        // For non-web platforms, use the path property
+        String path = file.path!;
+        print(path);
+
+        // Call uploadFile function with the selected file
+        await uploadFile(file, path);
+      }
     } else {
-      // do something here
+      // Handle case when no file is selected
+      print('No file selected');
     }
   }
+
+  bool resultsdf = true;
+
+  Future<void> uploadFile(PlatformFile file, dynamic fileContent) async {
+    try {
+      var url = Uri.parse(
+          'http://localhost:5000//predictsdf'); // Replace with your server URL
+      var request = http.MultipartRequest('POST', url);
+
+      if (kIsWeb) {
+        // For web, use the bytes property
+        request.files.add(http.MultipartFile.fromBytes(
+          'file',
+          fileContent as List<int>,
+          filename: file.name,
+        ));
+      } else {
+        // For non-web, use the path
+        String path = fileContent as String;
+        List<int> bytes = File(path).readAsBytesSync();
+        request.files.add(http.MultipartFile(
+          'file',
+          // Convert the bytes to a stream
+          Stream.fromIterable(bytes.map((e) => [e])),
+          bytes.length,
+          filename: file.name,
+        ));
+      }
+
+      var response = await request.send();
+      if (response.statusCode == 200) {
+        var responseData = await response.stream.bytesToString();
+        var results = json.decode(responseData)['results'];
+
+        // Convert the result to a boolean (true if result is 1, false if result is 0)
+        bool resultBool = results == 1;
+
+        // Save the result in the resultsdf variable
+        setState(() {
+          resultsdf = resultBool;
+        });
+
+        print('Results from server: $results');
+        // Handle the results as needed
+      } else {
+        print('Failed to upload file: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Exception while uploading file: $e');
+    }
+  }
+
+//////////
 
   @override
   Widget build(BuildContext context) {
@@ -246,17 +320,23 @@ class _mutagenicityState extends State<mutagenicity> {
                             borderRadius: BorderRadius.circular(15),
                           ),
                           onPressed: () async {
-                            String smiles = _smilesController.text;
-                            bool result = await fetchResultFromServer(smiles);
+                            // String smiles = _smilesController.text;
+                            //bool result = await fetchResultFromServer(smiles);
 
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => mutresult(
-                                  result: Resultrox,
+                            if (selectedFile != null) {
+                              List<int> fileBytes = selectedFile!.bytes!;
+                              await uploadFile(selectedFile!, fileBytes);
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => mutresult(
+                                    result: resultsdf,
+                                  ),
                                 ),
-                              ),
-                            );
+                              );
+                            } else {
+                              print('No file selected');
+                            }
                           },
                         ),
                       ),

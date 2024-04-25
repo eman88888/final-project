@@ -21,12 +21,7 @@ class ToxicityofMolecules_Screen extends StatefulWidget {
 class _ToxicityofMolecules_ScreenState
     extends State<ToxicityofMolecules_Screen> {
   TextEditingController _smilesController = TextEditingController();
-
-  @override
-  void dispose() {
-    _smilesController.dispose();
-    super.dispose();
-  }
+//////predict toxcicty
 
   bool Resultrox = true;
 
@@ -56,6 +51,67 @@ class _ToxicityofMolecules_ScreenState
     }
   }
 
+//////predict toxcicty
+/////sa,tox
+  double _saScore = 0.0;
+  double _toxicityScore = 0.0;
+
+  Future<void> _predictMolecule() async {
+    try {
+      final apiUrl = 'http://127.0.0.1:5000/predictmol';
+      final response = await http.post(
+        Uri.parse(apiUrl),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({'smiles': _smilesController.text}),
+      );
+
+      if (response.statusCode == 200) {
+        final result = jsonDecode(response.body);
+        if (result.containsKey('toxicity_score')) {
+          final toxicityScore = result['toxicity_score'];
+          setState(() {
+            _toxicityScore = double.parse(toxicityScore.toString());
+            print('Toxicity Score: $_toxicityScore');
+          });
+        } else {
+          print('Failed to predict toxicity: Invalid response format');
+        }
+      } else {
+        print('Failed to predict toxicity: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error predicting toxicity: $e');
+    }
+  }
+
+  Future<void> _calculateSaScore() async {
+    final response = await http.post(
+      Uri.parse('http://127.0.0.1:5000/calculate_sa_score'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({'smiles': _smilesController.text}),
+    );
+
+    if (response.statusCode == 200) {
+      final result = jsonDecode(response.body);
+      if (result['success']) {
+        final saScoreNormalized = result['sa_score_normalized'];
+        if (saScoreNormalized != null) {
+          setState(() {
+            _saScore = double.parse(saScoreNormalized.toString());
+            print('SA Score: $_saScore');
+          });
+        } else {
+          print('SA score is null');
+        }
+      } else {
+        print('Failed to calculate SA score: ${result['error']}');
+      }
+    } else {
+      print('Failed to calculate SA score: ${response.statusCode}');
+    }
+  }
+
+/////sa,tox
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
@@ -218,12 +274,15 @@ class _ToxicityofMolecules_ScreenState
                             onPressed: () async {
                               String smiles = _smilesController.text;
                               bool result = await fetchResultFromServer(smiles);
-
+                              await _calculateSaScore();
+                              await _predictMolecule();
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => ToxResult_Screen(
                                     result: Resultrox,
+                                    resultsa: _saScore,
+                                    resulttox: _toxicityScore,
                                   ),
                                 ),
                               );

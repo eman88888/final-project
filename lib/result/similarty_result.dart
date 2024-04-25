@@ -25,43 +25,41 @@ class _simresultState extends State<simresult>
     with SingleTickerProviderStateMixin {
   TextEditingController _smiles1Controller = TextEditingController();
   TextEditingController _smiles2Controller = TextEditingController();
-  //////////
-  bool Resultrox = true;
   bool Show = true;
 
-  @override
-  void dispose() {
-    _smiles1Controller.dispose();
-    _smiles2Controller.dispose();
-    super.dispose();
-  }
-
-  Future<bool> fetchResultFromServer(String smiles1, String smiles2) async {
+////////////map
+  Future<String> generateSimilarityMap(
+      String molSmiles, String refMolSmiles) async {
     try {
-      final response = await http.post(
-        Uri.parse('http://localhost:5000/generate_similarity_map'),
+      var url = Uri.parse('http://localhost:5000/generate_similarity_map');
+      var response = await http.post(
+        url,
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json', // Set content type here
         },
-        body: jsonEncode({'smiles1': smiles1, 'smiles2': smiles2}),
+        body: jsonEncode({
+          'mol_smiles': molSmiles,
+          'refmol_smiles': refMolSmiles,
+        }),
       );
 
       if (response.statusCode == 200) {
-        Map<String, dynamic> data = jsonDecode(response.body);
-        bool result = data['prediction'] == 1;
-        setState(() {
-          Resultrox = result;
-        });
-        return result;
+        var responseData = json.decode(response.body);
+        if (responseData['success']) {
+          return responseData['image_base64'];
+        } else {
+          print('API request failed: ${responseData['error']}');
+        }
       } else {
-        throw Exception('Failed to fetch result: ${response.statusCode}');
+        print('Failed to load data: ${response.statusCode}');
       }
     } catch (e) {
-      print('Error fetching result: $e');
-      throw Exception('Failed to fetch result');
+      print('Exception: $e');
     }
+    return ''; // Return an empty string if there's an error
   }
 
+///////////////
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
@@ -246,76 +244,72 @@ class _simresultState extends State<simresult>
                         height: 60,
                         width: 300,
                         child: MaterialButton(
-                            child: const Text(
-                              'Submit',
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
-                            ),
-                            color: const Color(0xffF4D160),
-                            textColor: Colors.black,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            onPressed: () {
-                              setState(() {
-                                Show = false;
-                                showDialog(
-                                  context: context,
-                                  builder: (context) {
-                                    return AlertDialog(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(20),
-                                      ),
-                                      backgroundColor: const Color(0xffFFFFFF),
-                                      content: Container(
-                                        alignment: Alignment.topLeft,
-                                        width: screenSize.width,
-                                        height: 432,
-                                        child: Column(children: [
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 270),
-                                            child: MaterialButton(
+                          child: const Text(
+                            'Submit',
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                          color: const Color(0xffF4D160),
+                          textColor: Colors.black,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          onPressed: () async {
+                            setState(() {
+                              Show = false;
+                            });
+
+                            String imageBytes = await generateSimilarityMap(
+                                _smiles1Controller.text,
+                                _smiles2Controller.text);
+
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  backgroundColor: const Color(0xffFFFFFF),
+                                  content: Container(
+                                    alignment: Alignment.topLeft,
+                                    width: screenSize.width,
+                                    height: 432,
+                                    child: Column(
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 270),
+                                          child: MaterialButton(
+                                            height: 24,
+                                            minWidth: 24,
+                                            onPressed: () {
+                                              Navigator.of(context)
+                                                  .pop(); // Close the AlertDialog
+                                            },
+                                            child: Container(
+                                              color: Colors.red,
                                               height: 24,
-                                              minWidth: 24,
-                                              onPressed: () async {
-                                                setState(() {
-<<<<<<< HEAD
-                                                  Show = false;
-                                                });
-                                                String smiles1 =
-                                                    _smiles1Controller.text;
-                                                String smiles2 =
-                                                    _smiles2Controller.text;
-                                                await fetchResultFromServer(
-                                                    smiles1, smiles2);
-                                                setState(() {
-                                                  Show = true;
-=======
-                                                  //show = true;
->>>>>>> ab15e97dbe9772540895cc699b6d003148194aa7
-                                                });
-                                              },
-                                              child: Container(
-                                                color: Colors.red,
-                                                height: 24,
-                                                width: 24,
-                                                child: Icon(
-                                                  Icons.clear_sharp,
-                                                  color: Colors.white,
-                                                ),
+                                              width: 24,
+                                              child: Icon(
+                                                Icons.clear_sharp,
+                                                color: Colors.white,
                                               ),
                                             ),
                                           ),
-                                          Divider(),
-                                        ]),
-                                      ),
-                                      insetPadding: const EdgeInsets.all(10),
-                                    );
-                                  },
+                                        ),
+                                        Divider(),
+                                        Image.memory(base64Decode(
+                                            imageBytes)), // Display the image
+                                      ],
+                                    ),
+                                  ),
+                                  insetPadding: const EdgeInsets.all(10),
                                 );
-                              });
-                            }),
+                              },
+                            );
+                          },
+                        ),
                       ),
                       Visibility(
                         visible: Show,

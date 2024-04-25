@@ -26,6 +26,7 @@ class _liverState extends State<liver> {
     super.dispose();
   }
 
+/////////////predict liver
   bool Resultrox = true;
 
   Future<bool> fetchResultFromServer(String smiles) async {
@@ -51,6 +52,59 @@ class _liverState extends State<liver> {
     } catch (e) {
       print('Error fetching result: $e');
       throw Exception('Failed to fetch result');
+    }
+  }
+
+/////////////predict liver
+  ///image
+  String _imageData = '';
+
+  Future<String> generate3DStructure(String smiles) async {
+    try {
+      var url = 'http://localhost:5000//generate_3d_structure';
+      var response = await http.post(Uri.parse(url),
+          headers: {'Content-Type': 'application/json'},
+          body: jsonEncode({'smiles': smiles}));
+
+      if (response.statusCode == 200) {
+        var jsonResponse = jsonDecode(response.body);
+        var imageData = jsonResponse['image_data'];
+        return imageData; // Return the image data
+      } else {
+        print('Request failed with status: ${response.statusCode}.');
+        return ''; // Return an empty string if the request fails
+      }
+    } catch (e) {
+      print('Exception during 3D structure generation: $e');
+      return ''; // Return an empty string if an exception occurs
+    }
+  }
+
+  ///image
+/////////atom and bond
+  String resultsmile = '';
+  String atoms = '';
+
+  Future<void> processSmiles(String liver) async {
+    String url =
+        'http://localhost:5000/process_smiles'; // Update with your server URL
+
+    try {
+      final response = await http.post(
+        Uri.parse(url),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({'smiles': liver}),
+      );
+
+      if (response.statusCode == 200) {
+        Map<String, dynamic> data = jsonDecode(response.body);
+        resultsmile = '${data['bonds']}';
+        atoms = '${data['atoms']}';
+      } else {
+        resultsmile = response.statusCode.toString();
+      }
+    } catch (e) {
+      print(e);
     }
   }
 
@@ -219,11 +273,15 @@ class _liverState extends State<liver> {
                               String smiles = _smilesController.text;
                               bool result = await fetchResultFromServer(smiles);
 
+                              await processSmiles(smiles);
+
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => livresult(
                                     result: Resultrox,
+                                    resultAtom: atoms,
+                                    resulBond: resultsmile,
                                   ),
                                 ),
                               );
