@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:finalproject/pages/convert.dart';
 import 'package:finalproject/pages/robot.dart';
 import 'package:finalproject/screens/bottomnavbar.dart';
@@ -13,13 +15,19 @@ class ToxResult_Screen extends StatefulWidget {
   final bool result;
   final double resulttox;
   final double resultsa;
+  final String resultAtom;
+  final String resulBond;
+  final String Resulimg;
 
-  ToxResult_Screen({
-    Key? key,
-    required this.result,
-    required this.resulttox,
-    required this.resultsa,
-  }) : super(key: key);
+  ToxResult_Screen(
+      {Key? key,
+      required this.result,
+      required this.resulttox,
+      required this.resultsa,
+      required this.resultAtom,
+      required this.resulBond,
+      required this.Resulimg})
+      : super(key: key);
 
   @override
   State<ToxResult_Screen> createState() => _ToxResult_ScreenState();
@@ -203,149 +211,165 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
                                   blurRadius: 4,
                                   spreadRadius: 0)
                             ]),
-                        child: Column(
+                        child: Stack(
                           children: [
-                            InkWell(
-                              onTap: () {
-                                showDialog(
-                                  context: context,
-                                  builder: (context) {
-                                    return AlertDialog(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(20),
-                                      ),
-                                      backgroundColor: Color(0xffFFFFFF),
-                                      content: Container(
-                                        alignment: Alignment.topLeft,
-                                        width: screenSize.width,
-                                        height: 432,
-                                        child: Column(children: [
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 300),
-                                            child: MaterialButton(
-                                              height: 24,
-                                              minWidth: 24,
-                                              onPressed: () {
-                                                Navigator.pop(context);
-                                              },
-                                              child: Container(
-                                                color: Colors.red,
+                            Positioned.fill(
+                              child: Align(
+                                alignment: Alignment.topRight,
+                                child: widget.Resulimg.isNotEmpty
+                                    ? Image.memory(
+                                        base64Decode(widget.Resulimg),
+                                        width: 200,
+                                        height: 200,
+                                      )
+                                    : Container(),
+                              ),
+                            ),
+                            Positioned(
+                              right: 0,
+                              child: InkWell(
+                                onTap: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return AlertDialog(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                        backgroundColor: Color(0xffFFFFFF),
+                                        content: Container(
+                                          alignment: Alignment.topLeft,
+                                          width: screenSize.width,
+                                          height: 432,
+                                          child: Column(children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 300),
+                                              child: MaterialButton(
                                                 height: 24,
-                                                width: 24,
-                                                child: Icon(
-                                                  Icons.clear_sharp,
-                                                  color: Colors.white,
+                                                minWidth: 24,
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Container(
+                                                  color: Colors.red,
+                                                  height: 24,
+                                                  width: 24,
+                                                  child: Icon(
+                                                    Icons.clear_sharp,
+                                                    color: Colors.white,
+                                                  ),
                                                 ),
                                               ),
                                             ),
-                                          ),
-                                          Divider(),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 10, left: 30),
-                                            child: Container(
-                                              height: 61,
-                                              width: 61,
-                                              child: Image.asset(
-                                                "assets/image12.png",
+                                            Divider(),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  top: 10, left: 30),
+                                              child: Container(
                                                 height: 61,
                                                 width: 61,
+                                                child: Image.asset(
+                                                  "assets/image12.png",
+                                                  height: 61,
+                                                  width: 61,
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                          const SizedBox(
-                                            height: 20,
-                                          ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Container(
-                                                height: 24,
-                                                width: 27,
-                                                child: Image.asset(
-                                                  "assets/image11.png",
+                                            const SizedBox(
+                                              height: 20,
+                                            ),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Container(
                                                   height: 24,
                                                   width: 27,
+                                                  child: Image.asset(
+                                                    "assets/image11.png",
+                                                    height: 24,
+                                                    width: 27,
+                                                  ),
                                                 ),
-                                              ),
-                                              const Text(
-                                                "Atomic Number :  ",
-                                                style: TextStyle(
-                                                  color: Color(0xff1D5D9B),
-                                                  fontWeight: FontWeight.bold,
+                                                Text(
+                                                  "Atomic Number: ${widget.resultAtom}",
+                                                  style: TextStyle(
+                                                    color: Color(0xff1D5D9B),
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
                                                 ),
-                                              ),
-                                            ],
-                                          ),
-                                          SizedBox(height: 50),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Container(
-                                                height: 24,
-                                                width: 27,
-                                                child: Image.asset(
-                                                  "assets/image11.png",
+                                              ],
+                                            ),
+                                            SizedBox(height: 50),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Container(
                                                   height: 24,
                                                   width: 27,
+                                                  child: Image.asset(
+                                                    "assets/image11.png",
+                                                    height: 24,
+                                                    width: 27,
+                                                  ),
                                                 ),
-                                              ),
-                                              const Text(
-                                                "Number of Atoms :  ",
-                                                style: TextStyle(
-                                                  color: Color(0xff1D5D9B),
-                                                  fontWeight: FontWeight.bold,
+                                                const Text(
+                                                  "Number of Atoms :  ",
+                                                  style: TextStyle(
+                                                    color: Color(0xff1D5D9B),
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
                                                 ),
-                                              ),
-                                            ],
-                                          ),
-                                          SizedBox(height: 50),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Container(
-                                                height: 24,
-                                                width: 27,
-                                                child: Image.asset(
-                                                  "assets/image11.png",
+                                              ],
+                                            ),
+                                            SizedBox(height: 50),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Container(
                                                   height: 24,
                                                   width: 27,
+                                                  child: Image.asset(
+                                                    "assets/image11.png",
+                                                    height: 24,
+                                                    width: 27,
+                                                  ),
                                                 ),
-                                              ),
-                                              const Text(
-                                                "Bonds Types :  :  ",
-                                                style: TextStyle(
-                                                  color: Color(0xff1D5D9B),
-                                                  fontWeight: FontWeight.bold,
+                                                Text(
+                                                  "Bonds Types : ${widget.resulBond}  ",
+                                                  style: TextStyle(
+                                                    color: Color(0xff1D5D9B),
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
                                                 ),
-                                              ),
-                                            ],
-                                          )
-                                        ]),
-                                      ),
-                                      insetPadding: const EdgeInsets.all(10),
-                                    );
-                                  },
-                                );
-                              },
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 8, right: 8),
-                                child: Container(
-                                  height: 34,
-                                  width: 48,
-                                  child: Image.asset(
-                                    "assets/info.png",
+                                              ],
+                                            )
+                                          ]),
+                                        ),
+                                        insetPadding: const EdgeInsets.all(10),
+                                      );
+                                    },
+                                  );
+                                },
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.only(top: 8, right: 8),
+                                  child: Container(
                                     height: 34,
                                     width: 48,
+                                    child: Image.asset(
+                                      "assets/info.png",
+                                      height: 34,
+                                      width: 48,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
+                            )
                           ],
                         ),
                       ),

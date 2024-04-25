@@ -57,26 +57,25 @@ class _liverState extends State<liver> {
 
 /////////////predict liver
   ///image
-  String _imageData = '';
+  String resultimg = '';
 
-  Future<String> generate3DStructure(String smiles) async {
-    try {
-      var url = 'http://localhost:5000//generate_3d_structure';
-      var response = await http.post(Uri.parse(url),
-          headers: {'Content-Type': 'application/json'},
-          body: jsonEncode({'smiles': smiles}));
+  Future<void> fetch3DStructure(String smiles) async {
+    var url = Uri.parse('http://localhost:5000/generate_3d_structure');
+    var response = await http.post(
+      url,
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({'smiles': smiles}),
+    );
 
-      if (response.statusCode == 200) {
-        var jsonResponse = jsonDecode(response.body);
-        var imageData = jsonResponse['image_data'];
-        return imageData; // Return the image data
-      } else {
-        print('Request failed with status: ${response.statusCode}.');
-        return ''; // Return an empty string if the request fails
-      }
-    } catch (e) {
-      print('Exception during 3D structure generation: $e');
-      return ''; // Return an empty string if an exception occurs
+    if (response.statusCode == 200) {
+      var jsonResponse = jsonDecode(response.body);
+      String imgStr = jsonResponse['image_data'];
+      // Save the image data to the resultimg variable or use it as needed
+      setState(() {
+        resultimg = imgStr;
+      });
+    } else {
+      print('Request failed with status: ${response.statusCode}.');
     }
   }
 
@@ -274,7 +273,7 @@ class _liverState extends State<liver> {
                               bool result = await fetchResultFromServer(smiles);
 
                               await processSmiles(smiles);
-
+                              await fetch3DStructure(smiles);
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -282,6 +281,7 @@ class _liverState extends State<liver> {
                                     result: Resultrox,
                                     resultAtom: atoms,
                                     resulBond: resultsmile,
+                                    Resulimg: resultimg,
                                   ),
                                 ),
                               );

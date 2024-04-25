@@ -112,6 +112,56 @@ class _ToxicityofMolecules_ScreenState
   }
 
 /////sa,tox
+////////atom and bond
+  String resultsmile = '';
+  String atoms = '';
+
+  Future<void> processSmiles(String liver) async {
+    String url =
+        'http://localhost:5000/process_smiles'; // Update with your server URL
+
+    try {
+      final response = await http.post(
+        Uri.parse(url),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({'smiles': liver}),
+      );
+
+      if (response.statusCode == 200) {
+        Map<String, dynamic> data = jsonDecode(response.body);
+        resultsmile = '${data['bonds']}';
+        atoms = '${data['atoms']}';
+      } else {
+        resultsmile = response.statusCode.toString();
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+////////////////
+  String resultimg = '';
+
+  Future<void> fetch3DStructure(String smiles) async {
+    var url = Uri.parse('http://localhost:5000/generate_3d_structure');
+    var response = await http.post(
+      url,
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({'smiles': smiles}),
+    );
+
+    if (response.statusCode == 200) {
+      var jsonResponse = jsonDecode(response.body);
+      String imgStr = jsonResponse['image_data'];
+      // Save the image data to the resultimg variable or use it as needed
+      setState(() {
+        resultimg = imgStr;
+      });
+    } else {
+      print('Request failed with status: ${response.statusCode}.');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
@@ -276,6 +326,8 @@ class _ToxicityofMolecules_ScreenState
                               bool result = await fetchResultFromServer(smiles);
                               await _calculateSaScore();
                               await _predictMolecule();
+                              await processSmiles(smiles);
+                              await fetch3DStructure(smiles);
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -283,6 +335,9 @@ class _ToxicityofMolecules_ScreenState
                                     result: Resultrox,
                                     resultsa: _saScore,
                                     resulttox: _toxicityScore,
+                                    resultAtom: atoms,
+                                    resulBond: resultsmile,
+                                    Resulimg: resultimg,
                                   ),
                                 ),
                               );

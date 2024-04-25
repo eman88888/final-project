@@ -25,13 +25,9 @@ class mutagenicity extends StatefulWidget {
 
 class _mutagenicityState extends State<mutagenicity> {
   TextEditingController _smilesController = TextEditingController();
+  String fileName = 'input.sdf';
 
 //////////predict csv
-  @override
-  void dispose() {
-    _smilesController.dispose();
-    super.dispose();
-  }
 
   bool Resultrox = true;
 
@@ -63,7 +59,7 @@ class _mutagenicityState extends State<mutagenicity> {
 
 ////////////
   PlatformFile? selectedFile;
-
+  bool resultsdf = true;
   void openfiles() async {
     FilePickerResult? resultfile = await FilePicker.platform.pickFiles();
     if (resultfile != null) {
@@ -92,8 +88,6 @@ class _mutagenicityState extends State<mutagenicity> {
       print('No file selected');
     }
   }
-
-  bool resultsdf = true;
 
   Future<void> uploadFile(PlatformFile file, dynamic fileContent) async {
     try {
@@ -145,6 +139,55 @@ class _mutagenicityState extends State<mutagenicity> {
   }
 
 //////////
+/////////atom and bond
+  String resultsmile = '';
+  String atoms = '';
+
+  Future<void> processSmiles(String liver) async {
+    String url =
+        'http://localhost:5000/process_smiles'; // Update with your server URL
+
+    try {
+      final response = await http.post(
+        Uri.parse(url),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({'smiles': liver}),
+      );
+
+      if (response.statusCode == 200) {
+        Map<String, dynamic> data = jsonDecode(response.body);
+        resultsmile = '${data['bonds']}';
+        atoms = '${data['atoms']}';
+      } else {
+        resultsmile = response.statusCode.toString();
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  ///image
+  String resultimg = '';
+
+  Future<void> fetch3DStructure(String smiles) async {
+    var url = Uri.parse('http://localhost:5000/generate_3d_structure');
+    var response = await http.post(
+      url,
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({'smiles': smiles}),
+    );
+
+    if (response.statusCode == 200) {
+      var jsonResponse = jsonDecode(response.body);
+      String imgStr = jsonResponse['image_data'];
+      // Save the image data to the resultimg variable or use it as needed
+      setState(() {
+        resultimg = imgStr;
+      });
+    } else {
+      print('Request failed with status: ${response.statusCode}.');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -309,36 +352,36 @@ class _mutagenicityState extends State<mutagenicity> {
                         height: 60,
                         width: 300,
                         child: MaterialButton(
-                          child: const Text(
-                            'Submit',
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
-                          ),
-                          color: const Color(0xffF4D160),
-                          textColor: Colors.black,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          onPressed: () async {
-                            // String smiles = _smilesController.text;
-                            //bool result = await fetchResultFromServer(smiles);
+                            child: const Text(
+                              'Submit',
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                            color: const Color(0xffF4D160),
+                            textColor: Colors.black,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            onPressed: () async {
+                              String smiles = _smilesController.text;
+                              bool result = await fetchResultFromServer(smiles);
 
-                            if (selectedFile != null) {
-                              List<int> fileBytes = selectedFile!.bytes!;
-                              await uploadFile(selectedFile!, fileBytes);
+                              await processSmiles(smiles);
+
+                              await fetch3DStructure(smiles);
+
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => mutresult(
-                                    result: resultsdf,
+                                    result: Resultrox,
+                                    resultAtom: atoms,
+                                    resulBond: resultsmile,
+                                    resulImg: resultimg,
                                   ),
                                 ),
                               );
-                            } else {
-                              print('No file selected');
-                            }
-                          },
-                        ),
+                            }),
                       ),
                     ],
                   ),
@@ -350,8 +393,15 @@ class _mutagenicityState extends State<mutagenicity> {
   Widget content() {
     return Center(
         child: GestureDetector(
-            onTap: () {
-              openfiles();
+            onTap: () async {
+              FilePickerResult? result = await FilePicker.platform.pickFiles();
+
+              if (result != null) {
+                setState(() {
+                  fileName = result.files.single.name;
+                  selectedFile = result.files.single;
+                });
+              }
             },
             child: Padding(
               padding: const EdgeInsets.only(top: 30, left: 10, right: 10),
