@@ -212,7 +212,7 @@ class _liverState extends State<liver> {
                 children: [
                   Container(
                     padding:
-                        const EdgeInsets.only(left: 20, top: 30, bottom: 10),
+                        const EdgeInsets.only(left: 30, top: 30, bottom: 10),
                     alignment: Alignment.centerLeft,
                     child: const Text(
                       "Input",
@@ -225,7 +225,7 @@ class _liverState extends State<liver> {
                         const EdgeInsets.only(left: 4, right: 4, bottom: 10),
                     child: Container(
                       width: 326,
-                      height: 38.44,
+                      height: 50,
                       child: TextFormField(
                         controller: _smilesController,
                         keyboardType: TextInputType.multiline,

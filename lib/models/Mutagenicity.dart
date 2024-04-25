@@ -292,7 +292,7 @@ class _mutagenicityState extends State<mutagenicity> {
                   child: Column(
                     children: [
                       Container(
-                        padding: EdgeInsets.only(left: 20, top: 30, bottom: 10),
+                        padding: EdgeInsets.only(left: 30, top: 30, bottom: 10),
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "Input Smile",
@@ -305,7 +305,7 @@ class _mutagenicityState extends State<mutagenicity> {
                             left: 4, right: 4, bottom: 10),
                         child: Container(
                           width: 326,
-                          height: 38.44,
+                          height: 50,
                           child: TextFormField(
                             controller: _smilesController,
                             keyboardType: TextInputType.multiline,

@@ -163,7 +163,7 @@ class _simresultState extends State<simresult>
                         ),
                       ),
                       Container(
-                        padding: EdgeInsets.only(left: 20, top: 30, bottom: 10),
+                        padding: EdgeInsets.only(left: 30, top: 30, bottom: 10),
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "Smile 1",
@@ -176,7 +176,7 @@ class _simresultState extends State<simresult>
                             left: 4, right: 4, bottom: 10),
                         child: Container(
                           width: 326,
-                          height: 38.44,
+                          height: 50,
                           child: TextFormField(
                             controller: _smiles1Controller,
                             keyboardType: TextInputType.multiline,
@@ -200,7 +200,7 @@ class _simresultState extends State<simresult>
                         ),
                       ),
                       Container(
-                        padding: EdgeInsets.only(left: 20, top: 30, bottom: 10),
+                        padding: EdgeInsets.only(left: 30, top: 30, bottom: 10),
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "Smile 2",
@@ -213,7 +213,7 @@ class _simresultState extends State<simresult>
                             left: 4, right: 4, bottom: 10),
                         child: Container(
                           width: 326,
-                          height: 38.44,
+                          height: 50,
                           child: TextFormField(
                             controller: _smiles2Controller,
                             keyboardType: TextInputType.multiline,
