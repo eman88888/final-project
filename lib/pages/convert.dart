@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:dotted_border/dotted_border.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:finalproject/cubit/convert_cubit.dart';
@@ -7,6 +9,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 //////////////
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'dart:html' as html;
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/foundation.dart' show Uint8List, kIsWeb;
 
 //////////////
 class convertScreen extends StatefulWidget {
@@ -18,80 +23,146 @@ class convertScreen extends StatefulWidget {
 class _convertScreenState extends State<convertScreen> {
   final TextEditingController _smilesController = TextEditingController();
   final TextEditingController _smiles1Controller = TextEditingController();
+  String fileName = 'input.sdf';
   //////////
-
-  String resultrox = '';
-
-  @override
-  void initState() {
-    super.initState();
-    _smilesController.addListener(_onTextChange);
-  }
-
-  @override
-  void dispose() {
-    _smilesController.dispose();
-    super.dispose();
-  }
-
-  void _onTextChange() {
-    String text = _smilesController.text;
-    // Perform actions based on the text input
-    if (text.length > 10) {
-      // Do something...
-    } else {
-      // Do something else...
-    }
-  }
-
-  ////
-
-  Future<String> convertSMILEStoSDF2D(String smiles) async {
+  String sdf2dData = '';
+  Future<void> convertAndDownload(String convert) async {
+    const String apiUrl = 'http://127.0.0.1:5000/convert';
     try {
-      var url = 'http://localhost:5000/convert';
-      var response = await http.post(Uri.parse(url),
-          headers: {'Content-Type': 'application/json'},
-          body: jsonEncode({'smiles': smiles}));
+      final response = await http.post(
+        Uri.parse(apiUrl),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({'smiles': convert}),
+      );
 
       if (response.statusCode == 200) {
-        var jsonResponse = jsonDecode(response.body);
-        var sdf2dData = jsonResponse['sdf2d'];
-        return sdf2dData;
+        final data = jsonDecode(response.body);
+        setState(() {
+          sdf2dData = data['sdf2d'];
+        });
+
+        print('...........$sdf2dData');
+
+        // Save the SDF2D data to a file using dart:html
+        final blob = html.Blob([sdf2dData]);
+        final url = html.Url.createObjectUrlFromBlob(blob);
+        final anchor = html.AnchorElement(href: url)
+          ..target = 'webSaveLink'
+          ..download = 'molecule.sdf';
+        html.document.body?.append(anchor);
+        anchor.click();
+        html.Url.revokeObjectUrl(url);
+        sdf2dData = 'Molecule data saved successfully';
       } else {
-        print('Request failed with status: ${response.statusCode}.');
-        return ''; // Return an empty string or handle the error as needed
+        print('Error: ${response.statusCode}');
+        sdf2dData = 'Error: ${response.statusCode}';
       }
     } catch (e) {
-      print('Exception during conversion: $e');
-      return ''; // Return an empty string or handle the error as needed
+      print('Error: $e');
+      sdf2dData = 'Error: $e';
     }
   }
 
 //////////////////
-  String _resultpdb = '';
 
-  Future<String> generatePDB(String smiles) async {
+  String pdbData = '';
+
+  Future<void> convertAndDownloadpdb(String convert) async {
+    const String apiUrl = 'http://127.0.0.1:5000/generate_pdb';
     try {
-      var url = 'http://localhost:5000//generate_pdb';
-      var response = await http.post(Uri.parse(url),
-          headers: {'Content-Type': 'application/json'},
-          body: jsonEncode({'smiles': smiles}));
+      final response = await http.post(
+        Uri.parse(apiUrl),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({'smiles': convert}),
+      );
 
       if (response.statusCode == 200) {
-        var jsonResponse = jsonDecode(response.body);
-        var pdbData = jsonResponse['pdb'];
-        return pdbData;
+        final data = jsonDecode(response.body);
+        pdbData = data['pdb'];
+        setState(() {
+          pdbData = data['pdb'];
+        });
+        final blob = html.Blob([pdbData]);
+        final url = html.Url.createObjectUrlFromBlob(blob);
+        final anchor = html.AnchorElement(href: url)
+          ..target = 'webSaveLink'
+          ..download = 'molecule.pdb';
+        html.document.body?.append(anchor);
+        anchor.click();
+        html.Url.revokeObjectUrl(url);
+        pdbData = 'Molecule data saved to molecule.pdb';
       } else {
-        print('Request failed with status: ${response.statusCode}.');
-        return ''; // Or handle the error case as needed
+        print('Error: ${response.statusCode}');
+        pdbData = 'Error: ${response.statusCode}';
       }
     } catch (e) {
-      print('Exception during PDB generation: $e');
-      return ''; // Or handle the error case as needed
+      print('Error: $e');
+      pdbData = 'Error: $e';
     }
   }
 
   ///////
+  PlatformFile? selectedFile;
+
+  Future<void> uploadFile(BuildContext context) async {
+    if (selectedFile == null) {
+      // Handle case when no file is selected
+      return;
+    }
+
+    try {
+      var request = http.MultipartRequest(
+        'POST',
+        Uri.parse(
+            'http://127.0.0.1:5000/converttosmile'), // Update URL accordingly
+      );
+      request.files.add(
+        http.MultipartFile.fromBytes(
+          'file',
+          selectedFile!.bytes!,
+          filename: selectedFile!.name,
+        ),
+      );
+
+      var response = await request.send();
+
+      if (response.statusCode == 200) {
+        // Handle successful conversion
+        if (kIsWeb) {
+          // For web, create a Blob URL and initiate download
+          Uint8List content = await response.stream.toBytes();
+          final blob = Blob([content]);
+          final url = Url.createObjectUrlFromBlob(blob);
+          AnchorElement(href: url)
+            ..setAttribute("download", "smiles.smi")
+            ..click();
+          Url.revokeObjectUrl(url);
+        } else {
+          // For other platforms, show a SnackBar with download message
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('File downloaded successfully'),
+            ),
+          );
+        }
+      } else {
+        // Handle other status codes
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error: ${response.statusCode}'),
+          ),
+        );
+      }
+    } catch (e) {
+      // Handle errors
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error: $e'),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     String fileName = 'input.sdf';
@@ -216,13 +287,9 @@ class _convertScreenState extends State<convertScreen> {
                                       width: 285,
                                       child: MaterialButton(
                                         onPressed: () {
-                                          String smiles =
-                                              _smilesController.text;
-                                          convertSMILEStoSDF2D(smiles)
-                                              .then((output) {
-                                            setState(() {
-                                              _smilesController.text = output;
-                                            });
+                                          setState(() {
+                                            convertAndDownload(
+                                                _smilesController.text);
                                           });
                                         },
                                         child: const Text(
@@ -345,12 +412,9 @@ class _convertScreenState extends State<convertScreen> {
                                       width: 285,
                                       child: MaterialButton(
                                         onPressed: () {
-                                          String smiles =
-                                              _smiles1Controller.text;
-                                          generatePDB(smiles).then((output) {
-                                            setState(() {
-                                              _smiles1Controller.text = output;
-                                            });
+                                          setState(() {
+                                            convertAndDownloadpdb(
+                                                _smiles1Controller.text);
                                           });
                                         },
                                         child: const Text(
@@ -428,8 +492,7 @@ class _convertScreenState extends State<convertScreen> {
                                                 setState(() {
                                                   fileName =
                                                       result.files.single.name;
-                                                  ConvertCubit.get(context)
-                                                          .selectedFile =
+                                                  selectedFile =
                                                       result.files.single;
                                                 });
                                               }
@@ -482,8 +545,7 @@ class _convertScreenState extends State<convertScreen> {
                                       child: MaterialButton(
                                         onPressed: () {
                                           setState(() {
-                                            ConvertCubit.get(context)
-                                                .uploadFile(context);
+                                            uploadFile(context);
                                           });
                                         },
                                         child: const Text(

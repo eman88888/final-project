@@ -234,11 +234,18 @@ class _livresultState extends State<livresult> {
                                               ),
                                               Expanded(
                                                 child: Text(
-                                                  "Atomic Number: ${widget.resultAtom}",
+                                                  "Atomic Number: ",
                                                   style: TextStyle(
                                                     color: Color(0xff1D5D9B),
                                                     fontWeight: FontWeight.bold,
                                                   ),
+                                                ),
+                                              ),
+                                              Text(
+                                                "${widget.resultAtom}",
+                                                style: TextStyle(
+                                                  color: Color(0xff1D5D9B),
+                                                  fontWeight: FontWeight.bold,
                                                 ),
                                               )
                                             ],
