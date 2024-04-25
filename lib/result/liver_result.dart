@@ -2,6 +2,7 @@ import 'package:finalproject/models/liver_toxicity.dart';
 import 'package:finalproject/pages/convert.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../pages/robot.dart';
@@ -180,10 +181,10 @@ class _livresultState extends State<livresult> {
                                               BorderRadius.circular(20),
                                         ),
                                         backgroundColor: Colors.white,
-                                        content: SingleChildScrollView(
-                                          child: Container(
-                                            child: SingleChildScrollView(
-                                              child: Column(children: [
+                                        content: Container(
+                                          child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
                                                 Padding(
                                                   padding:
                                                       const EdgeInsets.only(
@@ -236,15 +237,13 @@ class _livresultState extends State<livresult> {
                                                         width: 27,
                                                       ),
                                                     ),
-                                                    Expanded(
-                                                      child: Text(
-                                                        "Atomic Number: ${widget.resultAtom}",
-                                                        style: TextStyle(
-                                                          color:
-                                                              Color(0xff1D5D9B),
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                        ),
+                                                    Text(
+                                                      "Atomic Number: ${widget.resultAtom}",
+                                                      style: TextStyle(
+                                                        color:
+                                                            Color(0xff1D5D9B),
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                       ),
                                                     )
                                                   ],
@@ -300,8 +299,6 @@ class _livresultState extends State<livresult> {
                                                   ],
                                                 )
                                               ]),
-                                            ),
-                                          ),
                                         ),
                                         insetPadding: const EdgeInsets.all(10),
                                       ),
