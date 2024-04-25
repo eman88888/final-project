@@ -1,6 +1,7 @@
 import 'package:finalproject/cubit/convert_cubit.dart';
 
 import 'package:finalproject/pages/robot.dart';
+import 'package:finalproject/screens/bottomnavbar.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,7 +34,7 @@ class _appState extends State<Tox_app> {
     return GetMaterialApp(
       theme: ThemeData(fontFamily: 'Poppins'),
       debugShowCheckedModeBanner: false,
-      home: const robot(),
+      home: BottomNavBar(),
     );
   }
 }
