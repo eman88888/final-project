@@ -111,194 +111,194 @@ class _liverState extends State<liver> {
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
     return Scaffold(
-        bottomNavigationBar: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              child: Padding(
-                  padding: const EdgeInsets.only(left: 5.0),
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => BottomNavBar()),
-                      );
-                    },
-                    child: Image.asset(
-                      "assets/home icon.png",
-                      height: 35,
-                    ),
-                  )),
-            ),
-            InkWell(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const robot()),
-                );
-              },
-              child: Container(
-                child: Image.asset(
-                  "assets/Animation3.gif",
-                  height: 60,
-                  width: 65,
-                ),
-              ),
-            ),
-          ],
-        ),
-        body: Stack(
-          clipBehavior: Clip.none,
-          children: [
-            Container(
-              height: 200,
-              color: const Color(0xff1D5D9B),
-            ),
-            Container(
-              alignment: Alignment.topLeft,
-              child: IconButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => BottomNavBar()),
-                  );
-                },
-                icon: const Icon(
-                  Icons.arrow_back_ios,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            Container(
-              alignment: Alignment.topRight,
-              child: IconButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const convertScreen()),
-                  );
-                },
-                icon: Image.asset(
-                  "convert.png",
-                  height: 30,
-                  width: 35,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 35),
-              child: Container(
-                alignment: Alignment.topCenter,
-                child: const Text(
-                  "Liver Toxicity",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 30,
-                      fontWeight: FontWeight.w700),
-                ),
-              ),
-            ),
-            Positioned(
-                top: 100,
-                child: Container(
-                  width: screenSize.width,
-                  height: screenSize.height,
-                  decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(20))),
-                  child: Column(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.only(
-                            left: 20, top: 30, bottom: 10),
-                        alignment: Alignment.centerLeft,
-                        child: const Text(
-                          "Input",
-                          style: TextStyle(
-                              fontSize: 24, fontWeight: FontWeight.w700),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: 4, right: 4, bottom: 10),
-                        child: Container(
-                          width: 326,
-                          height: 38.44,
-                          child: TextFormField(
-                            controller: _smilesController,
-                            keyboardType: TextInputType.multiline,
-                            decoration: const InputDecoration(
-                              hintText: "Smile",
-                              hintStyle: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 15,
-                              ),
-                              fillColor: Color(0xfffefcfc),
-                              filled: true,
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(25),
-                                  ),
-                                  borderSide:
-                                      BorderSide(color: Color(0xff717171))),
-                              focusedBorder: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(25)),
-                                  borderSide:
-                                      BorderSide(color: Color(0xff717171))),
-                              border: OutlineInputBorder(),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.only(top: 30, bottom: 30),
-                        height: 60,
-                        width: 300,
-                        child: MaterialButton(
-                            child: const Text(
-                              'Submit',
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
-                            ),
-                            color: const Color(0xffF4D160),
-                            textColor: Colors.black,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            onPressed: () async {
-                              String smiles = _smilesController.text;
-                              bool result = await fetchResultFromServer(smiles);
-
-                              await processSmiles(smiles);
-                              await fetch3DStructure(smiles);
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => livresult(
-                                    result: Resultrox,
-                                    resultAtom: atoms,
-                                    resulBond: resultsmile,
-                                    Resulimg: resultimg,
-                                  ),
-                                ),
-                              );
-                            }),
-                      ),
-                      Container(
-                          child: Padding(
-                        padding: const EdgeInsets.only(top: 80),
-                        child: Container(
-                          width: 370,
-                          child: Image.asset("assets/image14.png"),
-                        ),
-                      )),
-                    ],
+      bottomNavigationBar: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(
+            child: Padding(
+                padding: const EdgeInsets.only(left: 5.0),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => BottomNavBar()),
+                    );
+                  },
+                  child: Image.asset(
+                    "assets/home icon.png",
+                    height: 35,
                   ),
                 )),
-          ],
-        ));
+          ),
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const robot()),
+              );
+            },
+            child: Container(
+              child: Image.asset(
+                "assets/Animation3.gif",
+                height: 60,
+                width: 65,
+              ),
+            ),
+          ),
+        ],
+      ),
+      body: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          Container(
+            height: 200,
+            color: const Color(0xff1D5D9B),
+          ),
+          Container(
+            alignment: Alignment.topLeft,
+            child: IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => BottomNavBar()),
+                );
+              },
+              icon: const Icon(
+                Icons.arrow_back_ios,
+                color: Colors.white,
+              ),
+            ),
+          ),
+          Container(
+            alignment: Alignment.topRight,
+            child: IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const convertScreen()),
+                );
+              },
+              icon: Image.asset(
+                "convert.png",
+                height: 30,
+                width: 35,
+                color: Colors.white,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 35),
+            child: Container(
+              alignment: Alignment.topCenter,
+              child: const Text(
+                "Liver Toxicity",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 30,
+                    fontWeight: FontWeight.w700),
+              ),
+            ),
+          ),
+          Positioned(
+            top: 100,
+            child: Container(
+              width: screenSize.width,
+              height: screenSize.height,
+              decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(20))),
+              child: Column(
+                children: [
+                  Container(
+                    padding:
+                        const EdgeInsets.only(left: 20, top: 30, bottom: 10),
+                    alignment: Alignment.centerLeft,
+                    child: const Text(
+                      "Input",
+                      style:
+                          TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 4, right: 4, bottom: 10),
+                    child: Container(
+                      width: 326,
+                      height: 38.44,
+                      child: TextFormField(
+                        controller: _smilesController,
+                        keyboardType: TextInputType.multiline,
+                        decoration: const InputDecoration(
+                          hintText: "Smile",
+                          hintStyle: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 15,
+                          ),
+                          fillColor: Color(0xfffefcfc),
+                          filled: true,
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(25),
+                              ),
+                              borderSide: BorderSide(color: Color(0xff717171))),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(25)),
+                              borderSide: BorderSide(color: Color(0xff717171))),
+                          border: OutlineInputBorder(),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(top: 30, bottom: 30),
+                    height: 60,
+                    width: 300,
+                    child: MaterialButton(
+                        child: const Text(
+                          'Submit',
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        color: const Color(0xffF4D160),
+                        textColor: Colors.black,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        onPressed: () async {
+                          String smiles = _smilesController.text;
+                          bool result = await fetchResultFromServer(smiles);
+
+                          await processSmiles(smiles);
+                          await fetch3DStructure(smiles);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => livresult(
+                                result: Resultrox,
+                                resultAtom: atoms,
+                                resulBond: resultsmile,
+                                Resulimg: resultimg,
+                              ),
+                            ),
+                          );
+                        }),
+                  ),
+                  Container(
+                      child: Padding(
+                    padding: const EdgeInsets.only(top: 80),
+                    child: Container(
+                      width: 370,
+                      child: Image.asset("assets/image14.png"),
+                    ),
+                  )),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
