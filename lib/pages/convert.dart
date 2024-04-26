@@ -10,7 +10,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'dart:html' as html;
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart' show Uint8List, kIsWeb;
 
 //////////////
@@ -41,8 +40,6 @@ class _convertScreenState extends State<convertScreen> {
           sdf2dData = data['sdf2d'];
         });
 
-        print('...........$sdf2dData');
-
         // Save the SDF2D data to a file using dart:html
         final blob = html.Blob([sdf2dData]);
         final url = html.Url.createObjectUrlFromBlob(blob);
@@ -53,13 +50,132 @@ class _convertScreenState extends State<convertScreen> {
         anchor.click();
         html.Url.revokeObjectUrl(url);
         sdf2dData = 'Molecule data saved successfully';
+
+        //Showdialog
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Image.asset(
+                'assets/success.png',
+                height: 70,
+              ),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Successfully Convert!",
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'MulishRomanBold'),
+                  ),
+                  SizedBox(height: 15),
+                  Text(
+                    "Please check your downloads.",
+                    style: TextStyle(fontSize: 17),
+                  )
+                ],
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(
+                    "OK",
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            );
+          },
+        );
       } else {
-        print('Error: ${response.statusCode}');
-        sdf2dData = 'Error: ${response.statusCode}';
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Image.asset(
+                'assets/close.png',
+                height: 70,
+              ),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    " ${response.statusCode}",
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'MulishRomanBold'),
+                  ),
+                  SizedBox(height: 15),
+                ],
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(
+                    "OK",
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            );
+          },
+        );
       }
     } catch (e) {
-      print('Error: $e');
-      sdf2dData = 'Error: $e';
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Image.asset(
+              'assets/close.png',
+              height: 70,
+            ),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "$e",
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'MulishRomanBold'),
+                ),
+                SizedBox(height: 15),
+              ],
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text(
+                  "OK",
+                  style: TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
+          );
+        },
+      );
     }
   }
 
@@ -82,6 +198,8 @@ class _convertScreenState extends State<convertScreen> {
         setState(() {
           pdbData = data['pdb'];
         });
+
+        // Save the SDF2D data to a file using dart:html
         final blob = html.Blob([pdbData]);
         final url = html.Url.createObjectUrlFromBlob(blob);
         final anchor = html.AnchorElement(href: url)
@@ -91,13 +209,132 @@ class _convertScreenState extends State<convertScreen> {
         anchor.click();
         html.Url.revokeObjectUrl(url);
         pdbData = 'Molecule data saved to molecule.pdb';
+
+        //Showdialog
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Image.asset(
+                'assets/success.png',
+                height: 70,
+              ),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Successfully Convert!",
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'MulishRomanBold'),
+                  ),
+                  SizedBox(height: 15),
+                  Text(
+                    "Please check your downloads.",
+                    style: TextStyle(fontSize: 17),
+                  )
+                ],
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(
+                    "OK",
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            );
+          },
+        );
       } else {
-        print('Error: ${response.statusCode}');
-        pdbData = 'Error: ${response.statusCode}';
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Image.asset(
+                'assets/close.png',
+                height: 70,
+              ),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    " ${response.statusCode}",
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'MulishRomanBold'),
+                  ),
+                  SizedBox(height: 15),
+                ],
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(
+                    "OK",
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            );
+          },
+        );
       }
     } catch (e) {
-      print('Error: $e');
-      pdbData = 'Error: $e';
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Image.asset(
+              'assets/close.png',
+              height: 70,
+            ),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "$e",
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'MulishRomanBold'),
+                ),
+                SizedBox(height: 15),
+              ],
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text(
+                  "OK",
+                  style: TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
+          );
+        },
+      );
     }
   }
 
