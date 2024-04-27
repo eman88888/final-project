@@ -58,11 +58,20 @@ class _ToxicityofMolecules_ScreenState
 
   Future<void> _predictMolecule() async {
     try {
-      final apiUrl = 'http://127.0.0.1:5000/predictmol';
+      final String apiUrl = 'http://127.0.0.1:5000/predictmol';
+      final String smiles = _smilesController.text;
+
+      // Check if input is empty
+      if (smiles.isEmpty) {
+        setState(() {
+          _toxicityScore = 0;
+        });
+        return;
+      }
       final response = await http.post(
         Uri.parse(apiUrl),
         headers: {'Content-Type': 'application/json'},
-        body: jsonEncode({'smiles': _smilesController.text}),
+        body: jsonEncode({'smiles': smiles}),
       );
 
       if (response.statusCode == 200) {
@@ -156,6 +165,28 @@ class _ToxicityofMolecules_ScreenState
       // Save the image data to the resultimg variable or use it as needed
       setState(() {
         resultimg = imgStr;
+      });
+    } else {
+      print('Request failed with status: ${response.statusCode}.');
+    }
+  }
+
+////////////////////
+  String gester = ''; // Variable to store the result
+
+  Future<void> computeGasteigerCharges(String smiles) async {
+    var url = Uri.parse('http://localhost:5000/compute_gasteiger_charges');
+    var response = await http.post(
+      url,
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({'smiles': smiles}),
+    );
+
+    if (response.statusCode == 200) {
+      var jsonResponse = jsonDecode(response.body);
+      var result = jsonResponse['result'];
+      setState(() {
+        gester = result;
       });
     } else {
       print('Request failed with status: ${response.statusCode}.');
@@ -328,6 +359,8 @@ class _ToxicityofMolecules_ScreenState
                               await _predictMolecule();
                               await processSmiles(smiles);
                               await fetch3DStructure(smiles);
+                              await computeGasteigerCharges(smiles);
+
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -338,6 +371,7 @@ class _ToxicityofMolecules_ScreenState
                                     resultAtom: atoms,
                                     resulBond: resultsmile,
                                     Resulimg: resultimg,
+                                    resulgester: gester,
                                   ),
                                 ),
                               );

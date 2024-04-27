@@ -18,6 +18,7 @@ class ToxResult_Screen extends StatefulWidget {
   final String resultAtom;
   final String resulBond;
   final String Resulimg;
+  final String resulgester;
 
   ToxResult_Screen(
       {Key? key,
@@ -26,7 +27,8 @@ class ToxResult_Screen extends StatefulWidget {
       required this.resultsa,
       required this.resultAtom,
       required this.resulBond,
-      required this.Resulimg})
+      required this.Resulimg,
+      required this.resulgester})
       : super(key: key);
 
   @override
@@ -315,8 +317,8 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
                                                   width: 27,
                                                 ),
                                               ),
-                                              const Text(
-                                                "Number of Atoms :  ",
+                                              Text(
+                                                "Gasteiger Charge : ${widget.resulgester} ",
                                                 style: TextStyle(
                                                   color: Color(0xff1D5D9B),
                                                   fontWeight: FontWeight.bold,

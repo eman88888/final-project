@@ -27,9 +27,9 @@ class _mutagenicityState extends State<mutagenicity> {
   TextEditingController _smilesController = TextEditingController();
   String fileName = 'input.sdf';
 
-//////////predict csv
+//////////predict csv//////////////////
 
-  bool Resultrox = true;
+  bool serverResult = true;
 
   Future<bool> fetchResultFromServer(String smiles) async {
     try {
@@ -45,7 +45,7 @@ class _mutagenicityState extends State<mutagenicity> {
         Map<String, dynamic> data = jsonDecode(response.body);
         bool result = data['prediction'] == 1;
         setState(() {
-          Resultrox = result;
+          serverResult = result;
         });
         return result;
       } else {
@@ -57,89 +57,7 @@ class _mutagenicityState extends State<mutagenicity> {
     }
   }
 
-////////////
-  PlatformFile? selectedFile;
-  bool resultsdf = true;
-  void openfiles() async {
-    FilePickerResult? resultfile = await FilePicker.platform.pickFiles();
-    if (resultfile != null) {
-      PlatformFile file = resultfile.files.first;
-      print(file.name);
-
-      if (kIsWeb) {
-        // For web, use the bytes property instead of path
-        Uint8List? bytes = file.bytes;
-        if (bytes != null) {
-          // Call uploadFile function with the selected file
-          await uploadFile(file, bytes);
-        } else {
-          print('Failed to read file bytes');
-        }
-      } else {
-        // For non-web platforms, use the path property
-        String path = file.path!;
-        print(path);
-
-        // Call uploadFile function with the selected file
-        await uploadFile(file, path);
-      }
-    } else {
-      // Handle case when no file is selected
-      print('No file selected');
-    }
-  }
-
-  Future<void> uploadFile(PlatformFile file, dynamic fileContent) async {
-    try {
-      var url = Uri.parse(
-          'http://localhost:5000//predictsdf'); // Replace with your server URL
-      var request = http.MultipartRequest('POST', url);
-
-      if (kIsWeb) {
-        // For web, use the bytes property
-        request.files.add(http.MultipartFile.fromBytes(
-          'file',
-          fileContent as List<int>,
-          filename: file.name,
-        ));
-      } else {
-        // For non-web, use the path
-        String path = fileContent as String;
-        List<int> bytes = File(path).readAsBytesSync();
-        request.files.add(http.MultipartFile(
-          'file',
-          // Convert the bytes to a stream
-          Stream.fromIterable(bytes.map((e) => [e])),
-          bytes.length,
-          filename: file.name,
-        ));
-      }
-
-      var response = await request.send();
-      if (response.statusCode == 200) {
-        var responseData = await response.stream.bytesToString();
-        var results = json.decode(responseData)['results'];
-
-        // Convert the result to a boolean (true if result is 1, false if result is 0)
-        bool resultBool = results == 1;
-
-        // Save the result in the resultsdf variable
-        setState(() {
-          resultsdf = resultBool;
-        });
-
-        print('Results from server: $results');
-        // Handle the results as needed
-      } else {
-        print('Failed to upload file: ${response.statusCode}');
-      }
-    } catch (e) {
-      print('Exception while uploading file: $e');
-    }
-  }
-
-//////////
-/////////atom and bond
+//////////////////////atom and bond////////////////////////
   String resultsmile = '';
   String atoms = '';
 
@@ -166,7 +84,7 @@ class _mutagenicityState extends State<mutagenicity> {
     }
   }
 
-  ///image
+//////////////////////image////////////////////////////////
   String resultimg = '';
 
   Future<void> fetch3DStructure(String smiles) async {
@@ -189,6 +107,126 @@ class _mutagenicityState extends State<mutagenicity> {
     }
   }
 
+////////////predictsdfmutagenicity/////////////////////////
+  Future<void> uploadFile(List<int> fileBytes) async {
+    try {
+      var url = Uri.parse('http://localhost:5000/predictsdf');
+      var request = http.MultipartRequest('POST', url);
+
+      if (kIsWeb) {
+        request.files.add(http.MultipartFile.fromBytes(
+          'file',
+          fileBytes as List<int>,
+          filename: fileName,
+        ));
+      } else {
+        String path = fileBytes as String;
+        List<int> bytes = File(path).readAsBytesSync();
+        request.files.add(http.MultipartFile(
+          'file',
+          Stream.fromIterable(bytes.map((e) => [e])),
+          bytes.length,
+          filename: fileName,
+        ));
+      }
+
+      var response = await request.send();
+      if (response.statusCode == 200) {
+        var responseData = await response.stream.bytesToString();
+        var results = json.decode(responseData)['results'];
+        // Assuming results are integers (0 or 1), convert to bool
+        serverResult = (results as List)
+            .map((e) => e == 1)
+            .toList()
+            .first; // Convert 1 to true, 0 to false
+        setState(() {
+          // Set state or handle the result as needed
+        });
+        print('Results from server: $serverResult');
+      } else {
+        print('Failed to upload file: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Exception while uploading file: $e');
+    }
+  }
+
+////////////////////////////////////////////////////////convert sdf
+
+  String resultSmi = "";
+  Future<void> convertSdfToSmiles(List<int> file) async {
+    try {
+      var url =
+          'http://localhost:5000/converttosmile2'; // Update with your server URL
+      var request = http.MultipartRequest('POST', Uri.parse(url));
+
+      if (file is Uint8List) {
+        request.files.add(
+            http.MultipartFile.fromBytes('file', file, filename: 'temp.sdf'));
+      } else if (file is String) {
+        request.files
+            .add(await http.MultipartFile.fromPath('file', file as String));
+      }
+
+      var response = await request.send();
+
+      if (response.statusCode == 200) {
+        String smile = await response.stream.bytesToString();
+        print('Converted SMILES: $smile');
+        setState(() {
+          resultSmi = smile; // Assuming resultSmiles is a state variable
+        });
+      } else {
+        print('Failed to convert SDF to SMILES: ${response.reasonPhrase}');
+      }
+    } catch (e) {
+      print('Error converting SDF to SMILES: $e');
+    }
+  }
+
+//////////////////////pick file //////////////////////
+  Future<void> handleFileUpload() async {
+    try {
+      FilePickerResult? result = await FilePicker.platform.pickFiles(
+        type: FileType.custom,
+        allowedExtensions: ['sdf'],
+      );
+      if (result != null) {
+        List<int> fileBytes = result.files.single.bytes!;
+        await uploadFile(fileBytes);
+        await convertSdfToSmiles(fileBytes);
+
+        print('Mutagenicity Prediction: $serverResult');
+        print('SMILES Conversion: $resultSmi');
+      }
+    } catch (e) {
+      print('Error picking file: $e');
+    }
+  }
+
+///////////////////
+  String gester = ''; // Variable to store the result
+
+  Future<void> computeGasteigerCharges(String smiles) async {
+    var url = Uri.parse('http://localhost:5000/compute_gasteiger_charges');
+    var response = await http.post(
+      url,
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({'smiles': smiles}),
+    );
+
+    if (response.statusCode == 200) {
+      var jsonResponse = jsonDecode(response.body);
+      var result = jsonResponse['result'];
+      setState(() {
+        gester = result;
+      });
+    } else {
+      print('Request failed with status: ${response.statusCode}.');
+    }
+  }
+
+//////////////////
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
@@ -363,21 +401,28 @@ class _mutagenicityState extends State<mutagenicity> {
                               borderRadius: BorderRadius.circular(15),
                             ),
                             onPressed: () async {
-                              String smiles = _smilesController.text;
-                              bool result = await fetchResultFromServer(smiles);
-
-                              await processSmiles(smiles);
-
-                              await fetch3DStructure(smiles);
+                              if (_smilesController.text.isNotEmpty) {
+                                String smiles = _smilesController.text;
+                                bool result =
+                                    await fetchResultFromServer(smiles);
+                                await processSmiles(smiles);
+                                await fetch3DStructure(smiles);
+                                await computeGasteigerCharges(smiles);
+                              } else {
+                                await processSmiles(resultSmi);
+                                await fetch3DStructure(resultSmi);
+                                await computeGasteigerCharges(resultSmi);
+                              }
 
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => mutresult(
-                                    result: Resultrox,
+                                  builder: (context) => MutResult(
+                                    result: serverResult,
                                     resultAtom: atoms,
                                     resulBond: resultsmile,
                                     resulImg: resultimg,
+                                    resulgester: gester,
                                   ),
                                 ),
                               );
@@ -394,14 +439,7 @@ class _mutagenicityState extends State<mutagenicity> {
     return Center(
         child: GestureDetector(
             onTap: () async {
-              FilePickerResult? result = await FilePicker.platform.pickFiles();
-
-              if (result != null) {
-                setState(() {
-                  fileName = result.files.single.name;
-                  selectedFile = result.files.single;
-                });
-              }
+              handleFileUpload();
             },
             child: Padding(
               padding: const EdgeInsets.only(top: 30, left: 10, right: 10),
