@@ -1,4 +1,5 @@
 import 'dart:html';
+import 'dart:io';
 
 import 'package:dotted_border/dotted_border.dart';
 import 'package:file_picker/file_picker.dart';
@@ -364,38 +365,138 @@ class _convertScreenState extends State<convertScreen> {
       var response = await request.send();
 
       if (response.statusCode == 200) {
-        // Handle successful conversion
-        if (kIsWeb) {
-          // For web, create a Blob URL and initiate download
-          Uint8List content = await response.stream.toBytes();
-          final blob = Blob([content]);
-          final url = Url.createObjectUrlFromBlob(blob);
-          AnchorElement(href: url)
-            ..setAttribute("download", "smiles.smi")
-            ..click();
-          Url.revokeObjectUrl(url);
-        } else {
-          // For other platforms, show a SnackBar with download message
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('File downloaded successfully'),
-            ),
-          );
-        }
+        // For web, create a Blob URL and initiate download
+        Uint8List content = await response.stream.toBytes();
+        final blob = Blob([content]);
+        final url = Url.createObjectUrlFromBlob(blob);
+        AnchorElement(href: url)
+          ..setAttribute("download", "smiles.smi")
+          ..click();
+        Url.revokeObjectUrl(url);
+        //Showdialog
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Image.asset(
+                'assets/success.png',
+                height: 70,
+              ),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Successfully Convert!",
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'MulishRomanBold'),
+                  ),
+                  SizedBox(height: 15),
+                  Text(
+                    "Please check your downloads.",
+                    style: TextStyle(fontSize: 17),
+                  )
+                ],
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(
+                    "OK",
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            );
+          },
+        );
       } else {
-        // Handle other status codes
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Error: ${response.statusCode}'),
-          ),
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Image.asset(
+                'assets/close.png',
+                height: 70,
+              ),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    " ${response.statusCode}",
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'MulishRomanBold'),
+                  ),
+                  SizedBox(height: 15),
+                ],
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(
+                    "OK",
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            );
+          },
         );
       }
     } catch (e) {
-      // Handle errors
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Error: $e'),
-        ),
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Image.asset(
+              'assets/close.png',
+              height: 70,
+            ),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "$e",
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'MulishRomanBold'),
+                ),
+                SizedBox(height: 15),
+              ],
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text(
+                  "OK",
+                  style: TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
+          );
+        },
       );
     }
   }
