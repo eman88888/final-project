@@ -35,7 +35,7 @@ class _appState extends State<Tox_app> {
     return GetMaterialApp(
       theme: ThemeData(fontFamily: 'Poppins'),
       debugShowCheckedModeBanner: false,
-      home: convertScreen(),
+      home: BottomNavBar(),
     );
   }
 }
