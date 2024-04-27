@@ -2,8 +2,10 @@ import 'dart:convert';
 
 import 'package:finalproject/models/liver_toxicity.dart';
 import 'package:finalproject/pages/convert.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import '../pages/robot.dart';
 import '../screens/bottomnavbar.dart';
@@ -279,7 +281,11 @@ class _livresultState extends State<livresult> {
                                                 ),
                                                 Expanded(
                                                   child: Text(
+<<<<<<< HEAD
                                                     "Gasteiger Charge : ${widget.resulgester} ",
+=======
+                                                    "Number of Atoms :   ",
+>>>>>>> 39c5ac151fecbadb25172ed20317b6abdd05366f
                                                     style: const TextStyle(
                                                       color: Color(0xff1D5D9B),
                                                       fontWeight:

@@ -4,7 +4,9 @@ import 'package:finalproject/pages/convert.dart';
 import 'package:finalproject/pages/robot.dart';
 import 'package:finalproject/screens/bottomnavbar.dart';
 import 'package:finalproject/widget/result_contanier.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../models/ToxicityofMolecules.dart';
@@ -241,115 +243,134 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
                                       backgroundColor: Color(0xffFFFFFF),
                                       content: Container(
                                         alignment: Alignment.topLeft,
-                                        width: screenSize.width,
                                         height: 432,
-                                        child: Column(children: [
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 300),
-                                            child: MaterialButton(
-                                              height: 24,
-                                              minWidth: 24,
-                                              onPressed: () {
-                                                Navigator.pop(context);
-                                              },
-                                              child: Container(
-                                                color: Colors.red,
+                                        child: SingleChildScrollView(
+                                          child: Column(children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 300),
+                                              child: MaterialButton(
                                                 height: 24,
-                                                width: 24,
-                                                child: Icon(
-                                                  Icons.clear_sharp,
-                                                  color: Colors.white,
+                                                minWidth: 24,
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Container(
+                                                  color: Colors.red,
+                                                  height: 24,
+                                                  width: 24,
+                                                  child: Icon(
+                                                    Icons.clear_sharp,
+                                                    color: Colors.white,
+                                                  ),
                                                 ),
                                               ),
                                             ),
-                                          ),
-                                          Divider(),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 10, left: 30),
-                                            child: Container(
-                                              height: 61,
-                                              width: 61,
-                                              child: Image.asset(
-                                                "assets/image12.png",
+                                            Divider(),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  top: 10, left: 30),
+                                              child: Container(
                                                 height: 61,
                                                 width: 61,
+                                                child: Image.asset(
+                                                  "assets/image12.png",
+                                                  height: 61,
+                                                  width: 61,
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                          const SizedBox(
-                                            height: 20,
-                                          ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Container(
-                                                height: 24,
-                                                width: 27,
-                                                child: Image.asset(
-                                                  "assets/image11.png",
+                                            const SizedBox(
+                                              height: 20,
+                                            ),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Container(
                                                   height: 24,
                                                   width: 27,
+                                                  child: Image.asset(
+                                                    "assets/image11.png",
+                                                    height: 24,
+                                                    width: 27,
+                                                  ),
                                                 ),
-                                              ),
-                                              Text(
-                                                "Atomic Number: ${widget.resultAtom}",
-                                                style: TextStyle(
-                                                  color: Color(0xff1D5D9B),
-                                                  fontWeight: FontWeight.bold,
+                                                Expanded(
+                                                  child: Text(
+                                                    "Atomic Number :  ${widget.resultAtom}",
+                                                    style: const TextStyle(
+                                                      color: Color(0xff1D5D9B),
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
                                                 ),
-                                              ),
-                                            ],
-                                          ),
-                                          SizedBox(height: 50),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Container(
-                                                height: 24,
-                                                width: 27,
-                                                child: Image.asset(
-                                                  "assets/image11.png",
+                                              ],
+                                            ),
+                                            SizedBox(height: 50),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Container(
                                                   height: 24,
                                                   width: 27,
+                                                  child: Image.asset(
+                                                    "assets/image11.png",
+                                                    height: 24,
+                                                    width: 27,
+                                                  ),
                                                 ),
+<<<<<<< HEAD
                                               ),
                                               Text(
                                                 "Gasteiger Charge : ${widget.resulgester} ",
                                                 style: TextStyle(
                                                   color: Color(0xff1D5D9B),
                                                   fontWeight: FontWeight.bold,
+=======
+                                                Expanded(
+                                                  child: Text(
+                                                    "Number of Atoms :  ",
+                                                    style: const TextStyle(
+                                                      color: Color(0xff1D5D9B),
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+>>>>>>> 39c5ac151fecbadb25172ed20317b6abdd05366f
                                                 ),
-                                              ),
-                                            ],
-                                          ),
-                                          SizedBox(height: 50),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Container(
-                                                height: 24,
-                                                width: 27,
-                                                child: Image.asset(
-                                                  "assets/image11.png",
+                                              ],
+                                            ),
+                                            SizedBox(height: 50),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Container(
                                                   height: 24,
                                                   width: 27,
+                                                  child: Image.asset(
+                                                    "assets/image11.png",
+                                                    height: 24,
+                                                    width: 27,
+                                                  ),
                                                 ),
-                                              ),
-                                              Text(
-                                                "Bonds Types : ${widget.resulBond}  ",
-                                                style: TextStyle(
-                                                  color: Color(0xff1D5D9B),
-                                                  fontWeight: FontWeight.bold,
+                                                Expanded(
+                                                  child: Text(
+                                                    "Bonds Types :  ${widget.resulBond}  ",
+                                                    style: const TextStyle(
+                                                      color: Color(0xff1D5D9B),
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
                                                 ),
-                                              ),
-                                            ],
-                                          )
-                                        ]),
+                                              ],
+                                            )
+                                          ]),
+                                        ),
                                       ),
                                       insetPadding: const EdgeInsets.all(10),
                                     );
