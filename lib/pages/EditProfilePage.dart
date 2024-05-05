@@ -27,6 +27,38 @@ class EditProfile_Page extends StatefulWidget {
 class _PickImageState extends State<EditProfile_Page> {
   /////////////UserName
   String _userName = '';
+/////////////////
+  @override
+  void initState() {
+    super.initState();
+    // Call a function to fetch user data
+    fetchUserData();
+  }
+
+  Future<void> fetchUserData() async {
+    // Get the currently authenticated user
+    User? user = FirebaseAuth.instance.currentUser;
+
+    if (user != null) {
+      // Retrieve the document with the user's ID
+      DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .get();
+
+      // Check if the document exists
+      if (documentSnapshot.exists) {
+        // Get user data from the document
+        Map<String, dynamic> userData =
+            documentSnapshot.data() as Map<String, dynamic>;
+
+        setState(() {
+          _userName = userData['name'] ?? '';
+        });
+      }
+    }
+  }
+  
   TextEditingController _userNameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
   TextEditingController _JobController = TextEditingController();
@@ -187,7 +219,7 @@ class _PickImageState extends State<EditProfile_Page> {
                   Padding(
                     padding: const EdgeInsets.only(top: 10, bottom: 7),
                     child: Text(
-                      _userNameController.text,
+                      _userName,
                       style: TextStyle(
                         fontSize: 30,
                         fontFamily: 'Pacifico',

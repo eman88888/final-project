@@ -15,7 +15,6 @@ class Setting_Page extends StatefulWidget {
 class _SettingPageState extends State<Setting_Page> {
   /////////UserName
   String _userName = '';
-  final FirebaseAuth _auth = FirebaseAuth.instance;
 /////////////////
   @override
   void initState() {
