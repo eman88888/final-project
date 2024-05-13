@@ -15,7 +15,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   String _email = '';
   String _job = '';
   String _country = '';
-  String _mobile = '';
+  String _phone = '';
   /////////
   final FirebaseAuth _auth = FirebaseAuth.instance;
   bool isLoading = false;
@@ -50,7 +50,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           _email = userData['email'] ?? '';
           _job = userData['job'] ?? '';
           _country = userData['country'] ?? '';
-          _mobile = userData['mobile'] ?? '';
+          _phone = userData['phone'] ?? '';
           isLoading = false;
         });
       }
@@ -226,7 +226,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     leading: Icon(Icons.phone_enabled_outlined,
                         color: Color(0xFF1D5D9B), size: 30),
                     title: Text(
-                      _mobile,
+                      _phone,
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.black,

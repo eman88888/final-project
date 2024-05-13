@@ -203,81 +203,100 @@ class _MutResultState extends State<MutResult> {
                                         alignment: Alignment.topLeft,
                                         height: 432,
                                         child: SingleChildScrollView(
-                                          child: Column(children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 300),
-                                              child: MaterialButton(
-                                                height: 24,
-                                                minWidth: 24,
-                                                onPressed: () {
-                                                  Navigator.pop(context);
-                                                },
-                                                child: Container(
-                                                  color: Colors.red,
+                                          child: Column(
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 300),
+                                                child: MaterialButton(
                                                   height: 24,
-                                                  width: 24,
-                                                  child: Icon(
-                                                    Icons.clear_sharp,
-                                                    color: Colors.white,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            Divider(),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  top: 10, left: 30),
-                                              child: Container(
-                                                height: 61,
-                                                width: 61,
-                                                child: Image.asset(
-                                                  "assets/image12.png",
-                                                  height: 61,
-                                                  width: 61,
-                                                ),
-                                              ),
-                                            ),
-                                            const SizedBox(
-                                              height: 20,
-                                            ),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: [
-                                                Container(
-                                                  height: 24,
-                                                  width: 27,
-                                                  child: Image.asset(
-                                                    "assets/image11.png",
+                                                  minWidth: 24,
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                  child: Container(
+                                                    color: Colors.red,
                                                     height: 24,
-                                                    width: 27,
-                                                  ),
-                                                ),
-                                                Expanded(
-                                                  child: Text(
-                                                    "Atomic Number :  ${widget.resultAtom}",
-                                                    style: TextStyle(
-                                                      color: Color(0xff1D5D9B),
-                                                      fontWeight:
-                                                          FontWeight.bold,
+                                                    width: 24,
+                                                    child: Icon(
+                                                      Icons.clear_sharp,
+                                                      color: Colors.white,
                                                     ),
                                                   ),
                                                 ),
-                                              ],
-                                            ),
-                                            SizedBox(height: 50),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: [
-                                                Container(
-                                                  height: 24,
-                                                  width: 27,
+                                              ),
+                                              Divider(),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 10, left: 30),
+                                                child: Container(
+                                                  height: 61,
+                                                  width: 61,
                                                   child: Image.asset(
-                                                    "assets/image11.png",
+                                                    "assets/image12.png",
+                                                    height: 61,
+                                                    width: 61,
+                                                  ),
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                height: 20,
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  Container(
                                                     height: 24,
                                                     width: 27,
+                                                    child: Image.asset(
+                                                      "assets/image11.png",
+                                                      height: 24,
+                                                      width: 27,
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    child:
+                                                        SingleChildScrollView(
+                                                      scrollDirection:
+                                                          Axis.horizontal,
+                                                      child: Row(
+                                                        children: [
+                                                          Text(
+                                                            "Atomic Number:   ",
+                                                            style: TextStyle(
+                                                              color: Colors.red,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              fontSize: 20,
+                                                            ),
+                                                          ),
+                                                          Text(
+                                                            '${widget.resultAtom}',
+                                                            style: TextStyle(
+                                                              color: Color(
+                                                                  0xff1D5D9B),
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                            ),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              SizedBox(height: 50),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  Container(
+                                                    height: 24,
+                                                    width: 27,
+<<<<<<< HEAD
                                                   ),
                                                 ),
                                                 Expanded(
@@ -287,38 +306,96 @@ class _MutResultState extends State<MutResult> {
                                                       color: Color(0xff1D5D9B),
                                                       fontWeight:
                                                           FontWeight.bold,
+=======
+                                                    child: Image.asset(
+                                                      "assets/image11.png",
+                                                      height: 24,
+                                                      width: 27,
+>>>>>>> 5146563c529289dfea86d2fdd37aa9069a9ae74a
                                                     ),
                                                   ),
-                                                ),
-                                              ],
-                                            ),
-                                            SizedBox(height: 50),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: [
-                                                Container(
-                                                  height: 24,
-                                                  width: 27,
-                                                  child: Image.asset(
-                                                    "assets/image11.png",
+                                                  Expanded(
+                                                    child:
+                                                        SingleChildScrollView(
+                                                      scrollDirection:
+                                                          Axis.horizontal,
+                                                      child: Row(
+                                                        children: [
+                                                          Text(
+                                                            "Gasteiger Charge:   ",
+                                                            style: TextStyle(
+                                                              color: Colors.red,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              fontSize: 20,
+                                                            ),
+                                                          ),
+                                                          Text(
+                                                            '${widget.resulgester}',
+                                                            style: TextStyle(
+                                                              color: Color(
+                                                                  0xff1D5D9B),
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                            ),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              SizedBox(height: 50),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  Container(
                                                     height: 24,
                                                     width: 27,
-                                                  ),
-                                                ),
-                                                Expanded(
-                                                  child: Text(
-                                                    "Bonds Types :  ${widget.resulBond}  ",
-                                                    style: const TextStyle(
-                                                      color: Color(0xff1D5D9B),
-                                                      fontWeight:
-                                                          FontWeight.bold,
+                                                    child: Image.asset(
+                                                      "assets/image11.png",
+                                                      height: 24,
+                                                      width: 27,
                                                     ),
                                                   ),
-                                                ),
-                                              ],
-                                            )
-                                          ]),
+                                                  Expanded(
+                                                    child:
+                                                        SingleChildScrollView(
+                                                      scrollDirection:
+                                                          Axis.horizontal,
+                                                      child: Row(
+                                                        children: [
+                                                          Text(
+                                                            "Bonds Types:   ",
+                                                            style: TextStyle(
+                                                              color: Colors.red,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              fontSize: 20,
+                                                            ),
+                                                          ),
+                                                          Text(
+                                                            '${widget.resulBond}',
+                                                            style: TextStyle(
+                                                              color: Color(
+                                                                  0xff1D5D9B),
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                            ),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              )
+                                            ],
+                                          ),
                                         ),
                                       ),
                                       insetPadding: const EdgeInsets.all(10),
