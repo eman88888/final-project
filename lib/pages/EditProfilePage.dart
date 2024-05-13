@@ -112,7 +112,7 @@ class _PickImageState extends State<EditProfile_Page> {
                         : _emailController.text,
                     'job': _JobController.text == ''
                         ? snapshot.data!.docs.isNotEmpty
-                            ? snapshot.data!.docs.last['company']
+                            ? snapshot.data!.docs.last['job']
                             : _JobController.text
                         : _JobController.text, // Stokes and Sons
                     'country': _countryController.text == ''
@@ -219,7 +219,10 @@ class _PickImageState extends State<EditProfile_Page> {
                   Padding(
                     padding: const EdgeInsets.only(top: 10, bottom: 7),
                     child: Text(
-                      _userName,
+                     snapshot.data!.docs.isNotEmpty
+                                        ? snapshot.data!.docs.last['full_name']
+                                        : FirebaseAuth
+                                            .instance.currentUser!.displayName, 
                       style: TextStyle(
                         fontSize: 30,
                         fontFamily: 'Pacifico',
@@ -451,6 +454,7 @@ class _PickImageState extends State<EditProfile_Page> {
                           setState(() {
                             url = imageUrl;
                           });
+                           
                         }
                       } catch (e) {
                         print(e);
