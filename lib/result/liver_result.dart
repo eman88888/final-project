@@ -281,11 +281,7 @@ class _livresultState extends State<livresult> {
                                                 ),
                                                 Expanded(
                                                   child: Text(
-<<<<<<< HEAD
                                                     "Gasteiger Charge : ${widget.resulgester} ",
-=======
-                                                    "Number of Atoms :   ",
->>>>>>> 39c5ac151fecbadb25172ed20317b6abdd05366f
                                                     style: const TextStyle(
                                                       color: Color(0xff1D5D9B),
                                                       fontWeight:
