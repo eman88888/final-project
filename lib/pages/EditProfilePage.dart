@@ -425,74 +425,49 @@ class _PickImageState extends State<EditProfile_Page> {
             child: SizedBox(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height / 4.5,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: InkWell(
-                      onTap: () async {
-                        final pickedFiles = await FilePicker.platform.pickFiles(
-                          type: FileType.image,
-                          allowMultiple: false,
-                        );
-
-                        if (pickedFiles != null &&
-                            pickedFiles.files.isNotEmpty) {
-                          final imageBytes = pickedFiles.files.single.bytes;
-                          if (imageBytes != null && imageBytes.isNotEmpty) {
-                            var storageRef =
-                                FirebaseStorage.instance.ref().child(
-                                      'images/${DateTime.now().toIso8601String()}.jpg',
-                                    );
-                            try {
-                              var uploadTask = storageRef.putData(imageBytes);
-                              var snapshot = await uploadTask;
-                              var imageUrl =
-                                  await snapshot.ref.getDownloadURL();
-                              if (imageUrl != null) {
-                                print(
-                                    'Image uploaded successfully. URL: $imageUrl');
-                                setState(() {
-                                  url = imageUrl;
-                                });
-                              }
-                            } catch (e) {
-                              print(e);
-                            }
-                          }
+              child: InkWell(
+                onTap: () async {
+                  final pickedFiles = await FilePicker.platform.pickFiles(
+                    type: FileType.image,
+                    allowMultiple: false,
+                  );
+                            
+                  if (pickedFiles != null &&
+                      pickedFiles.files.isNotEmpty) {
+                    final imageBytes = pickedFiles.files.single.bytes;
+                    if (imageBytes != null && imageBytes.isNotEmpty) {
+                      var storageRef =
+                          FirebaseStorage.instance.ref().child(
+                                'images/${DateTime.now().toIso8601String()}.jpg',
+                              );
+                      try {
+                        var uploadTask = storageRef.putData(imageBytes);
+                        var snapshot = await uploadTask;
+                        var imageUrl =
+                            await snapshot.ref.getDownloadURL();
+                        if (imageUrl != null) {
+                          print(
+                              'Image uploaded successfully. URL: $imageUrl');
+                          setState(() {
+                            url = imageUrl;
+                          });
                         }
-                      },
-                      child: const SizedBox(
-                        child: Column(
-                          children: [
-                            Icon(
-                              Icons.image,
-                              size: 70,
-                            ),
-                            Text("Gallery")
-                          ],
-                        ),
-                      ),
+                      } catch (e) {
+                        print(e);
+                      }
+                    }
+                  }
+                },
+                child: const Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.image,
+                      size: 70,
                     ),
-                  ),
-                  Expanded(
-                    child: InkWell(
-                      onTap: () {
-                        _pickImageFromCamera();
-                      },
-                      child: const SizedBox(
-                        child: Column(
-                          children: [
-                            Icon(
-                              Icons.camera_alt,
-                              size: 70,
-                            ),
-                            Text("Camera")
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+                    Text("Gallery")
+                  ],
+                ),
               ),
             ),
           );
@@ -540,17 +515,6 @@ class _PickImageState extends State<EditProfile_Page> {
   //     return null;
   //   }
   // }
-
-//Camera
-  Future _pickImageFromCamera() async {
-    final returnImage =
-        await ImagePicker().pickImage(source: ImageSource.camera);
-    if (returnImage == null) return;
-    setState(() {
-      selectedIMage = File(returnImage.path);
-    });
-    Navigator.of(context).pop();
-  }
 
 
 }
