@@ -11,7 +11,7 @@ class history extends StatefulWidget {
 }
 
 class _historyState extends State<history> {
-////
+  //////////
   Future<List<Map<String, dynamic>>> fetchUserHistory() async {
     try {
       String currentUserID = FirebaseAuth.instance.currentUser!.uid;
@@ -37,7 +37,7 @@ class _historyState extends State<history> {
     }
   }
 
-  ///
+  /////////
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -186,6 +186,9 @@ class _historyState extends State<history> {
                             blurRadius: 4,
                             spreadRadius: 0)
                       ]),
+                  child: Column(
+                    children: [],
+                  ),
                 )
               ],
             ),
