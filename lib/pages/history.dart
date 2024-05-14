@@ -109,11 +109,7 @@ class _historyState extends State<history> {
                             ),
                             child: Column(
                               children: [
-<<<<<<< HEAD
                                 Padding(padding: EdgeInsets.only(top: 10)),
-=======
-                                   Padding(padding: EdgeInsets.only(top: 10)),
->>>>>>> c391e1008d330c6613718b473d71babcc59f68b4
                                 Text(
                                   "input :",
                                   style: TextStyle(
@@ -161,7 +157,6 @@ class _historyState extends State<history> {
                               children: [
                                 //scroll only for input
                                 Padding(padding: EdgeInsets.only(top: 10)),
-<<<<<<< HEAD
                                 SingleChildScrollView(
                                   scrollDirection: Axis.horizontal,
                                   child: Row(
@@ -176,22 +171,6 @@ class _historyState extends State<history> {
                                     ],
                                   ),
                                 ),
-=======
-                                 SingleChildScrollView(
-                                    scrollDirection: Axis.horizontal,
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          "${data['input']}",
-                                          style: TextStyle(
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w700,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
->>>>>>> c391e1008d330c6613718b473d71babcc59f68b4
                                 Spacer(),
                                 Text(
                                   "${data['category']}",

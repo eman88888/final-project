@@ -7,10 +7,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 
-<<<<<<< HEAD
-=======
-
->>>>>>> c391e1008d330c6613718b473d71babcc59f68b4
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -220,11 +216,7 @@ class _PickImageState extends State<EditProfile_Page> {
                     padding: const EdgeInsets.only(top: 10, bottom: 7),
                     child: Text(
                       //name from signup
-<<<<<<< HEAD
                       _userName,
-=======
-                    _userName, 
->>>>>>> c391e1008d330c6613718b473d71babcc59f68b4
                       style: TextStyle(
                         fontSize: 30,
                         fontFamily: 'Pacifico',

@@ -300,6 +300,7 @@ class _simresultState extends State<simresult>
                                           ),
                                         ),
                                         Divider(),
+
                                         Image.memory(base64Decode(
                                             imageBytes)), // Display the image
                                       ],
