@@ -7,10 +7,10 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 
-import 'package:finalproject/screens/settings.dart';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
+
 ////////////
 import '../widget/custom_TextFormField1.dart';
 //firebase
@@ -219,10 +219,7 @@ class _PickImageState extends State<EditProfile_Page> {
                   Padding(
                     padding: const EdgeInsets.only(top: 10, bottom: 7),
                     child: Text(
-                     snapshot.data!.docs.isNotEmpty
-                                        ? snapshot.data!.docs.last['full_name']
-                                        : FirebaseAuth
-                                            .instance.currentUser!.displayName, 
+                    _userName, 
                       style: TextStyle(
                         fontSize: 30,
                         fontFamily: 'Pacifico',

@@ -370,7 +370,7 @@ class _mutagenicityState extends State<mutagenicity> {
                             left: 4, right: 4, bottom: 10),
                         child: Container(
                           width: 326,
-                          height: 50,
+                          height: 65,
                           child: TextFormField(
                             controller: _smilesController,
                             keyboardType: TextInputType.multiline,
