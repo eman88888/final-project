@@ -155,6 +155,7 @@ class _historyState extends State<history> {
                                 ]),
                             child: Column(
                               children: [
+                                //scroll only for input
                                 Padding(padding: EdgeInsets.only(top: 10)),
                                  SingleChildScrollView(
                                     scrollDirection: Axis.horizontal,

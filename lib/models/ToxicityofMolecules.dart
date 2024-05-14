@@ -336,6 +336,7 @@ class _ToxicityofMolecules_ScreenState
                         padding: const EdgeInsets.only(
                             left: 4, right: 4, bottom: 10),
                         child: Container(
+                          //change
                           width: 326,
                           height: 65,
                           child: TextFormField(

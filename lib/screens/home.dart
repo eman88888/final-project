@@ -90,6 +90,7 @@ class _tocState extends State<home> {
                               ],
                             ),
                           ),
+                          //to robot
                           GestureDetector(
                             onTap: () {
                               Navigator.push(

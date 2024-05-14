@@ -219,6 +219,7 @@ class _PickImageState extends State<EditProfile_Page> {
                   Padding(
                     padding: const EdgeInsets.only(top: 10, bottom: 7),
                     child: Text(
+                      //name from signup
                     _userName, 
                       style: TextStyle(
                         fontSize: 30,
