@@ -295,22 +295,10 @@ class _livresultState extends State<livresult> {
                                                   Container(
                                                     height: 24,
                                                     width: 27,
-<<<<<<< HEAD
-                                                  ),
-                                                ),
-                                                Expanded(
-                                                  child: Text(
-                                                    "Gasteiger Charge : ${widget.resulgester} ",
-                                                    style: const TextStyle(
-                                                      color: Color(0xff1D5D9B),
-                                                      fontWeight:
-                                                          FontWeight.bold,
-=======
                                                     child: Image.asset(
                                                       "assets/image11.png",
                                                       height: 24,
                                                       width: 27,
->>>>>>> 5146563c529289dfea86d2fdd37aa9069a9ae74a
                                                     ),
                                                   ),
                                                   Expanded(

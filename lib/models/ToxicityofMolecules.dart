@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finalproject/pages/convert.dart';
 import 'package:finalproject/pages/robot.dart';
 import 'package:finalproject/screens/bottomnavbar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../result/ToxResultScreen.dart';
@@ -10,6 +12,9 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 //////////////
+DateTime dateToday = DateTime.now();
+String date = dateToday.toString().substring(0, 10);
+
 class ToxicityofMolecules_Screen extends StatefulWidget {
   const ToxicityofMolecules_Screen({super.key});
 
@@ -193,6 +198,29 @@ class _ToxicityofMolecules_ScreenState
     }
   }
 
+//////
+  CollectionReference history =
+      FirebaseFirestore.instance.collection('history');
+  Future<void> addHistory({
+    required String smiles,
+    required String resultText,
+    required String date,
+  }) async {
+    try {
+      await FirebaseFirestore.instance.collection('history').add({
+        'result': resultText,
+        'input': smiles,
+        'date': date,
+        'category': 'Toxicity of Molecules',
+        'id': FirebaseAuth.instance.currentUser!.uid,
+      });
+      print('History added successfully');
+    } catch (e) {
+      print('Failed to add history: $e');
+    }
+  }
+
+/////
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
@@ -360,6 +388,13 @@ class _ToxicityofMolecules_ScreenState
                               await processSmiles(smiles);
                               await fetch3DStructure(smiles);
                               await computeGasteigerCharges(smiles);
+                              String resultText =
+                                  result ? 'Toxic' : 'Non-Toxic';
+                              await addHistory(
+                                smiles: smiles,
+                                resultText: resultText,
+                                date: date,
+                              );
 
                               Navigator.push(
                                 context,

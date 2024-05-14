@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finalproject/screens/bottomnavbar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class history extends StatefulWidget {
@@ -9,6 +11,33 @@ class history extends StatefulWidget {
 }
 
 class _historyState extends State<history> {
+////
+  Future<List<Map<String, dynamic>>> fetchUserHistory() async {
+    try {
+      String currentUserID = FirebaseAuth.instance.currentUser!.uid;
+      QuerySnapshot historySnapshot = await FirebaseFirestore.instance
+          .collection('history')
+          .where('id', isEqualTo: currentUserID)
+          .get();
+
+      List<Map<String, dynamic>> userHistory = historySnapshot.docs.map((doc) {
+        Map<String, dynamic> data = {
+          'input': doc['input'],
+          'result': doc['result'],
+          'category': doc['category'],
+          'date': doc['date'],
+        };
+        return data;
+      }).toList();
+
+      return userHistory;
+    } catch (e) {
+      print('Failed to fetch user history: $e');
+      return []; // Return an empty list in case of failure
+    }
+  }
+
+  ///
   @override
   Widget build(BuildContext context) {
     return Scaffold(

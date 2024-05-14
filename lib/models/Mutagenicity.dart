@@ -2,19 +2,24 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:ui';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:finalproject/pages/convert.dart';
 import 'package:finalproject/pages/robot.dart';
 import 'package:finalproject/result/mutagenicity_result.dart';
 import 'package:finalproject/screens/bottomnavbar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 //////////////
 
 import 'package:http/http.dart' as http;
+
 //////////////
+DateTime dateToday = DateTime.now();
+String date = dateToday.toString().substring(0, 10);
 
 class mutagenicity extends StatefulWidget {
   const mutagenicity({super.key});
@@ -227,6 +232,28 @@ class _mutagenicityState extends State<mutagenicity> {
   }
 
 //////////////////
+  CollectionReference history =
+      FirebaseFirestore.instance.collection('history');
+  Future<void> addHistory({
+    required String smiles,
+    required String serverResult,
+    required String date,
+  }) async {
+    try {
+      await FirebaseFirestore.instance.collection('history').add({
+        'result': serverResult,
+        'input': smiles,
+        'date': date,
+        'category': 'Mutagenicity',
+        'id': FirebaseAuth.instance.currentUser!.uid,
+      });
+      print('History added successfully');
+    } catch (e) {
+      print('Failed to add history: $e');
+    }
+  }
+
+////////////////
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
@@ -408,10 +435,26 @@ class _mutagenicityState extends State<mutagenicity> {
                                 await processSmiles(smiles);
                                 await fetch3DStructure(smiles);
                                 await computeGasteigerCharges(smiles);
+                                String resultText = serverResult
+                                    ? 'mutagenic'
+                                    : 'non-mutagenic'; // Convert boolean serverResult to text
+                                await addHistory(
+                                  smiles: smiles,
+                                  serverResult: resultText,
+                                  date: date,
+                                );
                               } else {
                                 await processSmiles(resultSmi);
                                 await fetch3DStructure(resultSmi);
                                 await computeGasteigerCharges(resultSmi);
+                                String resultText = serverResult
+                                    ? 'mutagenic'
+                                    : 'non-mutagenic'; // Convert boolean serverResult to text
+                                await addHistory(
+                                  smiles: resultSmi,
+                                  serverResult: resultText,
+                                  date: date,
+                                );
                               }
 
                               Navigator.push(

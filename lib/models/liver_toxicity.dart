@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finalproject/pages/convert.dart';
 import 'package:finalproject/pages/robot.dart';
 import 'package:finalproject/result/liver_result.dart';
 import 'package:finalproject/screens/bottomnavbar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 ///////////
@@ -9,6 +11,10 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 ///////////
+
+DateTime dateToday = DateTime.now();
+String date = dateToday.toString().substring(0, 10);
+
 class liver extends StatefulWidget {
   //const liver({Key? key}) : super(key: key);
   const liver({super.key});
@@ -58,7 +64,6 @@ class _liverState extends State<liver> {
 /////////////predict liver
   ///image
   String resultimg = '';
-
   Future<void> fetch3DStructure(String smiles) async {
     var url = Uri.parse('http://localhost:5000/generate_3d_structure');
     var response = await http.post(
@@ -108,7 +113,6 @@ class _liverState extends State<liver> {
   }
 
 /////////////////////
-
   String gester = ''; // Variable to store the result
 
   Future<void> computeGasteigerCharges(String smiles) async {
@@ -130,6 +134,29 @@ class _liverState extends State<liver> {
     }
   }
 
+/////
+  CollectionReference history =
+      FirebaseFirestore.instance.collection('history');
+  Future<void> addHistory({
+    required String smiles,
+    required String resultText,
+    required String date,
+  }) async {
+    try {
+      await FirebaseFirestore.instance.collection('history').add({
+        'result': resultText,
+        'input': smiles,
+        'date': date,
+        'category': 'Liver Toxicity',
+        'id': FirebaseAuth.instance.currentUser!.uid,
+      });
+      print('History added successfully');
+    } catch (e) {
+      print('Failed to add history: $e');
+    }
+  }
+
+////
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
@@ -296,6 +323,16 @@ class _liverState extends State<liver> {
                           await processSmiles(smiles);
                           await fetch3DStructure(smiles);
                           await computeGasteigerCharges(smiles);
+                          String resultText = result
+                              ? 'positive'
+                              : 'negative'; // Convert boolean result to text
+
+                          await addHistory(
+                            smiles: smiles,
+                            resultText: resultText,
+                            date: date,
+                          );
+
                           Navigator.push(
                             context,
                             MaterialPageRoute(
