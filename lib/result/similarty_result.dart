@@ -175,8 +175,9 @@ class _simresultState extends State<simresult>
                         padding: const EdgeInsets.only(
                             left: 4, right: 4, bottom: 10),
                         child: Container(
+                          //change
                           width: 326,
-                          height: 50,
+                          height: 55,
                           child: TextFormField(
                             controller: _smiles1Controller,
                             keyboardType: TextInputType.multiline,
@@ -213,7 +214,7 @@ class _simresultState extends State<simresult>
                             left: 4, right: 4, bottom: 10),
                         child: Container(
                           width: 326,
-                          height: 50,
+                          height: 55,
                           child: TextFormField(
                             controller: _smiles2Controller,
                             keyboardType: TextInputType.multiline,

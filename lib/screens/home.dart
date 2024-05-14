@@ -3,8 +3,10 @@ import 'package:finalproject/models/Mutagenicity.dart';
 import 'package:finalproject/models/Similarity_map.dart';
 import 'package:finalproject/models/ToxicityofMolecules.dart';
 import 'package:finalproject/models/liver_toxicity.dart';
+import 'package:finalproject/pages/robot.dart';
 import 'package:finalproject/screens/profile.dart';
 import 'package:finalproject/screens/settings.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -88,10 +90,20 @@ class _tocState extends State<home> {
                               ],
                             ),
                           ),
-                          SizedBox(
-                            height: 120,
-                            width: 110,
-                            child: Image.asset("assets/Animation3.gif"),
+                          //to robot
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => robot()),
+                              );
+                            },
+                            child: SizedBox(
+                              height: 120,
+                              width: 110,
+                              child: Image.asset("assets/Animation3.gif"),
+                            ),
                           )
                         ],
                       ),

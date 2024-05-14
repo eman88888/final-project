@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finalproject/screens/bottomnavbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class history extends StatefulWidget {
   const history({Key? key}) : super(key: key);
@@ -107,6 +109,7 @@ class _historyState extends State<history> {
                             ),
                             child: Column(
                               children: [
+                                Padding(padding: EdgeInsets.only(top: 10)),
                                 Text(
                                   "input :",
                                   style: TextStyle(
@@ -152,11 +155,21 @@ class _historyState extends State<history> {
                                 ]),
                             child: Column(
                               children: [
-                                Text(
-                                  "${data['input']}",
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w700),
+                                //scroll only for input
+                                Padding(padding: EdgeInsets.only(top: 10)),
+                                SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        "${data['input']}",
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                                 Spacer(),
                                 Text(
@@ -181,6 +194,7 @@ class _historyState extends State<history> {
                                 ),
                               ],
                             ),
+                            // You can add more widgets here if needed
                           )
                         ],
                       ),

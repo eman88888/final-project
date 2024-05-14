@@ -7,10 +7,9 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 
-import 'package:finalproject/screens/settings.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
+
 ////////////
 import '../widget/custom_TextFormField1.dart';
 //firebase
@@ -58,7 +57,7 @@ class _PickImageState extends State<EditProfile_Page> {
       }
     }
   }
-  
+
   TextEditingController _userNameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
   TextEditingController _JobController = TextEditingController();
@@ -166,21 +165,18 @@ class _PickImageState extends State<EditProfile_Page> {
                       snapshot.data!.docs.isNotEmpty
                           ? snapshot.data!.docs.last['url'] != ''
                               ? CircleAvatar(
-                                  
                                   radius: 90,
                                   backgroundImage: NetworkImage(
                                       snapshot.data!.docs.last['url']),
                                 )
                               : CircleAvatar(
-                                  radius:90 ,
-                                 
+                                  radius: 90,
                                   backgroundImage: AssetImage(
                                     "assets/profile.png",
                                   ),
                                 )
                           : CircleAvatar(
                               radius: 90,
-                             
                               backgroundImage: AssetImage(
                                 "assets/profile.png",
                               ),
@@ -219,10 +215,8 @@ class _PickImageState extends State<EditProfile_Page> {
                   Padding(
                     padding: const EdgeInsets.only(top: 10, bottom: 7),
                     child: Text(
-                     snapshot.data!.docs.isNotEmpty
-                                        ? snapshot.data!.docs.last['full_name']
-                                        : FirebaseAuth
-                                            .instance.currentUser!.displayName, 
+                      //name from signup
+                      _userName,
                       style: TextStyle(
                         fontSize: 30,
                         fontFamily: 'Pacifico',
@@ -325,25 +319,23 @@ class _PickImageState extends State<EditProfile_Page> {
                               labelFontSize: 20,
                               labelFontWeight: FontWeight.bold,
                               hintText: snapshot.data!.docs.isNotEmpty
-                                        ? snapshot.data!.docs.last['email']
-                                        : FirebaseAuth
-                                            .instance.currentUser!.email,
+                                  ? snapshot.data!.docs.last['email']
+                                  : FirebaseAuth.instance.currentUser!.email,
                             ),
 
                             Padding(
                               padding: EdgeInsets.only(bottom: 30),
                             ), /////////////////// TextField Job
                             CustomTextFormField(
-                              controller: _JobController,
-                              iconData: Icons.edit_outlined,
-                              labelText: 'Job Description',
-                              labelColor: Color(0xFF1D5D9B),
-                              labelFontSize: 20,
-                              labelFontWeight: FontWeight.bold,
-                              hintText: snapshot.data!.docs.isNotEmpty
-                                        ? snapshot.data!.docs.last['job']
-                                        : ' '
-                            ),
+                                controller: _JobController,
+                                iconData: Icons.edit_outlined,
+                                labelText: 'Job Description',
+                                labelColor: Color(0xFF1D5D9B),
+                                labelFontSize: 20,
+                                labelFontWeight: FontWeight.bold,
+                                hintText: snapshot.data!.docs.isNotEmpty
+                                    ? snapshot.data!.docs.last['job']
+                                    : ' '),
 
                             Padding(
                               padding: EdgeInsets.only(bottom: 30),
@@ -351,16 +343,15 @@ class _PickImageState extends State<EditProfile_Page> {
 
                             /////////////////// TextField Country
                             CustomTextFormField(
-                              controller: _countryController,
-                              iconData: Icons.edit_outlined,
-                              labelText: 'Country',
-                              labelColor: Color(0xFF1D5D9B),
-                              labelFontSize: 20,
-                              labelFontWeight: FontWeight.bold,
-                              hintText: snapshot.data!.docs.isNotEmpty
-                                        ? snapshot.data!.docs.last['country']
-                                        : ' '
-                            ),
+                                controller: _countryController,
+                                iconData: Icons.edit_outlined,
+                                labelText: 'Country',
+                                labelColor: Color(0xFF1D5D9B),
+                                labelFontSize: 20,
+                                labelFontWeight: FontWeight.bold,
+                                hintText: snapshot.data!.docs.isNotEmpty
+                                    ? snapshot.data!.docs.last['country']
+                                    : ' '),
 
                             Padding(
                               padding: EdgeInsets.only(bottom: 30),
@@ -368,16 +359,15 @@ class _PickImageState extends State<EditProfile_Page> {
 
                             /////////////////// TextField Mobile
                             CustomTextFormField(
-                              controller: _mobileController,
-                              iconData: Icons.edit_outlined,
-                              labelText: 'Mobile',
-                              labelColor: Color(0xFF1D5D9B),
-                              labelFontSize: 20,
-                              labelFontWeight: FontWeight.bold,
-                              hintText: snapshot.data!.docs.isNotEmpty
-                                        ? snapshot.data!.docs.last['phone']
-                                        : ' '
-                            ),
+                                controller: _mobileController,
+                                iconData: Icons.edit_outlined,
+                                labelText: 'Mobile',
+                                labelColor: Color(0xFF1D5D9B),
+                                labelFontSize: 20,
+                                labelFontWeight: FontWeight.bold,
+                                hintText: snapshot.data!.docs.isNotEmpty
+                                    ? snapshot.data!.docs.last['phone']
+                                    : ' '),
 
                             Padding(
                               padding: EdgeInsets.only(bottom: 40),
@@ -386,7 +376,6 @@ class _PickImageState extends State<EditProfile_Page> {
                             ///////////////////Button for save changes
                             GestureDetector(
                               onTap: () async {
-
                                 addUser();
                               },
                               child: Container(
@@ -434,27 +423,22 @@ class _PickImageState extends State<EditProfile_Page> {
                     type: FileType.image,
                     allowMultiple: false,
                   );
-                            
-                  if (pickedFiles != null &&
-                      pickedFiles.files.isNotEmpty) {
+
+                  if (pickedFiles != null && pickedFiles.files.isNotEmpty) {
                     final imageBytes = pickedFiles.files.single.bytes;
                     if (imageBytes != null && imageBytes.isNotEmpty) {
-                      var storageRef =
-                          FirebaseStorage.instance.ref().child(
-                                'images/${DateTime.now().toIso8601String()}.jpg',
-                              );
+                      var storageRef = FirebaseStorage.instance.ref().child(
+                            'images/${DateTime.now().toIso8601String()}.jpg',
+                          );
                       try {
                         var uploadTask = storageRef.putData(imageBytes);
                         var snapshot = await uploadTask;
-                        var imageUrl =
-                            await snapshot.ref.getDownloadURL();
+                        var imageUrl = await snapshot.ref.getDownloadURL();
                         if (imageUrl != null) {
-                          print(
-                              'Image uploaded successfully. URL: $imageUrl');
+                          print('Image uploaded successfully. URL: $imageUrl');
                           setState(() {
                             url = imageUrl;
                           });
-                           
                         }
                       } catch (e) {
                         print(e);
@@ -519,6 +503,4 @@ class _PickImageState extends State<EditProfile_Page> {
   //     return null;
   //   }
   // }
-
-
 }
