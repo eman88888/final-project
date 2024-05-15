@@ -184,14 +184,7 @@ class _historyState extends State<history> {
                                   style: TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.w700),
-                                ),
-                                Spacer(),
-                                Text(
-                                  "${data['result']}",
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w700),
-                                ),
+                                )
                               ],
                             ),
                             // You can add more widgets here if needed
