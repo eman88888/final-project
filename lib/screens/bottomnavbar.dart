@@ -22,12 +22,15 @@ class _BottomNavBarState extends State<BottomNavBar> {
     switch (page) {
       case 0:
         return _home;
+        // ignore: dead_code
         break;
       case 1:
         return _setting;
+        // ignore: dead_code
         break;
       case 2:
         return _profile;
+        // ignore: dead_code
         break;
       default:
         return new Container(

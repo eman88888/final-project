@@ -1,11 +1,5 @@
 import 'package:finalproject/cubit/convert_cubit.dart';
-import 'package:finalproject/pages/EditProfilePage.dart';
-import 'package:finalproject/pages/convert.dart';
 import 'package:finalproject/pages/login_screen.dart';
-
-import 'package:finalproject/pages/robot.dart';
-import 'package:finalproject/screens/bottomnavbar.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';

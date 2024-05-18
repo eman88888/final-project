@@ -2,10 +2,7 @@ import 'package:finalproject/screens/bottomnavbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
 
-import '../screens/settings.dart';
 
 class change extends StatefulWidget {
   change({Key? key}) : super(key: key);
@@ -142,6 +139,7 @@ class _changeState extends State<change> {
                           if (value == null || value.isEmpty) {
                             return 'Please enter your current password';
                           }
+                          return null;
                         },
                         controller: oldpassController,
                         obscureText: passwordVisible,
@@ -200,6 +198,7 @@ class _changeState extends State<change> {
                           if (value == null || value.isEmpty) {
                             return 'Please enter your new password';
                           }
+                          return null;
                         },
                         controller: newpassController,
                         obscureText: passwordVisible1,
@@ -260,6 +259,7 @@ class _changeState extends State<change> {
                           } else if (value != newpassController.text) {
                             return 'Passwords do not match';
                           }
+                          return null;
                         },
                         obscureText: passwordVisible2,
                         decoration: InputDecoration(

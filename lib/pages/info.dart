@@ -1,8 +1,5 @@
-import 'dart:html';
-
 import 'package:finalproject/pages/robot.dart';
-import 'package:finalproject/screens/home.dart';
-import 'package:finalproject/screens/settings.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';

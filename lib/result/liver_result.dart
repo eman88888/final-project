@@ -11,6 +11,7 @@ import '../pages/robot.dart';
 import '../screens/bottomnavbar.dart';
 import '../widget/result_contanier.dart';
 
+// ignore: must_be_immutable
 class livresult extends StatefulWidget {
   livresult(
       {super.key,

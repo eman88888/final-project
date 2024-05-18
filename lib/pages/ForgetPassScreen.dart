@@ -1,6 +1,5 @@
 import 'package:finalproject/pages/changedSuccessfully.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../widget/custom_Button.dart';
@@ -97,6 +96,7 @@ class _ForgetPass_ScreenState extends State<ForgetPass_Screen> {
                     } else if (!_isValidEmail(value)) {
                       return 'Email must not contain special characters';
                     }
+                    return null;
                   },
                   controller: mailAddress,
                   decoration: InputDecoration(
@@ -150,6 +150,7 @@ class _ForgetPass_ScreenState extends State<ForgetPass_Screen> {
                       MaterialPageRoute(
                           builder: (context) => ChangedSuccessfully_Screen()),
                     );
+                        // ignore: unused_catch_clause
                         } on FirebaseAuthException catch (e) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(

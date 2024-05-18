@@ -94,6 +94,7 @@ class _Signup_ScreenState extends State<Signup_Screen> {
                     if (value == null || value.isEmpty) {
                       return 'Please enter your name';
                     }
+                    return null;
                   },
                   controller: FullNameController,
                   hintText: 'Full Name',
@@ -109,6 +110,7 @@ class _Signup_ScreenState extends State<Signup_Screen> {
                       } else if (!_isValidEmail(value)) {
                         return 'Email must not contain special characters';
                       }
+                      return null;
                     },
                     controller: userController,
                     hintText: 'Email',
@@ -125,6 +127,7 @@ class _Signup_ScreenState extends State<Signup_Screen> {
                       } else if (value.length > 8) {
                         return 'Email must not be longer than 8 characters';
                       }
+                      return null;
                     },
                     obscureText: true,
                     controller: passController,
@@ -142,6 +145,7 @@ class _Signup_ScreenState extends State<Signup_Screen> {
                       } else if (value != passController.text) {
                         return 'Passwords do not match';
                       }
+                      return null;
                     },
                     obscureText: true,
                     controller: ConfirmPassController,

@@ -5,7 +5,6 @@ import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 
 class pick_img extends StatefulWidget {
   const pick_img({super.key});
@@ -15,6 +14,7 @@ class pick_img extends StatefulWidget {
 }
 
 class _pick_imgState extends State<pick_img> {
+  // ignore: unused_field
   Uint8List? _image;
   File? selectedIMage;
   String? url;

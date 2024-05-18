@@ -1,5 +1,5 @@
 import 'dart:html';
-import 'dart:io';
+
 
 import 'package:dotted_border/dotted_border.dart';
 import 'package:file_picker/file_picker.dart';
@@ -11,6 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'dart:html' as html;
+// ignore: unused_shown_name
 import 'package:flutter/foundation.dart' show Uint8List, kIsWeb;
 
 //////////////
@@ -503,6 +504,7 @@ class _convertScreenState extends State<convertScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     String fileName = 'input.sdf';
     return BlocProvider(
         create: (context) => ConvertCubit(),

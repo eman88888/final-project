@@ -431,6 +431,7 @@ class _mutagenicityState extends State<mutagenicity> {
                             onPressed: () async {
                               if (_smilesController.text.isNotEmpty) {
                                 String smiles = _smilesController.text;
+                                // ignore: unused_local_variable
                                 bool result =
                                     await fetchResultFromServer(smiles);
                                 await processSmiles(smiles);

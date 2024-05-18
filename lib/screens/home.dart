@@ -1,11 +1,9 @@
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+
 import 'package:finalproject/models/Mutagenicity.dart';
 import 'package:finalproject/models/Similarity_map.dart';
 import 'package:finalproject/models/ToxicityofMolecules.dart';
 import 'package:finalproject/models/liver_toxicity.dart';
 import 'package:finalproject/pages/robot.dart';
-import 'package:finalproject/screens/profile.dart';
-import 'package:finalproject/screens/settings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';

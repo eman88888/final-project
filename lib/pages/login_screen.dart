@@ -87,6 +87,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your email';
                       }
+                      return null;
                     },
                     controller: userController,
                     hintText: 'Email',
@@ -101,6 +102,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your password';
                       }
+                      return null;
                     },
                     obscureText: true,
                     controller: passController,
@@ -142,6 +144,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                               true; // Update isLoading state before awaiting Firebase authentication
                         });
                         try {
+                          // ignore: unused_local_variable
                           final credential = await FirebaseAuth.instance
                               .signInWithEmailAndPassword(
                             email: userController.text,

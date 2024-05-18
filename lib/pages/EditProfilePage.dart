@@ -434,6 +434,7 @@ class _PickImageState extends State<EditProfile_Page> {
                         var uploadTask = storageRef.putData(imageBytes);
                         var snapshot = await uploadTask;
                         var imageUrl = await snapshot.ref.getDownloadURL();
+                        // ignore: unnecessary_null_comparison
                         if (imageUrl != null) {
                           print('Image uploaded successfully. URL: $imageUrl');
                           setState(() {

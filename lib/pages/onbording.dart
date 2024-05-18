@@ -1,6 +1,5 @@
 import 'dart:ui';
 import 'package:finalproject/pages/login_screen.dart';
-import 'package:finalproject/screens/profile.dart';
 import 'package:finalproject/widget/content-moadel.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
