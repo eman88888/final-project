@@ -9,13 +9,15 @@ import '../screens/bottomnavbar.dart';
 import '../widget/custom_Button.dart';
 import '../widget/custom_TextFormField2.dart';
 
+// ignore: camel_case_types
 class Login_Screen extends StatefulWidget {
-  Login_Screen({super.key});
+  const Login_Screen({super.key});
 
   @override
   State<Login_Screen> createState() => _Login_ScreenState();
 }
 
+// ignore: camel_case_types
 class _Login_ScreenState extends State<Login_Screen> {
   //text editing controllers
   final userController = TextEditingController();
@@ -43,7 +45,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                       child: Container(
                         width: 500,
                         height: 300,
-                        color: Color(0xFFF1F4FF),
+                        color: const Color(0xFFF1F4FF),
                       ),
                     ),
                     Positioned(
@@ -51,7 +53,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                       right: 120,
                       child: Transform.rotate(
                         angle: 0, // 45 degrees in radians
-                        child: Text(
+                        child: const Text(
                           'Login Here',
                           style: TextStyle(
                             fontFamily: 'MulishRomanBold',
@@ -66,7 +68,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                       right: 130,
                       child: Transform.rotate(
                         angle: 0, // 45 degrees in radians
-                        child: Text(
+                        child: const Text(
                           'Welcome Back',
                           style: TextStyle(
                             color: Colors.black,
@@ -81,7 +83,7 @@ class _Login_ScreenState extends State<Login_Screen> {
 
                 ////Textfield for Email
                 Padding(
-                  padding: EdgeInsets.symmetric(vertical: 32),
+                  padding: const EdgeInsets.symmetric(vertical: 32),
                   child: CustomTextFormField2(
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -96,7 +98,7 @@ class _Login_ScreenState extends State<Login_Screen> {
 
                 ////Textfield for Password
                 Padding(
-                  padding: EdgeInsets.only(bottom: 9),
+                  padding: const EdgeInsets.only(bottom: 9),
                   child: CustomTextFormField2(
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -116,12 +118,11 @@ class _Login_ScreenState extends State<Login_Screen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ForgetPass_Screen()),
+                          builder: (context) => const ForgetPass_Screen()),
                     );
                   },
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.only(left: 170, top: 3, bottom: 25),
+                  child: const Padding(
+                    padding: EdgeInsets.only(left: 170, top: 3, bottom: 25),
                     child: Text(
                       'forgot your password?',
                       style: TextStyle(
@@ -135,7 +136,7 @@ class _Login_ScreenState extends State<Login_Screen> {
 
                 ////Login Button
                 Padding(
-                  padding: EdgeInsets.only(bottom: 56),
+                  padding: const EdgeInsets.only(bottom: 56),
                   child: GestureDetector(
                     onTap: () async {
                       if (formKey.currentState!.validate()) {
@@ -152,23 +153,24 @@ class _Login_ScreenState extends State<Login_Screen> {
                           );
 
                           Navigator.push(
+                            // ignore: use_build_context_synchronously
                             context,
                             MaterialPageRoute(
-                                builder: (context) => BottomNavBar()),
+                                builder: (context) => const BottomNavBar()),
                           );
                         } on FirebaseAuthException catch (ex) {
                           if (ex.code == 'user-not-found') {
+                            // ignore: use_build_context_synchronously
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
-                                backgroundColor: Color(0xFF1D5D9B),
-                                duration: Duration(seconds: 2),
+                                backgroundColor: const Color(0xFF1D5D9B),
+                                duration: const Duration(seconds: 2),
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(
-                                      10), 
-                                  side:
-                                      BorderSide(color: Colors.white, width: 2),
+                                  borderRadius: BorderRadius.circular(10),
+                                  side: const BorderSide(
+                                      color: Colors.white, width: 2),
                                 ),
-                                content: Text(
+                                content: const Text(
                                   'No user found for that email.',
                                   style: TextStyle(
                                     fontSize: 18,
@@ -178,17 +180,17 @@ class _Login_ScreenState extends State<Login_Screen> {
                               ),
                             );
                           } else if (ex.code == 'wrong-password') {
+                            // ignore: use_build_context_synchronously
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
-                                backgroundColor: Color(0xFF1D5D9B),
-                                duration: Duration(seconds: 2),
+                                backgroundColor: const Color(0xFF1D5D9B),
+                                duration: const Duration(seconds: 2),
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(
-                                      10), 
-                                  side:
-                                      BorderSide(color: Colors.white, width: 2),
+                                  borderRadius: BorderRadius.circular(10),
+                                  side: const BorderSide(
+                                      color: Colors.white, width: 2),
                                 ),
-                                content: Text(
+                                content: const Text(
                                   'Wrong password provided for that user.',
                                   style: TextStyle(
                                     fontSize: 17,
@@ -205,14 +207,14 @@ class _Login_ScreenState extends State<Login_Screen> {
                         });
                       } else {}
                     },
-                    child: customButton(
+                    child: const customButton(
                       text: 'Log In',
                     ),
                   ),
                 ),
 
                 ////-Or continue with-
-                Padding(
+                const Padding(
                   padding: EdgeInsets.only(bottom: 25),
                   child: Text(
                     '-Or continue with-',
@@ -228,7 +230,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                 Row(
                   children: [
                     ///////Google
-                    SizedBox(
+                    const SizedBox(
                       width: 40,
                     ),
                     Expanded(
@@ -236,7 +238,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                           alignment: Alignment.center,
                           height: 55,
                           decoration: BoxDecoration(
-                            color: Color(0xFFF1F4FF),
+                            color: const Color(0xFFF1F4FF),
                             borderRadius: BorderRadius.circular(16),
                             boxShadow: [
                               BoxShadow(
@@ -250,7 +252,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                             height: 25,
                           )),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 30,
                     ),
                     ///////Facebook
@@ -259,7 +261,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                           alignment: Alignment.center,
                           height: 55,
                           decoration: BoxDecoration(
-                            color: Color(0xFFF1F4FF),
+                            color: const Color(0xFFF1F4FF),
                             borderRadius: BorderRadius.circular(16),
                             boxShadow: [
                               BoxShadow(
@@ -273,7 +275,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                             height: 25,
                           )),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 30,
                     ),
                     /////////Twitter
@@ -282,7 +284,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                           alignment: Alignment.center,
                           height: 55,
                           decoration: BoxDecoration(
-                            color: Color(0xFFF1F4FF),
+                            color: const Color(0xFFF1F4FF),
                             borderRadius: BorderRadius.circular(16),
                             boxShadow: [
                               BoxShadow(
@@ -296,7 +298,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                             height: 25,
                           )),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 40,
                     ),
                   ],
@@ -304,11 +306,11 @@ class _Login_ScreenState extends State<Login_Screen> {
 
                 ////Row for 2 texts don't have an account? and signup
                 Padding(
-                  padding: EdgeInsets.only(top: 32),
+                  padding: const EdgeInsets.only(top: 32),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
+                      const Text(
                         "don't have an account?",
                         style: TextStyle(
                           fontFamily: 'MulishRomanBold',
@@ -317,16 +319,16 @@ class _Login_ScreenState extends State<Login_Screen> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(left: 10),
+                        padding: const EdgeInsets.only(left: 10),
                         child: GestureDetector(
                           onTap: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Signup_Screen()),
+                                  builder: (context) => const Signup_Screen()),
                             );
                           },
-                          child: Text(
+                          child: const Text(
                             'Signup',
                             style: TextStyle(
                               fontFamily: 'MulishRomanBold',

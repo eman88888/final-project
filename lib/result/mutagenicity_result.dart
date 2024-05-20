@@ -4,9 +4,7 @@ import 'package:finalproject/models/Mutagenicity.dart';
 import 'package:finalproject/pages/convert.dart';
 import 'package:finalproject/pages/robot.dart';
 import 'package:finalproject/screens/bottomnavbar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import '../widget/result_contanier.dart';
 
@@ -39,6 +37,7 @@ class _MutResultState extends State<MutResult> {
       bottomNavigationBar: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          // ignore: avoid_unnecessary_containers
           Container(
             child: Padding(
                 padding: const EdgeInsets.only(left: 5.0),
@@ -46,7 +45,7 @@ class _MutResultState extends State<MutResult> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => BottomNavBar()),
+                      MaterialPageRoute(builder: (context) => const BottomNavBar()),
                     );
                   },
                   child: Image.asset(
@@ -59,9 +58,10 @@ class _MutResultState extends State<MutResult> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => robot()),
+                MaterialPageRoute(builder: (context) => const robot()),
               );
             },
+            // ignore: avoid_unnecessary_containers
             child: Container(
               child: Image.asset(
                 "assets/Animation3.gif",
@@ -77,7 +77,7 @@ class _MutResultState extends State<MutResult> {
         children: [
           Container(
             height: 200,
-            color: Color(0xff1D5D9B),
+            color: const Color(0xff1D5D9B),
           ),
           Container(
             alignment: Alignment.topLeft,
@@ -85,7 +85,7 @@ class _MutResultState extends State<MutResult> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => mutagenicity()),
+                  MaterialPageRoute(builder: (context) => const mutagenicity()),
                 );
               },
               icon: const Icon(
@@ -100,7 +100,8 @@ class _MutResultState extends State<MutResult> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => convertScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => const convertScreen()),
                 );
               },
               icon: Image.asset(
@@ -129,7 +130,7 @@ class _MutResultState extends State<MutResult> {
             child: Container(
               width: screenSize.width,
               height: screenSize.height,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.all(Radius.circular(20))),
               child: Column(
@@ -163,9 +164,9 @@ class _MutResultState extends State<MutResult> {
                       width: 300,
                       decoration: BoxDecoration(
                           color: Colors.white,
-                          border:
-                              Border.all(color: Color(0xffCACACA), width: 1),
-                          boxShadow: [
+                          border: Border.all(
+                              color: const Color(0xffCACACA), width: 1),
+                          boxShadow: const [
                             BoxShadow(
                                 color: Color(0xffCACACA),
                                 offset: Offset(8, 8),
@@ -197,7 +198,7 @@ class _MutResultState extends State<MutResult> {
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(20),
                                       ),
-                                      backgroundColor: Color(0xffFFFFFF),
+                                      backgroundColor: const Color(0xffFFFFFF),
                                       content: Container(
                                         alignment: Alignment.topLeft,
                                         height: 432,
@@ -217,17 +218,18 @@ class _MutResultState extends State<MutResult> {
                                                     color: Colors.red,
                                                     height: 24,
                                                     width: 24,
-                                                    child: Icon(
+                                                    child: const Icon(
                                                       Icons.clear_sharp,
                                                       color: Colors.white,
                                                     ),
                                                   ),
                                                 ),
                                               ),
-                                              Divider(),
+                                              const Divider(),
                                               Padding(
                                                 padding: const EdgeInsets.only(
                                                     top: 10, left: 30),
+                                                // ignore: sized_box_for_whitespace
                                                 child: Container(
                                                   height: 61,
                                                   width: 61,
@@ -245,6 +247,7 @@ class _MutResultState extends State<MutResult> {
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.start,
                                                 children: [
+                                                  // ignore: sized_box_for_whitespace
                                                   Container(
                                                     height: 24,
                                                     width: 27,
@@ -261,7 +264,7 @@ class _MutResultState extends State<MutResult> {
                                                           Axis.horizontal,
                                                       child: Row(
                                                         children: [
-                                                          Text(
+                                                          const Text(
                                                             "Atomic Number:   ",
                                                             style: TextStyle(
                                                               color: Colors.red,
@@ -272,8 +275,10 @@ class _MutResultState extends State<MutResult> {
                                                             ),
                                                           ),
                                                           Text(
+                                                            // ignore: unnecessary_string_interpolations
                                                             '${widget.resultAtom}',
-                                                            style: TextStyle(
+                                                            style:
+                                                                const TextStyle(
                                                               color: Color(
                                                                   0xff1D5D9B),
                                                               fontWeight:
@@ -287,11 +292,12 @@ class _MutResultState extends State<MutResult> {
                                                   ),
                                                 ],
                                               ),
-                                              SizedBox(height: 50),
+                                              const SizedBox(height: 50),
                                               Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.start,
                                                 children: [
+                                                  // ignore: sized_box_for_whitespace
                                                   Container(
                                                     height: 24,
                                                     width: 27,
@@ -308,7 +314,7 @@ class _MutResultState extends State<MutResult> {
                                                           Axis.horizontal,
                                                       child: Row(
                                                         children: [
-                                                          Text(
+                                                          const Text(
                                                             "Gasteiger Charge:   ",
                                                             style: TextStyle(
                                                               color: Colors.red,
@@ -319,8 +325,10 @@ class _MutResultState extends State<MutResult> {
                                                             ),
                                                           ),
                                                           Text(
+                                                            // ignore: unnecessary_string_interpolations
                                                             '${widget.resulgester}',
-                                                            style: TextStyle(
+                                                            style:
+                                                                const TextStyle(
                                                               color: Color(
                                                                   0xff1D5D9B),
                                                               fontWeight:
@@ -334,11 +342,12 @@ class _MutResultState extends State<MutResult> {
                                                   ),
                                                 ],
                                               ),
-                                              SizedBox(height: 50),
+                                              const SizedBox(height: 50),
                                               Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.start,
                                                 children: [
+                                                  // ignore: sized_box_for_whitespace
                                                   Container(
                                                     height: 24,
                                                     width: 27,
@@ -355,7 +364,7 @@ class _MutResultState extends State<MutResult> {
                                                           Axis.horizontal,
                                                       child: Row(
                                                         children: [
-                                                          Text(
+                                                          const Text(
                                                             "Bonds Types:   ",
                                                             style: TextStyle(
                                                               color: Colors.red,
@@ -366,8 +375,10 @@ class _MutResultState extends State<MutResult> {
                                                             ),
                                                           ),
                                                           Text(
+                                                            // ignore: unnecessary_string_interpolations
                                                             '${widget.resulBond}',
-                                                            style: TextStyle(
+                                                            style:
+                                                                const TextStyle(
                                                               color: Color(
                                                                   0xff1D5D9B),
                                                               fontWeight:
@@ -393,6 +404,7 @@ class _MutResultState extends State<MutResult> {
                               child: Padding(
                                 padding:
                                     const EdgeInsets.only(top: 8, right: 8),
+                                // ignore: sized_box_for_whitespace
                                 child: Container(
                                   height: 34,
                                   width: 48,

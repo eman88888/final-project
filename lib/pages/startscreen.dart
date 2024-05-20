@@ -2,6 +2,7 @@ import 'package:finalproject/pages/onbording.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+// ignore: camel_case_types
 class startscreen extends StatefulWidget {
   const startscreen({Key? key}) : super(key: key);
 
@@ -9,6 +10,7 @@ class startscreen extends StatefulWidget {
   State<startscreen> createState() => _startscreenState();
 }
 
+// ignore: camel_case_types
 class _startscreenState extends State<startscreen>
     with SingleTickerProviderStateMixin {
   @override
@@ -37,8 +39,8 @@ class _startscreenState extends State<startscreen>
   }
 
   void goToNextView() {
-    Future.delayed(Duration(seconds: 3), () {
-      Get.to(() => Onbording(), transition: Transition.fade);
+    Future.delayed(const Duration(seconds: 3), () {
+      Get.to(() => const Onbording(), transition: Transition.fade);
     });
   }
 }

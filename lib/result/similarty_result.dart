@@ -10,6 +10,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 //////////////
+// ignore: camel_case_types
 class simresult extends StatefulWidget {
   const simresult({Key? key}) : super(key: key);
 
@@ -17,10 +18,12 @@ class simresult extends StatefulWidget {
   State<simresult> createState() => _simresultState();
 }
 
+// ignore: camel_case_types
 class _simresultState extends State<simresult>
     with SingleTickerProviderStateMixin {
-  TextEditingController _smiles1Controller = TextEditingController();
-  TextEditingController _smiles2Controller = TextEditingController();
+  final TextEditingController _smiles1Controller = TextEditingController();
+  final TextEditingController _smiles2Controller = TextEditingController();
+  // ignore: non_constant_identifier_names
   bool Show = true;
 
 ////////////map
@@ -44,12 +47,15 @@ class _simresultState extends State<simresult>
         if (responseData['success']) {
           return responseData['image_base64'];
         } else {
+          // ignore: avoid_print
           print('API request failed: ${responseData['error']}');
         }
       } else {
+        // ignore: avoid_print
         print('Failed to load data: ${response.statusCode}');
       }
     } catch (e) {
+      // ignore: avoid_print
       print('Exception: $e');
     }
     return ''; // Return an empty string if there's an error
@@ -63,6 +69,7 @@ class _simresultState extends State<simresult>
         bottomNavigationBar: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            // ignore: avoid_unnecessary_containers
             Container(
               child: Padding(
                   padding: const EdgeInsets.only(left: 5.0),
@@ -70,7 +77,7 @@ class _simresultState extends State<simresult>
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => BottomNavBar()),
+                        MaterialPageRoute(builder: (context) => const BottomNavBar()),
                       );
                     },
                     child: Image.asset(
@@ -83,9 +90,10 @@ class _simresultState extends State<simresult>
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => robot()),
+                  MaterialPageRoute(builder: (context) => const robot()),
                 );
               },
+              // ignore: avoid_unnecessary_containers
               child: Container(
                 child: Image.asset(
                   "assets/Animation3.gif",
@@ -101,7 +109,7 @@ class _simresultState extends State<simresult>
           children: [
             Container(
               height: 200,
-              color: Color(0xff1D5D9B),
+              color: const Color(0xff1D5D9B),
             ),
             Container(
               alignment: Alignment.topLeft,
@@ -109,7 +117,7 @@ class _simresultState extends State<simresult>
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => BottomNavBar()),
+                    MaterialPageRoute(builder: (context) => const BottomNavBar()),
                   );
                 },
                 icon: const Icon(
@@ -124,7 +132,8 @@ class _simresultState extends State<simresult>
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => convertScreen()),
+                    MaterialPageRoute(
+                        builder: (context) => const convertScreen()),
                   );
                 },
                 icon: Image.asset(
@@ -140,7 +149,7 @@ class _simresultState extends State<simresult>
                 child: Container(
                   width: screenSize.width,
                   height: screenSize.height,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(20))),
                   child: Column(
@@ -159,9 +168,10 @@ class _simresultState extends State<simresult>
                         ),
                       ),
                       Container(
-                        padding: EdgeInsets.only(left: 30, top: 30, bottom: 10),
+                        padding: const EdgeInsets.only(
+                            left: 30, top: 30, bottom: 10),
                         alignment: Alignment.centerLeft,
-                        child: Text(
+                        child: const Text(
                           "Smile 1",
                           style: TextStyle(
                               fontSize: 24, fontWeight: FontWeight.w700),
@@ -170,6 +180,7 @@ class _simresultState extends State<simresult>
                       Padding(
                         padding: const EdgeInsets.only(
                             left: 4, right: 4, bottom: 10),
+                        // ignore: sized_box_for_whitespace
                         child: Container(
                           //change
                           width: 326,
@@ -197,9 +208,10 @@ class _simresultState extends State<simresult>
                         ),
                       ),
                       Container(
-                        padding: EdgeInsets.only(left: 30, top: 30, bottom: 10),
+                        padding: const EdgeInsets.only(
+                            left: 30, top: 30, bottom: 10),
                         alignment: Alignment.centerLeft,
-                        child: Text(
+                        child: const Text(
                           "Smile 2",
                           style: TextStyle(
                               fontSize: 24, fontWeight: FontWeight.w700),
@@ -208,6 +220,7 @@ class _simresultState extends State<simresult>
                       Padding(
                         padding: const EdgeInsets.only(
                             left: 4, right: 4, bottom: 10),
+                        // ignore: sized_box_for_whitespace
                         child: Container(
                           width: 326,
                           height: 55,
@@ -241,11 +254,6 @@ class _simresultState extends State<simresult>
                         height: 60,
                         width: 300,
                         child: MaterialButton(
-                          child: const Text(
-                            'Submit',
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
-                          ),
                           color: const Color(0xffF4D160),
                           textColor: Colors.black,
                           shape: RoundedRectangleBorder(
@@ -261,6 +269,7 @@ class _simresultState extends State<simresult>
                                 _smiles2Controller.text);
 
                             showDialog(
+                              // ignore: use_build_context_synchronously
                               context: context,
                               builder: (context) {
                                 return AlertDialog(
@@ -288,14 +297,14 @@ class _simresultState extends State<simresult>
                                               color: Colors.red,
                                               height: 24,
                                               width: 24,
-                                              child: Icon(
+                                              child: const Icon(
                                                 Icons.clear_sharp,
                                                 color: Colors.white,
                                               ),
                                             ),
                                           ),
                                         ),
-                                        Divider(),
+                                        const Divider(),
 
                                         Image.memory(base64Decode(
                                             imageBytes)), // Display the image
@@ -307,6 +316,11 @@ class _simresultState extends State<simresult>
                               },
                             );
                           },
+                          child: const Text(
+                            'Submit',
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
                         ),
                       ),
                       Visibility(

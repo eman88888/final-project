@@ -2,6 +2,7 @@ import 'package:finalproject/pages/chat.dart';
 import 'package:finalproject/screens/bottomnavbar.dart';
 import 'package:flutter/material.dart';
 
+// ignore: camel_case_types
 class robot extends StatefulWidget {
   const robot({Key? key}) : super(key: key);
 
@@ -9,6 +10,7 @@ class robot extends StatefulWidget {
   State<robot> createState() => _robotState();
 }
 
+// ignore: camel_case_types
 class _robotState extends State<robot> {
   @override
   Widget build(BuildContext context) {
@@ -22,13 +24,12 @@ class _robotState extends State<robot> {
               alignment: Alignment.topLeft,
               child: GestureDetector(
                 onTap: () {
-                  
-                   ///main page of Home
+                  ///main page of Home
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return BottomNavBar();
+                        return const BottomNavBar();
                       },
                     ),
                   );
@@ -44,7 +45,7 @@ class _robotState extends State<robot> {
             padding: const EdgeInsets.only(top: 80.0),
             child: Container(
               alignment: Alignment.center,
-              child: Text(
+              child: const Text(
                 "Your AI Assistant",
                 style: TextStyle(
                     color: Color(0xff1D5D9B),
@@ -53,8 +54,8 @@ class _robotState extends State<robot> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0, left: 16),
+          const Padding(
+            padding: EdgeInsets.only(top: 8.0, left: 16),
             child: Column(
               children: [
                 Text(
@@ -98,11 +99,12 @@ class _robotState extends State<robot> {
             height: 60,
             width: 350,
             child: MaterialButton(
-                child: Row(
+                // ignore: sort_child_properties_last
+                child: const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Padding(
-                      padding: const EdgeInsets.only(left: 120),
+                      padding: EdgeInsets.only(left: 120),
                       child: Text(
                         'Continue',
                         style: TextStyle(
@@ -124,11 +126,11 @@ class _robotState extends State<robot> {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 onPressed: () {
-                   Navigator.push(
+                  Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return Chat_Page();
+                        return const Chat_Page();
                       },
                     ),
                   );

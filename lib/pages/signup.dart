@@ -9,19 +9,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
+// ignore: camel_case_types
 class Signup_Screen extends StatefulWidget {
+  const Signup_Screen({super.key});
+
   @override
   State<Signup_Screen> createState() => _Signup_ScreenState();
 }
 
+// ignore: camel_case_types
 class _Signup_ScreenState extends State<Signup_Screen> {
   //text editing controller
+  // ignore: non_constant_identifier_names
   final FullNameController = TextEditingController();
 
   final userController = TextEditingController();
 
   final passController = TextEditingController();
 
+  // ignore: non_constant_identifier_names
   final ConfirmPassController = TextEditingController();
 
   bool isLoading = false;
@@ -52,7 +58,7 @@ class _Signup_ScreenState extends State<Signup_Screen> {
                       child: Container(
                         width: 500,
                         height: 250,
-                        color: Color(0xFFF1F4FF),
+                        color: const Color(0xFFF1F4FF),
                       ),
                     ),
                     Positioned(
@@ -60,7 +66,7 @@ class _Signup_ScreenState extends State<Signup_Screen> {
                       right: 60,
                       child: Transform.rotate(
                         angle: 0, // 45 degrees in radians
-                        child: Text(
+                        child: const Text(
                           'Create Account',
                           style: TextStyle(
                             fontFamily: 'MulishRomanBold',
@@ -75,7 +81,7 @@ class _Signup_ScreenState extends State<Signup_Screen> {
                       right: 72,
                       child: Transform.rotate(
                         angle: 0, // 45 degrees in radians
-                        child: Text(
+                        child: const Text(
                           'To explore all features',
                           style: TextStyle(
                             color: Colors.black,
@@ -102,7 +108,7 @@ class _Signup_ScreenState extends State<Signup_Screen> {
 
                 ////Textfield for Email
                 Padding(
-                  padding: EdgeInsets.symmetric(vertical: 16),
+                  padding: const EdgeInsets.symmetric(vertical: 16),
                   child: CustomTextFormField2(
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -119,7 +125,7 @@ class _Signup_ScreenState extends State<Signup_Screen> {
 
                 ////Textfield for Password
                 Padding(
-                  padding: EdgeInsets.only(bottom: 16),
+                  padding: const EdgeInsets.only(bottom: 16),
                   child: CustomTextFormField2(
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -137,7 +143,7 @@ class _Signup_ScreenState extends State<Signup_Screen> {
 
                 ////Textfield for Confirm Password
                 Padding(
-                  padding: EdgeInsets.only(bottom: 32),
+                  padding: const EdgeInsets.only(bottom: 32),
                   child: CustomTextFormField2(
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -155,7 +161,7 @@ class _Signup_ScreenState extends State<Signup_Screen> {
 
                 ////Signup Button
                 Padding(
-                  padding: EdgeInsets.only(bottom: 40),
+                  padding: const EdgeInsets.only(bottom: 40),
                   child: GestureDetector(
                     onTap: () async {
                       if (formKey.currentState!.validate()) {
@@ -179,23 +185,24 @@ class _Signup_ScreenState extends State<Signup_Screen> {
                             'email': userController.text,
                           });
                           Navigator.push(
+                            // ignore: use_build_context_synchronously
                             context,
                             MaterialPageRoute(
-                                builder: (context) => BottomNavBar()),
+                                builder: (context) => const BottomNavBar()),
                           );
                         } on FirebaseAuthException catch (e) {
                           if (e.code == 'weak-password') {
+                            // ignore: use_build_context_synchronously
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
-                                backgroundColor: Color(0xFF1D5D9B),
-                                 duration: Duration(seconds: 2),
+                                backgroundColor: const Color(0xFF1D5D9B),
+                                duration: const Duration(seconds: 2),
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(
-                                      10), 
-                                  side:
-                                      BorderSide(color: Colors.white, width: 2),
+                                  borderRadius: BorderRadius.circular(10),
+                                  side: const BorderSide(
+                                      color: Colors.white, width: 2),
                                 ),
-                                content: Text(
+                                content: const Text(
                                   'The password provided is too weak.',
                                   style: TextStyle(
                                     fontSize: 17,
@@ -205,17 +212,17 @@ class _Signup_ScreenState extends State<Signup_Screen> {
                               ),
                             );
                           } else if (e.code == 'email-already-in-use') {
+                            // ignore: use_build_context_synchronously
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
-                                backgroundColor: Color(0xFF1D5D9B),
-                                 duration: Duration(seconds: 2),
+                                backgroundColor: const Color(0xFF1D5D9B),
+                                duration: const Duration(seconds: 2),
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(
-                                      10), 
-                                  side:
-                                      BorderSide(color: Colors.white, width: 2),
+                                  borderRadius: BorderRadius.circular(10),
+                                  side: const BorderSide(
+                                      color: Colors.white, width: 2),
                                 ),
-                                content: Text(
+                                content: const Text(
                                   'Email already exists.',
                                   style: TextStyle(
                                     fontSize: 18,
@@ -233,14 +240,14 @@ class _Signup_ScreenState extends State<Signup_Screen> {
                         });
                       } else {}
                     },
-                    child: customButton(
+                    child: const customButton(
                       text: 'Sign Up',
                     ),
                   ),
                 ),
 
                 ////-Or continue with-
-                Padding(
+                const Padding(
                   padding: EdgeInsets.only(bottom: 25),
                   child: Text(
                     '-Or continue with-',
@@ -256,7 +263,7 @@ class _Signup_ScreenState extends State<Signup_Screen> {
                 Row(
                   children: [
                     ///////Google
-                    SizedBox(
+                    const SizedBox(
                       width: 40,
                     ),
                     Expanded(
@@ -264,7 +271,7 @@ class _Signup_ScreenState extends State<Signup_Screen> {
                           alignment: Alignment.center,
                           height: 55,
                           decoration: BoxDecoration(
-                            color: Color(0xFFF1F4FF),
+                            color: const Color(0xFFF1F4FF),
                             borderRadius: BorderRadius.circular(16),
                             boxShadow: [
                               BoxShadow(
@@ -278,7 +285,7 @@ class _Signup_ScreenState extends State<Signup_Screen> {
                             height: 25,
                           )),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 30,
                     ),
                     ///////Facebook
@@ -287,7 +294,7 @@ class _Signup_ScreenState extends State<Signup_Screen> {
                           alignment: Alignment.center,
                           height: 55,
                           decoration: BoxDecoration(
-                            color: Color(0xFFF1F4FF),
+                            color: const Color(0xFFF1F4FF),
                             borderRadius: BorderRadius.circular(16),
                             boxShadow: [
                               BoxShadow(
@@ -301,7 +308,7 @@ class _Signup_ScreenState extends State<Signup_Screen> {
                             height: 25,
                           )),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 30,
                     ),
                     /////////Twitter
@@ -310,7 +317,7 @@ class _Signup_ScreenState extends State<Signup_Screen> {
                           alignment: Alignment.center,
                           height: 55,
                           decoration: BoxDecoration(
-                            color: Color(0xFFF1F4FF),
+                            color: const Color(0xFFF1F4FF),
                             borderRadius: BorderRadius.circular(16),
                             boxShadow: [
                               BoxShadow(
@@ -324,18 +331,18 @@ class _Signup_ScreenState extends State<Signup_Screen> {
                             height: 25,
                           )),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 40,
                     ),
                   ],
                 ),
                 //Row for 2 texts don't have an account? and signup
                 Padding(
-                  padding: EdgeInsets.only(top: 32),
+                  padding: const EdgeInsets.only(top: 32),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
+                      const Text(
                         "Already have an account?",
                         style: TextStyle(
                           fontFamily: 'MulishRomanBold',
@@ -344,15 +351,16 @@ class _Signup_ScreenState extends State<Signup_Screen> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(left: 10),
+                        padding: const EdgeInsets.only(left: 10),
                         child: GestureDetector(
                           onTap: () {
                             Navigator.pushReplacement(
                               context,
-                              MaterialPageRoute(builder: (_) => Login_Screen()),
+                              MaterialPageRoute(
+                                  builder: (_) => const Login_Screen()),
                             );
                           },
-                          child: Text(
+                          child: const Text(
                             'Login',
                             style: TextStyle(
                               fontFamily: 'MulishRomanBold',
