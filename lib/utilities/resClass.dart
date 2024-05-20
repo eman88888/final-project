@@ -1,5 +1,9 @@
+
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 
+// ignore: camel_case_types
 class resultwidgetcontainer extends StatelessWidget {
   const resultwidgetcontainer({
     super.key,
@@ -21,13 +25,14 @@ class resultwidgetcontainer extends StatelessWidget {
       width: 173,
       decoration: BoxDecoration(
         border: Border.all(
-            color:
-                isDark ? Color(0xff1D5D9B) : Color.fromARGB(222, 164, 215, 244),
+            color: isDark
+                ? const Color(0xff1D5D9B)
+                : const Color.fromARGB(222, 164, 215, 244),
             width: 2),
         color: result
             ? isDark
-                ? Color(0xff5C8AB7)
-                : Color.fromARGB(222, 164, 215, 244)
+                ? const Color(0xff5C8AB7)
+                : const Color.fromARGB(222, 164, 215, 244)
             : isDark
                 ? Colors.transparent.withOpacity(0)
                 : Colors.white,
@@ -39,10 +44,10 @@ class resultwidgetcontainer extends StatelessWidget {
                 color: textcolor
                     ? isDark
                         ? Colors.white
-                        : Color(0xff000000)
+                        : const Color(0xff000000)
                     : isDark
                         ? Colors.black
-                        : Color(0xff000000),
+                        : const Color(0xff000000),
                 fontWeight: FontWeight.w500,
                 fontSize: 25)),
       ),

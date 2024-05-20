@@ -183,7 +183,7 @@ class _liverState extends State<liver> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => BottomNavBar()),
+                      MaterialPageRoute(builder: (context) => const BottomNavBar()),
                     );
                   },
                   child: Image.asset(
@@ -222,7 +222,7 @@ class _liverState extends State<liver> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => BottomNavBar()),
+                  MaterialPageRoute(builder: (context) => const BottomNavBar()),
                 );
               },
               icon: const Icon(

@@ -1,9 +1,10 @@
-
+// ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
 
 class CustomTextFormField extends StatefulWidget {
-  CustomTextFormField({
+  // ignore: use_key_in_widget_constructors
+  const CustomTextFormField({
     required this.iconData,
     required this.controller,
     required this.labelText,
@@ -18,6 +19,7 @@ class CustomTextFormField extends StatefulWidget {
   final String labelText;
   final double labelFontSize;
   final Color labelColor;
+  // ignore: prefer_typing_uninitialized_variables
   final labelFontWeight;
    final String hintText;
 
@@ -33,11 +35,11 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       child: TextFormField(
         controller: widget.controller,
         decoration: InputDecoration(
-            suffixIcon: Icon(widget.iconData, color: Color(0xFF1D5D9B)),
+            suffixIcon: Icon(widget.iconData, color: const Color(0xFF1D5D9B)),
             filled: true,
-            fillColor: Color.fromARGB(255, 228, 233, 251),
+            fillColor: const Color.fromARGB(255, 228, 233, 251),
             floatingLabelBehavior: FloatingLabelBehavior.always,
-            contentPadding: EdgeInsets.symmetric(horizontal: 30, vertical: 5),
+            contentPadding: const EdgeInsets.symmetric(horizontal: 30, vertical: 5),
             labelText: (widget.labelText),
             hintText: widget.hintText,
             labelStyle: TextStyle(
@@ -47,17 +49,17 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16),
-              borderSide: BorderSide(
+              borderSide: const BorderSide(
                 color: Color(0xFF047EB0),
               ),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16),
-              borderSide: BorderSide(
+              borderSide: const BorderSide(
                 color: Color(0xFF88AACA),
               ),
             ),
-            border: OutlineInputBorder(
+            border: const OutlineInputBorder(
               borderSide: BorderSide(
                 color: Color(0xFF88AACA),
               ),

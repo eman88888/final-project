@@ -1,4 +1,6 @@
 
+// ignore_for_file: file_names
+
 class UnbordingContent {
   String image;
   String title;

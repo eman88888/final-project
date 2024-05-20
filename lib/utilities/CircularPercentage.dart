@@ -1,9 +1,13 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class MolPercent extends StatefulWidget {
-  MolPercent({required this.progressColor, required this.percent});
+  const MolPercent(
+      {super.key, required this.progressColor, required this.percent});
 
+  // ignore: prefer_typing_uninitialized_variables
   final progressColor;
   final double percent;
 
@@ -19,7 +23,7 @@ class MolPercentState extends State<MolPercent> {
         radius: 80,
         lineWidth: 10,
         percent: widget.percent,
-        backgroundColor: Color.fromARGB(255, 223, 230, 241),
+        backgroundColor: const Color.fromARGB(255, 223, 230, 241),
         progressColor: widget.progressColor,
         circularStrokeCap: CircularStrokeCap.round,
         center: Stack(
@@ -28,7 +32,7 @@ class MolPercentState extends State<MolPercent> {
             Container(
               width: 120,
               height: 120,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 color: Colors.white,
                 boxShadow: [
@@ -42,7 +46,7 @@ class MolPercentState extends State<MolPercent> {
               child: Center(
                 child: Text(
                   '${(widget.percent)}',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: Colors.black,

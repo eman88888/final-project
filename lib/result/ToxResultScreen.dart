@@ -1,34 +1,36 @@
+// ignore_for_file: file_names
+
 import 'dart:convert';
 
 import 'package:finalproject/pages/convert.dart';
 import 'package:finalproject/pages/robot.dart';
 import 'package:finalproject/screens/bottomnavbar.dart';
 import 'package:finalproject/widget/result_contanier.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-
 
 import '../models/ToxicityofMolecules.dart';
 
 import '../utilities/CircularPercentage.dart';
 
+// ignore: camel_case_types
 class ToxResult_Screen extends StatefulWidget {
   final bool result;
   final double resulttox;
   final double resultsa;
   final String resultAtom;
   final String resulBond;
+  // ignore: non_constant_identifier_names
   final String Resulimg;
   final String resulgester;
 
-  ToxResult_Screen(
+  const ToxResult_Screen(
       {Key? key,
       required this.result,
       required this.resulttox,
       required this.resultsa,
       required this.resultAtom,
       required this.resulBond,
+      // ignore: non_constant_identifier_names
       required this.Resulimg,
       required this.resulgester})
       : super(key: key);
@@ -37,6 +39,7 @@ class ToxResult_Screen extends StatefulWidget {
   State<ToxResult_Screen> createState() => _ToxResult_ScreenState();
 }
 
+// ignore: camel_case_types
 class _ToxResult_ScreenState extends State<ToxResult_Screen> {
   bool textcolor = true;
 
@@ -47,6 +50,7 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
       bottomNavigationBar: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          // ignore: avoid_unnecessary_containers
           Container(
             child: Padding(
                 padding: const EdgeInsets.only(left: 5.0),
@@ -54,7 +58,7 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => BottomNavBar()),
+                      MaterialPageRoute(builder: (context) => const BottomNavBar()),
                     );
                   },
                   child: Image.asset(
@@ -67,9 +71,10 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => robot()),
+                MaterialPageRoute(builder: (context) => const robot()),
               );
             },
+            // ignore: avoid_unnecessary_containers
             child: Container(
               child: Image.asset(
                 "assets/Animation3.gif",
@@ -85,7 +90,7 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
         children: [
           Container(
             height: 200,
-            color: Color(0xff1D5D9B),
+            color: const Color(0xff1D5D9B),
           ),
           Container(
             alignment: Alignment.topLeft,
@@ -94,7 +99,7 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => ToxicityofMolecules_Screen()),
+                      builder: (context) => const ToxicityofMolecules_Screen()),
                 );
               },
               icon: const Icon(
@@ -109,7 +114,8 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => convertScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => const convertScreen()),
                 );
               },
               icon: Image.asset(
@@ -138,7 +144,7 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
             child: Container(
               width: screenSize.width,
               height: screenSize.height,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.all(Radius.circular(20))),
               child: Column(
@@ -172,10 +178,10 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
                         Column(
                           children: [
                             MolPercent(
-                              progressColor: Color(0xFF191D88),
+                              progressColor: const Color(0xFF191D88),
                               percent: widget.resulttox,
                             ),
-                            Text(
+                            const Text(
                               'Tox Score',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 20),
@@ -188,7 +194,7 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
                               progressColor: Colors.red,
                               percent: widget.resultsa,
                             ),
-                            Text(
+                            const Text(
                               'SA Score',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 20),
@@ -206,9 +212,9 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
                       width: 300,
                       decoration: BoxDecoration(
                           color: Colors.white,
-                          border:
-                              Border.all(color: Color(0xffCACACA), width: 1),
-                          boxShadow: [
+                          border: Border.all(
+                              color: const Color(0xffCACACA), width: 1),
+                          boxShadow: const [
                             BoxShadow(
                                 color: Color(0xffCACACA),
                                 offset: Offset(8, 8),
@@ -240,7 +246,7 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(20),
                                       ),
-                                      backgroundColor: Color(0xffFFFFFF),
+                                      backgroundColor: const Color(0xffFFFFFF),
                                       content: Container(
                                         alignment: Alignment.topLeft,
                                         height: 432,
@@ -260,17 +266,18 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
                                                     color: Colors.red,
                                                     height: 24,
                                                     width: 24,
-                                                    child: Icon(
+                                                    child: const Icon(
                                                       Icons.clear_sharp,
                                                       color: Colors.white,
                                                     ),
                                                   ),
                                                 ),
                                               ),
-                                              Divider(),
+                                              const Divider(),
                                               Padding(
                                                 padding: const EdgeInsets.only(
                                                     top: 10, left: 30),
+                                                // ignore: sized_box_for_whitespace
                                                 child: Container(
                                                   height: 61,
                                                   width: 61,
@@ -288,6 +295,7 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.start,
                                                 children: [
+                                                  // ignore: sized_box_for_whitespace
                                                   Container(
                                                     height: 24,
                                                     width: 27,
@@ -304,7 +312,7 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
                                                           Axis.horizontal,
                                                       child: Row(
                                                         children: [
-                                                          Text(
+                                                          const Text(
                                                             "Atomic Number:   ",
                                                             style: TextStyle(
                                                               color: Colors.red,
@@ -315,8 +323,9 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
                                                             ),
                                                           ),
                                                           Text(
-                                                            '${widget.resultAtom}',
-                                                            style: TextStyle(
+                                                            widget.resultAtom,
+                                                            style:
+                                                                const TextStyle(
                                                               color: Color(
                                                                   0xff1D5D9B),
                                                               fontWeight:
@@ -330,11 +339,12 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
                                                   ),
                                                 ],
                                               ),
-                                              SizedBox(height: 50),
+                                              const SizedBox(height: 50),
                                               Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.start,
                                                 children: [
+                                                  // ignore: sized_box_for_whitespace
                                                   Container(
                                                     height: 24,
                                                     width: 27,
@@ -351,7 +361,7 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
                                                           Axis.horizontal,
                                                       child: Row(
                                                         children: [
-                                                          Text(
+                                                          const Text(
                                                             "Gasteiger Charge:   ",
                                                             style: TextStyle(
                                                               color: Colors.red,
@@ -362,8 +372,9 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
                                                             ),
                                                           ),
                                                           Text(
-                                                            '${widget.resulgester}',
-                                                            style: TextStyle(
+                                                            widget.resulgester,
+                                                            style:
+                                                                const TextStyle(
                                                               color: Color(
                                                                   0xff1D5D9B),
                                                               fontWeight:
@@ -377,11 +388,12 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
                                                   ),
                                                 ],
                                               ),
-                                              SizedBox(height: 50),
+                                              const SizedBox(height: 50),
                                               Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.start,
                                                 children: [
+                                                  // ignore: sized_box_for_whitespace
                                                   Container(
                                                     height: 24,
                                                     width: 27,
@@ -398,7 +410,7 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
                                                           Axis.horizontal,
                                                       child: Row(
                                                         children: [
-                                                          Text(
+                                                          const Text(
                                                             "Bonds Types:   ",
                                                             style: TextStyle(
                                                               color: Colors.red,
@@ -409,8 +421,9 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
                                                             ),
                                                           ),
                                                           Text(
-                                                            '${widget.resulBond}',
-                                                            style: TextStyle(
+                                                            widget.resulBond,
+                                                            style:
+                                                                const TextStyle(
                                                               color: Color(
                                                                   0xff1D5D9B),
                                                               fontWeight:
@@ -436,6 +449,7 @@ class _ToxResult_ScreenState extends State<ToxResult_Screen> {
                               child: Padding(
                                 padding:
                                     const EdgeInsets.only(top: 8, right: 8),
+                                // ignore: sized_box_for_whitespace
                                 child: Container(
                                   height: 34,
                                   width: 48,

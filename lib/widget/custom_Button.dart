@@ -1,9 +1,10 @@
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 
+// ignore: camel_case_types
 class customButton extends StatelessWidget {
-  customButton({required this.text});
+  const customButton({super.key, required this.text});
 
   final String text;
   @override
@@ -11,14 +12,14 @@ class customButton extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: Color(0xFFF1CF5F),
+        color: const Color(0xFFF1CF5F),
       ),
       width: 348,
       height: 60,
       child: Center(
         child: Text(
           text,
-          style: TextStyle(fontSize: 25, fontFamily: 'MulishRomanBold',fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 25, fontFamily: 'MulishRomanBold',fontWeight: FontWeight.bold),
         ),
       ),
     );

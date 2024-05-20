@@ -1,4 +1,5 @@
-// ignore: file_names
+// ignore_for_file: file_names
+
 import 'dart:convert';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -286,7 +287,7 @@ class _mutagenicityState extends State<mutagenicity> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => BottomNavBar()),
+                        MaterialPageRoute(builder: (context) => const BottomNavBar()),
                       );
                     },
                     child: Image.asset(
@@ -326,7 +327,7 @@ class _mutagenicityState extends State<mutagenicity> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => BottomNavBar()),
+                    MaterialPageRoute(builder: (context) => const BottomNavBar()),
                   );
                 },
                 icon: const Icon(

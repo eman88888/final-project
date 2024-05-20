@@ -4,20 +4,23 @@ import 'package:finalproject/screens/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
-void main() => runApp(MaterialApp(home: BottomNavBar()));
+void main() => runApp(const MaterialApp(home: BottomNavBar()));
 
 class BottomNavBar extends StatefulWidget {
+  const BottomNavBar({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _BottomNavBarState createState() => _BottomNavBarState();
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
   int pageindex = 0;
-  GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
-  final home _home = home();
-  final Setting_Page _setting = Setting_Page();
-  final ProfileScreen _profile = ProfileScreen();
-  Widget _showpage = new home();
+  final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
+  final home _home = const home();
+  final Setting_Page _setting = const Setting_Page();
+  final ProfileScreen _profile = const ProfileScreen();
+  Widget _showpage = const home();
   Widget _pagechosser(int page) {
     switch (page) {
       case 0:
@@ -33,8 +36,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
         // ignore: dead_code
         break;
       default:
-        return new Container(
-          child: Text("no page"),
+        // ignore: avoid_unnecessary_containers
+        return Container(
+          child: const Text("no page"),
         );
     }
   }
@@ -46,7 +50,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
           key: _bottomNavigationKey,
           index: pageindex,
           height: 60.0,
-          items: <Widget>[
+          items: const <Widget>[
             Icon(
               Icons.home,
               size: 30,
@@ -64,10 +68,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
             ),
           ],
           backgroundColor: Colors.white,
-          color: Color(0xff1D5D9B),
-          buttonBackgroundColor: Color(0xffF4D160),
+          color: const Color(0xff1D5D9B),
+          buttonBackgroundColor: const Color(0xffF4D160),
           animationCurve: Curves.easeInOut,
-          animationDuration: Duration(milliseconds: 600),
+          animationDuration: const Duration(milliseconds: 600),
           onTap: (int tappedindex) {
             setState(() {
               _showpage = _pagechosser(tappedindex);

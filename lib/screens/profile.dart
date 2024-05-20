@@ -69,13 +69,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 SizedBox(
                   height: 420,
                   child: Container(
-                    color: Color(0xFF1D5D9B),
+                    color: const Color(0xFF1D5D9B),
                     child: Stack(
                       children: [
                         Container(
-                          margin:
-                              EdgeInsets.only(left: 120, right: 120, top: 80),
-                          child: CircleAvatar(
+                          margin: const EdgeInsets.only(
+                              left: 120, right: 120, top: 80),
+                          child: const CircleAvatar(
                             radius: 90,
                             backgroundImage: AssetImage("assets/profile.png"),
                           ),
@@ -88,16 +88,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               /////// Display name and text Researcher
-                               Text(
+                              Text(
                                 _username,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 30,
                                   fontFamily: 'Pacifico',
                                   color: Colors.white,
                                 ),
                               ),
-                              Padding(padding: EdgeInsets.only(bottom: 10)),
-                              Text(
+                              const Padding(
+                                  padding: EdgeInsets.only(bottom: 10)),
+                              const Text(
                                 'Researcher',
                                 style: TextStyle(
                                   fontSize: 20,
@@ -129,11 +130,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     color: Colors.grey.withOpacity(0.5), // Shadow color
                     spreadRadius: 1, // Spread radius
                     blurRadius: 3, // Blur radius
-                    offset: Offset(0, 2), // Offset
+                    offset: const Offset(0, 2), // Offset
                   ),
                 ],
                 color: Colors.white,
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(8),
                   topRight: Radius.circular(8),
                   bottomLeft: Radius.circular(8),
@@ -144,14 +145,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 children: [
                   ///////////////////////////////////////////NAME
                   ListTile(
-                    leading: Icon(
+                    leading: const Icon(
                       Icons.person_outline_outlined,
                       color: Color(0xFF1D5D9B),
                       size: 30,
                     ),
                     title: Text(
                       _username,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 16,
                         color: Colors.black,
                         //fontWeight: FontWeight.bold
@@ -159,18 +160,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
 
-                  Divider(
+                  const Divider(
                     thickness: 0.6,
                     color: Colors.grey,
                   ),
 
                   ListTile(
                     ///////////////////////////////////////////Email
-                    leading: Icon(Icons.email_outlined,
+                    leading: const Icon(Icons.email_outlined,
                         color: Color(0xFF1D5D9B), size: 30),
                     title: Text(
                       _email,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 16,
                         color: Colors.black,
                         //fontWeight: FontWeight.bold
@@ -178,18 +179,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
 
-                  Divider(
-                     thickness: 0.6,
+                  const Divider(
+                    thickness: 0.6,
                     color: Colors.grey,
                   ),
 
                   ListTile(
                     ///////////////////////////////////////////Job
-                    leading: Icon(Icons.work_outline_outlined,
+                    leading: const Icon(Icons.work_outline_outlined,
                         color: Color(0xFF1D5D9B), size: 30),
                     title: Text(
                       _job,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 16,
                         color: Colors.black,
                         //fontWeight: FontWeight.bold
@@ -197,18 +198,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
 
-                  Divider(
-                     thickness: 0.6,
+                  const Divider(
+                    thickness: 0.6,
                     color: Colors.grey,
                   ),
 
                   ListTile(
                     ///////////////////////////////////////////Country
-                    leading: Icon(Icons.location_on_outlined,
+                    leading: const Icon(Icons.location_on_outlined,
                         color: Color(0xFF1D5D9B), size: 30),
                     title: Text(
                       _country,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 16,
                         color: Colors.black,
                         //fontWeight: FontWeight.bold
@@ -216,18 +217,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
 
-                  Divider(
+                  const Divider(
                     thickness: 0.6,
                     color: Colors.grey,
                   ),
 
                   ListTile(
                     ///////////////////////////////////////////Mobile
-                    leading: Icon(Icons.phone_enabled_outlined,
+                    leading: const Icon(Icons.phone_enabled_outlined,
                         color: Color(0xFF1D5D9B), size: 30),
                     title: Text(
                       _phone,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 16,
                         color: Colors.black,
                         //fontWeight: FontWeight.bold
@@ -235,49 +236,50 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
 
-                  Divider(
+                  const Divider(
                     thickness: 0.6,
                     color: Colors.grey,
                   ),
 
                   ListTile(
                     ///////////////////////////////////////////History
-                    leading: Icon(
+                    leading: const Icon(
                       Icons.history_edu_outlined,
                       color: Color(0xFF1D5D9B),
                       size: 30,
                     ),
-                    title: Text(
+                    title: const Text(
                       'History',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                           color: Color(0xFF1D5D9B)),
                     ),
-                    trailing: Icon(Icons.arrow_forward_outlined,
+                    trailing: const Icon(Icons.arrow_forward_outlined,
                         color: Color(0xFF1D5D9B), size: 30),
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => history()),
+                        MaterialPageRoute(
+                            builder: (context) => const history()),
                       );
                     },
                   ),
 
-                  Divider(
+                  const Divider(
                     thickness: 0.6,
                     color: Colors.grey,
                   ),
 
                   ListTile(
                     ///////////////////////////////////////////Log out
-                    leading:
-                        Icon(Icons.login_outlined, color: Colors.red, size: 30),
+                    leading: const Icon(Icons.login_outlined,
+                        color: Colors.red, size: 30),
                     title: Text(
                       'Logout',
                       style: TextStyle(fontSize: 20, color: Colors.red[400]),
                     ),
-                    trailing: Icon(Icons.arrow_forward_outlined,
+                    trailing: const Icon(Icons.arrow_forward_outlined,
                         color: Colors.red, size: 30),
                     onTap: () async {
                       // Show logout confirmation dialog
@@ -288,7 +290,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         // Add your logout logic here
                         await _auth.signOut();
                         Navigator.pushNamedAndRemoveUntil(
-                            context, '/', (route) => false);
+                            // ignore: use_build_context_synchronously
+                            context,
+                            '/',
+                            (route) => false);
                       }
                     },
                   ),
@@ -309,11 +314,11 @@ class Global {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: Color(0xFFEEFFFF),
-          title: Image(
+          backgroundColor: const Color(0xFFEEFFFF),
+          title: const Image(
             image: AssetImage('assets/logout.png'),
           ),
-          content: Text(
+          content: const Text(
             "    Oh no! You're leaving \n          Are you sure?",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
           ),
@@ -322,7 +327,7 @@ class Global {
               onPressed: () async {
                 Navigator.of(context).pop(false); // Cancel the logout
               },
-              child: Text(
+              child: const Text(
                 'Cancel',
                 style: TextStyle(
                   color: Color(0xFF4497C4),
@@ -333,9 +338,10 @@ class Global {
             TextButton(
               onPressed: () async {
                 await FirebaseAuth.instance.signOut();
+                // ignore: use_build_context_synchronously
                 Navigator.of(context).pop(true); // Confirm the logout
               },
-              child: Text(
+              child: const Text(
                 'OK',
                 style: TextStyle(color: Colors.red, fontSize: 15),
               ),

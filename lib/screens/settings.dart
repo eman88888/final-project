@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+// ignore: camel_case_types
 class Setting_Page extends StatefulWidget {
   const Setting_Page({super.key});
 
@@ -50,14 +51,14 @@ class _SettingPageState extends State<Setting_Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF1D5D9B),
+      backgroundColor: const Color(0xFF1D5D9B),
       body: Column(
         children: [
-          Row(
+          const Row(
             children: [
               ////Text Setting
               Padding(
-                padding: const EdgeInsets.only(top: 30, left: 20, right: 185),
+                padding: EdgeInsets.only(top: 30, left: 20, right: 185),
                 child: Text(
                   'Setting',
                   style: TextStyle(
@@ -71,14 +72,14 @@ class _SettingPageState extends State<Setting_Page> {
             ],
           ),
           ////Divider
-          Divider(
-            color: const Color(0xFF5E7A8C),
+          const Divider(
+            color: Color(0xFF5E7A8C),
             thickness: 0.9,
           ),
 
           /////Profile image
-          Padding(
-            padding: const EdgeInsets.only(top: 30, bottom: 10),
+          const Padding(
+            padding: EdgeInsets.only(top: 30, bottom: 10),
             child: Stack(
               children: [
                 CircleAvatar(
@@ -92,19 +93,19 @@ class _SettingPageState extends State<Setting_Page> {
           //////////Username Text
           Text(
             _userName,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 30,
               fontFamily: 'Pacifico',
               color: Colors.white,
             ),
           ),
 
-          Padding(padding: EdgeInsets.only(bottom: 10)),
+          const Padding(padding: EdgeInsets.only(bottom: 10)),
 
           ////////////////////////////////Bottom Container
           Expanded(
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20.0),
@@ -114,8 +115,8 @@ class _SettingPageState extends State<Setting_Page> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 20),
+                    const Padding(
+                      padding: EdgeInsets.only(top: 20),
 
                       ///////ListTile for Accounts
                       child: Card(
@@ -124,7 +125,7 @@ class _SettingPageState extends State<Setting_Page> {
                         shadowColor: Color(0xFFE4E9FB),
                         child: ListTile(
                           title: Padding(
-                            padding: const EdgeInsets.only(bottom: 3),
+                            padding: EdgeInsets.only(bottom: 3),
                             child: Text(
                               'ACCOUNTS',
                               style: TextStyle(
@@ -138,20 +139,20 @@ class _SettingPageState extends State<Setting_Page> {
                       ),
                     ),
 
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.only(bottom: 30),
                     ),
 
                     ///////ListTile for Edit Profile
                     Card(
                       color: Colors.white,
-                      margin: EdgeInsets.symmetric(horizontal: 40),
+                      margin: const EdgeInsets.symmetric(horizontal: 40),
                       child: ListTile(
-                        leading: Icon(
+                        leading: const Icon(
                           Icons.person_pin_outlined,
                           color: Color(0xFF1D5D9B),
                         ),
-                        title: Center(
+                        title: const Center(
                           child: Text(
                             'Edit Profile',
                             style: TextStyle(
@@ -160,7 +161,7 @@ class _SettingPageState extends State<Setting_Page> {
                                 color: Color(0xFF1D5D9B)),
                           ),
                         ),
-                        trailing: Icon(
+                        trailing: const Icon(
                           Icons.arrow_forward_outlined,
                           color: Color(0xFF1D5D9B),
                         ),
@@ -169,26 +170,26 @@ class _SettingPageState extends State<Setting_Page> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => EditProfile_Page()),
+                                builder: (context) => const EditProfile_Page()),
                           );
                         },
                       ),
                     ),
 
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.only(bottom: 20),
                     ),
 
                     ///////ListTile for Change Pass
                     Card(
                       color: Colors.white,
-                      margin: EdgeInsets.symmetric(horizontal: 40),
+                      margin: const EdgeInsets.symmetric(horizontal: 40),
                       child: ListTile(
-                        leading: Icon(
+                        leading: const Icon(
                           Icons.key_outlined,
                           color: Color(0xFF1D5D9B),
                         ),
-                        title: Center(
+                        title: const Center(
                           child: Text(
                             'Change Password',
                             style: TextStyle(
@@ -197,7 +198,7 @@ class _SettingPageState extends State<Setting_Page> {
                                 color: Color(0xFF1D5D9B)),
                           ),
                         ),
-                        trailing: Icon(
+                        trailing: const Icon(
                           Icons.arrow_forward_outlined,
                           color: Color(0xFF1D5D9B),
                         ),
@@ -205,36 +206,37 @@ class _SettingPageState extends State<Setting_Page> {
                           ///push to Change Password
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => change()),
+                            MaterialPageRoute(
+                                builder: (context) => const change()),
                           );
                         },
                       ),
                     ),
 
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.only(bottom: 20),
                     ),
 
                     ////Divider
-                    Divider(
-                      color: const Color(0xFF5E7A8C),
+                    const Divider(
+                      color: Color(0xFF5E7A8C),
                       thickness: 0.7,
                       endIndent: 20,
                       indent: 20,
                     ),
 
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.only(bottom: 20),
                     ),
 
                     ///////ListTile for Prefernces
-                    Card(
+                    const Card(
                       margin: EdgeInsets.symmetric(horizontal: 30),
                       color: Color.fromARGB(255, 228, 233, 251),
                       shadowColor: Color(0xFFE4E9FB),
                       child: ListTile(
                         title: Padding(
-                          padding: const EdgeInsets.only(bottom: 3),
+                          padding: EdgeInsets.only(bottom: 3),
                           child: Text(
                             'APPEARANCE',
                             style: TextStyle(
@@ -247,20 +249,20 @@ class _SettingPageState extends State<Setting_Page> {
                       ),
                     ),
 
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.only(bottom: 30),
                     ),
 
                     ///////ListTile for Information
                     Card(
                       color: Colors.white,
-                      margin: EdgeInsets.symmetric(horizontal: 40),
+                      margin: const EdgeInsets.symmetric(horizontal: 40),
                       child: ListTile(
-                        leading: Icon(
+                        leading: const Icon(
                           Icons.info_outlined,
                           color: Color(0xFF1D5D9B),
                         ),
-                        title: Center(
+                        title: const Center(
                           child: Text(
                             'Info',
                             style: TextStyle(
@@ -269,7 +271,7 @@ class _SettingPageState extends State<Setting_Page> {
                                 color: Color(0xFF1D5D9B)),
                           ),
                         ),
-                        trailing: Icon(
+                        trailing: const Icon(
                           Icons.arrow_forward_outlined,
                           color: Color(0xFF1D5D9B),
                         ),
@@ -277,13 +279,14 @@ class _SettingPageState extends State<Setting_Page> {
                           ///push to Information Pge
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => info()),
+                            MaterialPageRoute(
+                                builder: (context) => const info()),
                           );
                         },
                       ),
                     ),
 
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.only(bottom: 20),
                     ),
                   ],

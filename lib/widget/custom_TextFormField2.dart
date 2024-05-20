@@ -1,7 +1,10 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 
 class CustomTextFormField2 extends StatefulWidget {
-  CustomTextFormField2({
+  // ignore: use_key_in_widget_constructors
+  const CustomTextFormField2({
     this.hintText,
     required this.controller,
     required this.validator,
@@ -9,6 +12,7 @@ class CustomTextFormField2 extends StatefulWidget {
   });
 
   final String? hintText;
+  // ignore: prefer_typing_uninitialized_variables
   final controller;
   final bool? obscureText;
   final String? Function(String?)? validator;
@@ -23,7 +27,7 @@ class _CustomTextFieldState extends State<CustomTextFormField2> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 32),
+      padding: const EdgeInsets.symmetric(horizontal: 32),
       child: TextFormField(
         obscureText: _isObscure &&
             widget.obscureText ==
@@ -45,20 +49,20 @@ class _CustomTextFieldState extends State<CustomTextFormField2> {
               : null,
           hintText: widget.hintText,
           filled: true,
-          fillColor: Color.fromARGB(255, 228, 233, 251),
+          fillColor: const Color.fromARGB(255, 228, 233, 251),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(
+            borderSide: const BorderSide(
               color: Color(0xFF047EB0),
             ),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(
+            borderSide: const BorderSide(
               color: Color(0xFFF1F4FF),
             ),
           ),
-          border: OutlineInputBorder(
+          border: const OutlineInputBorder(
             borderSide: BorderSide(
               color: Color(0xFF047EB0),
             ),
