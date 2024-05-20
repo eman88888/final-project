@@ -1,9 +1,12 @@
+// ignore_for_file: file_names
+
 import 'package:finalproject/pages/changedSuccessfully.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../widget/custom_Button.dart';
 
+// ignore: camel_case_types
 class ForgetPass_Screen extends StatefulWidget {
   const ForgetPass_Screen({super.key});
 
@@ -11,6 +14,7 @@ class ForgetPass_Screen extends StatefulWidget {
   State<ForgetPass_Screen> createState() => _ForgetPass_ScreenState();
 }
 
+// ignore: camel_case_types
 class _ForgetPass_ScreenState extends State<ForgetPass_Screen> {
   @override
   Widget build(BuildContext context) {
@@ -19,7 +23,7 @@ class _ForgetPass_ScreenState extends State<ForgetPass_Screen> {
 
     GlobalKey<FormState> formKey = GlobalKey();
 
-    bool _isValidEmail(String email) {
+    bool isValidEmail(String email) {
       // Regular expression to check if the email contains only alphanumeric characters
       RegExp regExp = RegExp(r'^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]+');
       return regExp.hasMatch(email);
@@ -30,14 +34,14 @@ class _ForgetPass_ScreenState extends State<ForgetPass_Screen> {
     return ModalProgressHUD(
       inAsyncCall: isLoading,
       child: Scaffold(
-        backgroundColor: Color(0xFF1D5D9B),
+        backgroundColor: const Color(0xFF1D5D9B),
         body: Form(
           key: formKey,
           child: Column(
             children: [
               /////Image
               Padding(
-                padding: EdgeInsets.only(top: 90),
+                padding: const EdgeInsets.only(top: 90),
                 child: Image.asset(
                   'assets/image 4.png',
                   width: 300,
@@ -46,7 +50,7 @@ class _ForgetPass_ScreenState extends State<ForgetPass_Screen> {
               ),
 
               ///////Forget pass text
-              Text(
+              const Text(
                 'Forget Password?',
                 style: TextStyle(
                   color: Colors.white,
@@ -56,7 +60,7 @@ class _ForgetPass_ScreenState extends State<ForgetPass_Screen> {
               ),
 
               ///////Text Enter mail
-              Padding(
+              const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Text(
                   'Please Enter Your Email Address To \n      Receive a Verification Code',
@@ -67,11 +71,11 @@ class _ForgetPass_ScreenState extends State<ForgetPass_Screen> {
                   ),
                 ),
               ),
-              Padding(padding: EdgeInsets.only(top: 90)),
+              const Padding(padding: EdgeInsets.only(top: 90)),
 
               /////Text Mail Address
-              Padding(
-                padding: const EdgeInsets.only(right: 170),
+              const Padding(
+                padding: EdgeInsets.only(right: 170),
                 child: Text(
                   'Email Address',
                   style: TextStyle(
@@ -82,7 +86,7 @@ class _ForgetPass_ScreenState extends State<ForgetPass_Screen> {
                 ),
               ),
 
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(top: 8.0),
               ),
 
@@ -93,7 +97,7 @@ class _ForgetPass_ScreenState extends State<ForgetPass_Screen> {
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter your email';
-                    } else if (!_isValidEmail(value)) {
+                    } else if (!isValidEmail(value)) {
                       return 'Email must not contain special characters';
                     }
                     return null;
@@ -101,26 +105,26 @@ class _ForgetPass_ScreenState extends State<ForgetPass_Screen> {
                   controller: mailAddress,
                   decoration: InputDecoration(
                     hintText: 'mail@example.com',
-                    hintStyle: TextStyle(
+                    hintStyle: const TextStyle(
                       color: Color(0xff678BAD),
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
                     filled: true,
-                    fillColor: Color(0xFF4A7BAA),
+                    fillColor: const Color(0xFF4A7BAA),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Color(0xFF047EB0),
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Color(0xFF4A7BAA),
                       ),
                     ),
-                    border: OutlineInputBorder(
+                    border: const OutlineInputBorder(
                       borderSide: BorderSide(
                         color: Color(0xFF4A7BAA),
                       ),
@@ -143,17 +147,20 @@ class _ForgetPass_ScreenState extends State<ForgetPass_Screen> {
                             email: mailAddress.text,
                           );
                           // Show snackbar to inform the user that the password reset email has been sent
-                         
+
                           // Navigate to login page
                           Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ChangedSuccessfully_Screen()),
-                    );
-                        // ignore: unused_catch_clause
+                            // ignore: use_build_context_synchronously
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const ChangedSuccessfully_Screen()),
+                          );
+                          // ignore: unused_catch_clause
                         } on FirebaseAuthException catch (e) {
+                          // ignore: use_build_context_synchronously
                           ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
+                            const SnackBar(
                               content:
                                   Text('Failed to send password reset email.'),
                             ),
@@ -165,7 +172,7 @@ class _ForgetPass_ScreenState extends State<ForgetPass_Screen> {
                       }
                       //////email#######
                     },
-                    child: customButton(text: 'Reset password')),
+                    child: const customButton(text: 'Reset password')),
               ),
             ],
           ),

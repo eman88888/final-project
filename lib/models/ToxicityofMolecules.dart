@@ -1,4 +1,6 @@
-// ignore: file_names
+
+// ignore_for_file: file_names
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finalproject/pages/convert.dart';
 import 'package:finalproject/pages/robot.dart';
@@ -255,7 +257,7 @@ class _ToxicityofMolecules_ScreenState
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => BottomNavBar()),
+                        MaterialPageRoute(builder: (context) => const BottomNavBar()),
                       );
                     },
                     child: Image.asset(
@@ -295,7 +297,7 @@ class _ToxicityofMolecules_ScreenState
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => BottomNavBar()),
+                    MaterialPageRoute(builder: (context) => const BottomNavBar()),
                   );
                 },
                 icon: const Icon(

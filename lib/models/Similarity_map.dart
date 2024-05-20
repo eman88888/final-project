@@ -1,4 +1,5 @@
-// ignore: file_names
+// ignore_for_file: file_names
+
 import 'package:finalproject/result/similarty_result.dart';
 import 'package:flutter/material.dart';
 

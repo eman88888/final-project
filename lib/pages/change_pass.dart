@@ -1,16 +1,17 @@
 import 'package:finalproject/screens/bottomnavbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 
+// ignore: camel_case_types
 class change extends StatefulWidget {
-  change({Key? key}) : super(key: key);
+  const change({Key? key}) : super(key: key);
 
   @override
   State<change> createState() => _changeState();
 }
 
+// ignore: camel_case_types
 class _changeState extends State<change> {
   GlobalKey<FormState> formKey = GlobalKey();
   final oldpassController = TextEditingController();
@@ -21,7 +22,7 @@ class _changeState extends State<change> {
 
     if (user != null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           backgroundColor: Color(0xFF1D5D9B),
           content: Text(
             'password has been changed',
@@ -35,7 +36,7 @@ class _changeState extends State<change> {
       await user.updatePassword(newPass);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           backgroundColor: Color(0xFF1D5D9B),
           content: Text(
             'password hasnt been changed',
@@ -73,17 +74,17 @@ class _changeState extends State<change> {
           children: [
             Container(
               height: 400,
-              color: Color(0xff1D5D9B),
+              color: const Color(0xff1D5D9B),
             ),
             Container(
               alignment: Alignment.topLeft,
-              padding: EdgeInsets.only(top: 10),
+              padding: const EdgeInsets.only(top: 10),
               // height: 10,
               child: IconButton(
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => BottomNavBar()),
+                    MaterialPageRoute(builder: (context) => const BottomNavBar()),
                   );
                 },
                 icon: const Icon(
@@ -96,7 +97,7 @@ class _changeState extends State<change> {
               padding: const EdgeInsets.only(top: 60),
               child: Container(
                 alignment: Alignment.center,
-                margin: EdgeInsets.only(bottom: 20),
+                margin: const EdgeInsets.only(bottom: 20),
                 height: 149,
                 child: Image.asset("assets/image 4.png"),
               ),
@@ -106,7 +107,7 @@ class _changeState extends State<change> {
               child: Container(
                 width: screenSize.width,
                 height: screenSize.height,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(20),
@@ -114,8 +115,8 @@ class _changeState extends State<change> {
                     )),
                 child: ListView(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
+                    const Padding(
+                      padding: EdgeInsets.all(16.0),
                       child: Text(
                         "Change your password",
                         textAlign: TextAlign.center,
@@ -123,11 +124,11 @@ class _changeState extends State<change> {
                             fontSize: 24, fontWeight: FontWeight.w700),
                       ),
                     ),
-                    Padding(padding: EdgeInsets.all(10)),
+                    const Padding(padding: EdgeInsets.all(10)),
                     Container(
-                      padding: EdgeInsets.only(left: 20, bottom: 10),
+                      padding: const EdgeInsets.only(left: 20, bottom: 10),
                       alignment: Alignment.centerLeft,
-                      child: Text(
+                      child: const Text(
                         " password",
                         style: TextStyle(fontSize: 18),
                       ),
@@ -144,27 +145,27 @@ class _changeState extends State<change> {
                         controller: oldpassController,
                         obscureText: passwordVisible,
                         decoration: InputDecoration(
-                          fillColor: Color(0xffF1F4FF),
+                          fillColor: const Color(0xffF1F4FF),
                           filled: true,
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25),
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Color(0xFF047EB0),
                             ),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25),
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Color(0xFFF1F4FF),
                             ),
                           ),
-                          border: OutlineInputBorder(
+                          border: const OutlineInputBorder(
                             borderSide: BorderSide(
                               color: Color(0xFF047EB0),
                             ),
                           ),
                           suffixIcon: IconButton(
-                            color: Color(0xff035AA6),
+                            color: const Color(0xff035AA6),
                             icon: Icon(passwordVisible
                                 ? Icons.visibility
                                 : Icons.visibility_off),
@@ -182,11 +183,11 @@ class _changeState extends State<change> {
                         textInputAction: TextInputAction.done,
                       ),
                     ),
-                    Padding(padding: EdgeInsets.all(10)),
+                    const Padding(padding: EdgeInsets.all(10)),
                     Container(
-                       padding: EdgeInsets.only(left: 20, bottom: 10),
+                       padding: const EdgeInsets.only(left: 20, bottom: 10),
                       alignment: Alignment.centerLeft,
-                      child: Text(
+                      child: const Text(
                         " New password",
                         style: TextStyle(fontSize: 18),
                       ),
@@ -203,27 +204,27 @@ class _changeState extends State<change> {
                         controller: newpassController,
                         obscureText: passwordVisible1,
                         decoration: InputDecoration(
-                          fillColor: Color(0xffF1F4FF),
+                          fillColor: const Color(0xffF1F4FF),
                           filled: true,
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25),
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Color(0xFF047EB0),
                             ),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25),
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Color(0xFFF1F4FF),
                             ),
                           ),
-                          border: OutlineInputBorder(
+                          border: const OutlineInputBorder(
                             borderSide: BorderSide(
                               color: Color(0xFF047EB0),
                             ),
                           ),
                           suffixIcon: IconButton(
-                            color: Color(0xff035AA6),
+                            color: const Color(0xff035AA6),
                             icon: Icon(passwordVisible1
                                 ? Icons.visibility
                                 : Icons.visibility_off),
@@ -241,11 +242,11 @@ class _changeState extends State<change> {
                         textInputAction: TextInputAction.done,
                       ),
                     ),
-                    Padding(padding: EdgeInsets.all(10)),
+                    const Padding(padding: EdgeInsets.all(10)),
                     Container(
-                      padding: EdgeInsets.only(left: 20, bottom: 10),
+                      padding: const EdgeInsets.only(left: 20, bottom: 10),
                       alignment: Alignment.centerLeft,
-                      child: Text(
+                      child: const Text(
                         "Confirm New password",
                         style: TextStyle(fontSize: 18),
                       ),
@@ -263,27 +264,27 @@ class _changeState extends State<change> {
                         },
                         obscureText: passwordVisible2,
                         decoration: InputDecoration(
-                          fillColor: Color(0xffF1F4FF),
+                          fillColor: const Color(0xffF1F4FF),
                           filled: true,
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25),
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Color(0xFF047EB0),
                             ),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25),
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Color(0xFFF1F4FF),
                             ),
                           ),
-                          border: OutlineInputBorder(
+                          border: const OutlineInputBorder(
                             borderSide: BorderSide(
                               color: Color(0xFF047EB0),
                             ),
                           ),
                           suffixIcon: IconButton(
-                            color: Color(0xff035AA6),
+                            color: const Color(0xff035AA6),
                             icon: Icon(passwordVisible2
                                 ? Icons.visibility
                                 : Icons.visibility_off),
@@ -301,17 +302,12 @@ class _changeState extends State<change> {
                         textInputAction: TextInputAction.done,
                       ),
                     ),
-                    Padding(padding: EdgeInsets.all(30)),
+                    const Padding(padding: EdgeInsets.all(30)),
                     Container(
                       margin: const EdgeInsets.only(left:80,right: 80,bottom: 50,top: 50),
                       height: 60,
                       width: 60,
                       child: MaterialButton(
-                          child: const Text(
-                            'Change',
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
-                          ),
                           color: const Color(0xffF4D160),
                           textColor: Colors.black,
                           shape: RoundedRectangleBorder(
@@ -326,7 +322,12 @@ class _changeState extends State<change> {
                               changePassword(oldpassController.text,
                                   newpassController.text);
                             }
-                          }),
+                          },
+                          child: const Text(
+                            'Change',
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          )),
                     ),
                     Container(
                       alignment: Alignment.bottomLeft,
@@ -337,7 +338,7 @@ class _changeState extends State<change> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => BottomNavBar()),
+                                    builder: (context) => const BottomNavBar()),
                               );
                             },
                             child: Image.asset(

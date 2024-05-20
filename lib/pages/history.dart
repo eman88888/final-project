@@ -1,10 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finalproject/screens/bottomnavbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
+// ignore: camel_case_types
 class history extends StatefulWidget {
   const history({Key? key}) : super(key: key);
 
@@ -12,6 +11,7 @@ class history extends StatefulWidget {
   State<history> createState() => _historyState();
 }
 
+// ignore: camel_case_types
 class _historyState extends State<history> {
   late Future<List<Map<String, dynamic>>> _userHistory;
 
@@ -41,6 +41,7 @@ class _historyState extends State<history> {
 
       return userHistory;
     } catch (e) {
+      // ignore: avoid_print
       print('Failed to fetch user history: $e');
       return []; // Return an empty list in case of failure
     }
@@ -57,7 +58,7 @@ class _historyState extends State<history> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => BottomNavBar()),
+                  MaterialPageRoute(builder: (context) => const BottomNavBar()),
                 );
               },
               icon: const Icon(
@@ -66,12 +67,13 @@ class _historyState extends State<history> {
               ),
             ),
           ),
+          // ignore: sized_box_for_whitespace
           Container(
             height: 163,
             child: Image.asset("assets/image6.png"),
           ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 20),
+          const Padding(
+            padding: EdgeInsets.only(bottom: 20),
             child: Text(
               "Recent Projects",
               textAlign: TextAlign.center,
@@ -82,7 +84,7 @@ class _historyState extends State<history> {
             future: _userHistory,
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(
+                return const Center(
                   child: CircularProgressIndicator(),
                 );
               } else if (snapshot.hasError) {
@@ -99,15 +101,15 @@ class _historyState extends State<history> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Container(
-                            margin: EdgeInsets.only(left: 10),
+                            margin: const EdgeInsets.only(left: 10),
                             height: 162,
                             width: 80,
                             decoration: BoxDecoration(
                               border: Border.all(
-                                  color: Color(0xff1D5D9B), width: 2),
+                                  color: const Color(0xff1D5D9B), width: 2),
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            child: Column(
+                            child: const Column(
                               children: [
                                 Padding(padding: EdgeInsets.only(top: 10)),
                                 Text(
@@ -144,9 +146,9 @@ class _historyState extends State<history> {
                             width: 250,
                             height: 162,
                             decoration: BoxDecoration(
-                                color: Color(0xffBBCEE1),
+                                color: const Color(0xffBBCEE1),
                                 borderRadius: BorderRadius.circular(15),
-                                boxShadow: [
+                                boxShadow: const [
                                   BoxShadow(
                                       color: Color(0xff000000),
                                       offset: Offset(0, 4),
@@ -156,14 +158,15 @@ class _historyState extends State<history> {
                             child: Column(
                               children: [
                                 //scroll only for input
-                                Padding(padding: EdgeInsets.only(top: 10)),
+                                const Padding(
+                                    padding: EdgeInsets.only(top: 10)),
                                 SingleChildScrollView(
                                   scrollDirection: Axis.horizontal,
                                   child: Row(
                                     children: [
                                       Text(
                                         "${data['input']}",
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontSize: 15,
                                           fontWeight: FontWeight.w700,
                                         ),
@@ -171,24 +174,24 @@ class _historyState extends State<history> {
                                     ],
                                   ),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 Text(
                                   "${data['category']}",
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.w700),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 Text(
                                   "${data['date']}",
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.w700),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 Text(
                                   "${data['result']}",
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.w700),
                                 ),

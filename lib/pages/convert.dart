@@ -1,3 +1,4 @@
+// ignore: avoid_web_libraries_in_flutter
 import 'dart:html';
 
 
@@ -10,17 +11,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 //////////////
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+// ignore: avoid_web_libraries_in_flutter
 import 'dart:html' as html;
 // ignore: unused_shown_name
 import 'package:flutter/foundation.dart' show Uint8List, kIsWeb;
 
 //////////////
+// ignore: camel_case_types
 class convertScreen extends StatefulWidget {
   const convertScreen({super.key});
   @override
   State<convertScreen> createState() => _convertScreenState();
 }
 
+// ignore: camel_case_types
 class _convertScreenState extends State<convertScreen> {
   final TextEditingController _smilesController = TextEditingController();
   final TextEditingController _smiles1Controller = TextEditingController();
@@ -55,6 +59,7 @@ class _convertScreenState extends State<convertScreen> {
 
         //Showdialog
         showDialog(
+          // ignore: use_build_context_synchronously
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
@@ -62,7 +67,7 @@ class _convertScreenState extends State<convertScreen> {
                 'assets/success.png',
                 height: 70,
               ),
-              content: Column(
+              content: const Column(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -85,7 +90,7 @@ class _convertScreenState extends State<convertScreen> {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: Text(
+                  child: const Text(
                     "OK",
                     style: TextStyle(
                       fontSize: 17,
@@ -99,6 +104,7 @@ class _convertScreenState extends State<convertScreen> {
         );
       } else {
         showDialog(
+          // ignore: use_build_context_synchronously
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
@@ -112,12 +118,12 @@ class _convertScreenState extends State<convertScreen> {
                 children: [
                   Text(
                     " ${response.statusCode}",
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         fontFamily: 'MulishRomanBold'),
                   ),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                 ],
               ),
               actions: [
@@ -125,7 +131,7 @@ class _convertScreenState extends State<convertScreen> {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: Text(
+                  child: const Text(
                     "OK",
                     style: TextStyle(
                       fontSize: 17,
@@ -140,6 +146,7 @@ class _convertScreenState extends State<convertScreen> {
       }
     } catch (e) {
       showDialog(
+        // ignore: use_build_context_synchronously
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
@@ -153,12 +160,12 @@ class _convertScreenState extends State<convertScreen> {
               children: [
                 Text(
                   "$e",
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                       fontFamily: 'MulishRomanBold'),
                 ),
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
               ],
             ),
             actions: [
@@ -166,7 +173,7 @@ class _convertScreenState extends State<convertScreen> {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text(
+                child: const Text(
                   "OK",
                   style: TextStyle(
                     fontSize: 17,
@@ -214,6 +221,7 @@ class _convertScreenState extends State<convertScreen> {
 
         //Showdialog
         showDialog(
+          // ignore: use_build_context_synchronously
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
@@ -221,7 +229,7 @@ class _convertScreenState extends State<convertScreen> {
                 'assets/success.png',
                 height: 70,
               ),
-              content: Column(
+              content: const Column(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -244,7 +252,7 @@ class _convertScreenState extends State<convertScreen> {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: Text(
+                  child: const Text(
                     "OK",
                     style: TextStyle(
                       fontSize: 17,
@@ -258,6 +266,7 @@ class _convertScreenState extends State<convertScreen> {
         );
       } else {
         showDialog(
+          // ignore: use_build_context_synchronously
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
@@ -271,12 +280,12 @@ class _convertScreenState extends State<convertScreen> {
                 children: [
                   Text(
                     " ${response.statusCode}",
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         fontFamily: 'MulishRomanBold'),
                   ),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                 ],
               ),
               actions: [
@@ -284,7 +293,7 @@ class _convertScreenState extends State<convertScreen> {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: Text(
+                  child: const Text(
                     "OK",
                     style: TextStyle(
                       fontSize: 17,
@@ -299,6 +308,7 @@ class _convertScreenState extends State<convertScreen> {
       }
     } catch (e) {
       showDialog(
+        // ignore: use_build_context_synchronously
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
@@ -312,12 +322,12 @@ class _convertScreenState extends State<convertScreen> {
               children: [
                 Text(
                   "$e",
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                       fontFamily: 'MulishRomanBold'),
                 ),
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
               ],
             ),
             actions: [
@@ -325,7 +335,7 @@ class _convertScreenState extends State<convertScreen> {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text(
+                child: const Text(
                   "OK",
                   style: TextStyle(
                     fontSize: 17,
@@ -376,6 +386,7 @@ class _convertScreenState extends State<convertScreen> {
         Url.revokeObjectUrl(url);
         //Showdialog
         showDialog(
+          // ignore: use_build_context_synchronously
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
@@ -383,7 +394,7 @@ class _convertScreenState extends State<convertScreen> {
                 'assets/success.png',
                 height: 70,
               ),
-              content: Column(
+              content: const Column(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -406,7 +417,7 @@ class _convertScreenState extends State<convertScreen> {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: Text(
+                  child: const Text(
                     "OK",
                     style: TextStyle(
                       fontSize: 17,
@@ -420,6 +431,7 @@ class _convertScreenState extends State<convertScreen> {
         );
       } else {
         showDialog(
+          // ignore: use_build_context_synchronously
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
@@ -433,12 +445,12 @@ class _convertScreenState extends State<convertScreen> {
                 children: [
                   Text(
                     " ${response.statusCode}",
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         fontFamily: 'MulishRomanBold'),
                   ),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                 ],
               ),
               actions: [
@@ -446,7 +458,7 @@ class _convertScreenState extends State<convertScreen> {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: Text(
+                  child: const Text(
                     "OK",
                     style: TextStyle(
                       fontSize: 17,
@@ -461,6 +473,7 @@ class _convertScreenState extends State<convertScreen> {
       }
     } catch (e) {
       showDialog(
+        // ignore: use_build_context_synchronously
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
@@ -474,12 +487,12 @@ class _convertScreenState extends State<convertScreen> {
               children: [
                 Text(
                   "$e",
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                       fontFamily: 'MulishRomanBold'),
                 ),
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
               ],
             ),
             actions: [
@@ -487,7 +500,7 @@ class _convertScreenState extends State<convertScreen> {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text(
+                child: const Text(
                   "OK",
                   style: TextStyle(
                     fontSize: 17,
@@ -512,18 +525,18 @@ class _convertScreenState extends State<convertScreen> {
             listener: (context, state) {},
             builder: (context, state) {
               return Scaffold(
-                backgroundColor: Color(0xff1D5D9B),
+                backgroundColor: const Color(0xff1D5D9B),
                 body: Column(
                   children: [
                     Container(
                       alignment: Alignment.topLeft,
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
                       child: IconButton(
                         onPressed: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => BottomNavBar()),
+                                builder: (context) => const BottomNavBar()),
                           );
                         },
                         icon: const Icon(
@@ -554,6 +567,7 @@ class _convertScreenState extends State<convertScreen> {
                                 borderRadius: BorderRadius.only(
                                     topRight: Radius.circular(25),
                                     topLeft: Radius.circular(25))),
+                            // ignore: sized_box_for_whitespace
                             builder: (context) => Container(
                               height: 563,
                               width: double.infinity,
@@ -565,7 +579,7 @@ class _convertScreenState extends State<convertScreen> {
                                       alignment: Alignment.center,
                                       height: 4.51,
                                       width: 134,
-                                      color: Color(0xffCACACA),
+                                      color: const Color(0xffCACACA),
                                     ),
                                   ),
                                   Padding(
@@ -573,7 +587,7 @@ class _convertScreenState extends State<convertScreen> {
                                         top: 30, left: 40),
                                     child: Container(
                                         alignment: Alignment.topLeft,
-                                        child: Text(
+                                        child: const Text(
                                           "Input Smile",
                                           style: TextStyle(
                                               fontSize: 25,
@@ -588,26 +602,26 @@ class _convertScreenState extends State<convertScreen> {
                                       keyboardType: TextInputType.multiline,
                                       textAlign: TextAlign.start,
                                       autofocus: false,
-                                      style: new TextStyle(
+                                      style: const TextStyle(
                                           fontWeight: FontWeight.normal,
                                           color: Colors.black),
                                       decoration: InputDecoration(
                                         focusedBorder: OutlineInputBorder(
                                           borderRadius:
                                               BorderRadius.circular(25),
-                                          borderSide: BorderSide(
+                                          borderSide: const BorderSide(
                                             color: Color(0xff1D5D9B),
                                           ),
                                         ),
                                         enabledBorder: OutlineInputBorder(
                                           borderRadius:
                                               BorderRadius.circular(25),
-                                          borderSide: BorderSide(
+                                          borderSide: const BorderSide(
                                             color: Color(0xFF000000),
                                           ),
                                         ),
                                         border: OutlineInputBorder(
-                                            borderSide: BorderSide(
+                                            borderSide: const BorderSide(
                                               color: Color(0xFF000000),
                                             ),
                                             borderRadius:
@@ -621,6 +635,7 @@ class _convertScreenState extends State<convertScreen> {
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(top: 180),
+                                    // ignore: sized_box_for_whitespace
                                     child: Container(
                                       // margin: const EdgeInsets.only(left:80,right: 80,bottom: 50,top: 50),
                                       height: 66,
@@ -632,17 +647,17 @@ class _convertScreenState extends State<convertScreen> {
                                                 _smilesController.text);
                                           });
                                         },
-                                        child: const Text(
-                                          'Convert',
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.bold),
-                                        ),
                                         color: const Color(0xff1D5D9B),
                                         textColor: Colors.white,
                                         shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(20),
+                                        ),
+                                        child: const Text(
+                                          'Convert',
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold),
                                         ),
                                       ),
                                     ),
@@ -657,10 +672,10 @@ class _convertScreenState extends State<convertScreen> {
                           width: 322,
                           height: 64,
                           decoration: BoxDecoration(
-                            color: Color(0xffFFFFFF),
+                            color: const Color(0xffFFFFFF),
                             borderRadius: BorderRadius.circular(25),
                           ),
-                          child: Text(
+                          child: const Text(
                             "SMILE TO SDF",
                             style: TextStyle(
                                 fontSize: 25, fontWeight: FontWeight.w700),
@@ -680,6 +695,7 @@ class _convertScreenState extends State<convertScreen> {
                                 borderRadius: BorderRadius.only(
                                     topRight: Radius.circular(25),
                                     topLeft: Radius.circular(25))),
+                            // ignore: sized_box_for_whitespace
                             builder: (context) => Container(
                               height: 563,
                               width: double.infinity,
@@ -691,7 +707,7 @@ class _convertScreenState extends State<convertScreen> {
                                       alignment: Alignment.center,
                                       height: 4.51,
                                       width: 134,
-                                      color: Color(0xffCACACA),
+                                      color: const Color(0xffCACACA),
                                     ),
                                   ),
                                   Padding(
@@ -699,7 +715,7 @@ class _convertScreenState extends State<convertScreen> {
                                         top: 30, left: 40),
                                     child: Container(
                                         alignment: Alignment.topLeft,
-                                        child: Text(
+                                        child: const Text(
                                           "Input Smile",
                                           style: TextStyle(
                                               fontSize: 25,
@@ -713,26 +729,26 @@ class _convertScreenState extends State<convertScreen> {
                                       keyboardType: TextInputType.multiline,
                                       textAlign: TextAlign.start,
                                       autofocus: false,
-                                      style: new TextStyle(
+                                      style: const TextStyle(
                                           fontWeight: FontWeight.normal,
                                           color: Colors.black),
                                       decoration: InputDecoration(
                                         focusedBorder: OutlineInputBorder(
                                           borderRadius:
                                               BorderRadius.circular(25),
-                                          borderSide: BorderSide(
+                                          borderSide: const BorderSide(
                                             color: Color(0xff1D5D9B),
                                           ),
                                         ),
                                         enabledBorder: OutlineInputBorder(
                                           borderRadius:
                                               BorderRadius.circular(25),
-                                          borderSide: BorderSide(
+                                          borderSide: const BorderSide(
                                             color: Color(0xFF000000),
                                           ),
                                         ),
                                         border: OutlineInputBorder(
-                                            borderSide: BorderSide(
+                                            borderSide: const BorderSide(
                                               color: Color(0xFF000000),
                                             ),
                                             borderRadius:
@@ -746,6 +762,7 @@ class _convertScreenState extends State<convertScreen> {
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(top: 180),
+                                    // ignore: sized_box_for_whitespace
                                     child: Container(
                                       // margin: const EdgeInsets.only(left:80,right: 80,bottom: 50,top: 50),
                                       height: 66,
@@ -757,17 +774,17 @@ class _convertScreenState extends State<convertScreen> {
                                                 _smiles1Controller.text);
                                           });
                                         },
-                                        child: const Text(
-                                          'Convert',
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.bold),
-                                        ),
                                         color: const Color(0xff1D5D9B),
                                         textColor: Colors.white,
                                         shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(20),
+                                        ),
+                                        child: const Text(
+                                          'Convert',
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold),
                                         ),
                                       ),
                                     ),
@@ -782,10 +799,10 @@ class _convertScreenState extends State<convertScreen> {
                           width: 322,
                           height: 64,
                           decoration: BoxDecoration(
-                            color: Color(0xffFFFFFF),
+                            color: const Color(0xffFFFFFF),
                             borderRadius: BorderRadius.circular(25),
                           ),
-                          child: Text(
+                          child: const Text(
                             "SMILE TO PDB",
                             style: TextStyle(
                                 fontSize: 25, fontWeight: FontWeight.w700),
@@ -805,6 +822,7 @@ class _convertScreenState extends State<convertScreen> {
                                 borderRadius: BorderRadius.only(
                                     topRight: Radius.circular(25),
                                     topLeft: Radius.circular(25))),
+                            // ignore: sized_box_for_whitespace
                             builder: (context) => Container(
                               height: 563,
                               width: double.infinity,
@@ -816,7 +834,7 @@ class _convertScreenState extends State<convertScreen> {
                                       alignment: Alignment.center,
                                       height: 4.51,
                                       width: 134,
-                                      color: Color(0xffCACACA),
+                                      color: const Color(0xffCACACA),
                                     ),
                                   ),
                                   Padding(
@@ -842,15 +860,15 @@ class _convertScreenState extends State<convertScreen> {
                                                   top: 30, left: 10, right: 10),
                                               child: DottedBorder(
                                                 borderType: BorderType.RRect,
-                                                radius: Radius.circular(10),
-                                                dashPattern: [10, 4],
+                                                radius: const Radius.circular(10),
+                                                dashPattern: const [10, 4],
                                                 strokeCap: StrokeCap.round,
-                                                color: Color(0xff1D5D9B),
+                                                color: const Color(0xff1D5D9B),
                                                 child: Container(
                                                   width: 298,
                                                   height: 100,
                                                   decoration: BoxDecoration(
-                                                    color: Color(0xfff8fafb),
+                                                    color: const Color(0xfff8fafb),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             10),
@@ -865,7 +883,7 @@ class _convertScreenState extends State<convertScreen> {
                                                         width: 115,
                                                         height: 76,
                                                       ),
-                                                      Text(
+                                                      const Text(
                                                         "Upload SDF File",
                                                         style: TextStyle(
                                                             fontSize: 15),
@@ -878,6 +896,7 @@ class _convertScreenState extends State<convertScreen> {
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(top: 250),
+                                    // ignore: sized_box_for_whitespace
                                     child: Container(
                                       // margin: const EdgeInsets.only(left:80,right: 80,bottom: 50,top: 50),
                                       height: 66,
@@ -888,17 +907,17 @@ class _convertScreenState extends State<convertScreen> {
                                             uploadFile(context);
                                           });
                                         },
-                                        child: const Text(
-                                          'Convert',
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.bold),
-                                        ),
                                         color: const Color(0xff1D5D9B),
                                         textColor: Colors.white,
                                         shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(20),
+                                        ),
+                                        child: const Text(
+                                          'Convert',
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold),
                                         ),
                                       ),
                                     ),
@@ -913,10 +932,10 @@ class _convertScreenState extends State<convertScreen> {
                           width: 322,
                           height: 64,
                           decoration: BoxDecoration(
-                            color: Color(0xffFFFFFF),
+                            color: const Color(0xffFFFFFF),
                             borderRadius: BorderRadius.circular(25),
                           ),
-                          child: Text(
+                          child: const Text(
                             "SDF TO SMILE ",
                             style: TextStyle(
                                 fontSize: 25, fontWeight: FontWeight.w700),

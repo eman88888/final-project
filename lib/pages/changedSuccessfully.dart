@@ -1,9 +1,12 @@
+
+// ignore_for_file: file_names
+
 import 'package:finalproject/pages/login_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import '../widget/custom_Button.dart';
 
+// ignore: camel_case_types
 class ChangedSuccessfully_Screen extends StatelessWidget {
   const ChangedSuccessfully_Screen({super.key});
 
@@ -22,8 +25,8 @@ class ChangedSuccessfully_Screen extends StatelessWidget {
           
 
           /////Text for Your password has been changed
-          Padding(
-            padding: const EdgeInsets.only(top: 50),
+          const Padding(
+            padding: EdgeInsets.only(top: 50),
             child: Center(
               child: Text(
                 'Password reset email sent! \n  Please check your email.',
@@ -44,10 +47,10 @@ class ChangedSuccessfully_Screen extends StatelessWidget {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Login_Screen()),
+                    MaterialPageRoute(builder: (context) => const Login_Screen()),
                   );
                 },
-                child: customButton(text: 'Back to Login')),
+                child: const customButton(text: 'Back to Login')),
           )
         ],
       ),

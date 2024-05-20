@@ -1,12 +1,11 @@
 import 'package:finalproject/pages/robot.dart';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../screens/bottomnavbar.dart';
 
+// ignore: camel_case_types
 class info extends StatefulWidget {
   const info({Key? key}) : super(key: key);
 
@@ -14,6 +13,7 @@ class info extends StatefulWidget {
   State<info> createState() => _infoState();
 }
 
+// ignore: camel_case_types
 class _infoState extends State<info> {
   @override
   Widget build(BuildContext context) {
@@ -24,19 +24,19 @@ class _infoState extends State<info> {
         children: [
           Container(
             height: 200,
-            color: Color(0xff1D5D9B),
+            color: const Color(0xff1D5D9B),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
                 alignment: Alignment.topLeft,
-                padding: EdgeInsets.all(5.5),
+                padding: const EdgeInsets.all(5.5),
                 child: IconButton(
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => BottomNavBar()),
+                      MaterialPageRoute(builder: (context) => const BottomNavBar()),
                     );
                   },
                   icon: const Icon(
@@ -52,7 +52,7 @@ class _infoState extends State<info> {
             child: Container(
               width: screenSize.width,
               height: screenSize.height,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(20),
@@ -62,8 +62,8 @@ class _infoState extends State<info> {
                 children: [
                   Row(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
+                      const Padding(
+                        padding: EdgeInsets.only(
                             left: 125, top: 20, bottom: 5),
                         child: Text(
                           'Information',
@@ -83,20 +83,20 @@ class _infoState extends State<info> {
                       ),
                     ],
                   ),
-                  Center(
+                  const Center(
                       child: Text('Common Questions',
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 15))),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10, top: 30),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 10, top: 30),
                     child: Text(
                       "1. How can users utilize the program to research drug toxicity ?",
                       style:
                           TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(5),
+                  const Padding(
+                    padding: EdgeInsets.all(5),
                     child: Text(
                       " Users can input drug information via SMILES or images to investigate its toxicity.",
                       style: TextStyle(
@@ -104,20 +104,20 @@ class _infoState extends State<info> {
                       ),
                     ),
                   ),
-                  Divider(
+                  const Divider(
                     color: Color(0xff6e6d6d),
                   ),
-                  Padding(padding: EdgeInsets.all(5)),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8),
+                  const Padding(padding: EdgeInsets.all(5)),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 8),
                     child: Text(
                       "2. How are the toxicity results presented to users, and what specific information do they receive?",
                       style:
                           TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(5),
+                  const Padding(
+                    padding: EdgeInsets.all(5),
                     child: Text(
                       "  Results are displayed, indicating whether the drug is toxic or non-toxic, along with SA Score and Tox Score.",
                       style: TextStyle(
@@ -125,20 +125,20 @@ class _infoState extends State<info> {
                       ),
                     ),
                   ),
-                  Divider(
+                  const Divider(
                     color: Color(0xff6e6d6d),
                   ),
-                  Padding(padding: EdgeInsets.all(5)),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8),
+                  const Padding(padding: EdgeInsets.all(5)),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 8),
                     child: Text(
                       "3. How does the program handle the Mutagenicity analysis, and what are the expected results?",
                       style:
                           TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(5),
+                  const Padding(
+                    padding: EdgeInsets.all(5),
                     child: Text(
                       " The Mutagenicity analysis processes SMILES input and provides information on whether the substance is mutagenic or not.",
                       style: TextStyle(
@@ -146,20 +146,20 @@ class _infoState extends State<info> {
                       ),
                     ),
                   ),
-                  Divider(
+                  const Divider(
                     color: Color(0xff6e6d6d),
                   ),
-                  Padding(padding: EdgeInsets.all(5)),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8),
+                  const Padding(padding: EdgeInsets.all(5)),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 8),
                     child: Text(
                       "4. Is Toxikon available to the general public, or is it targeted towards a specific group of researchers or specialists?",
                       style:
                           TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(5),
+                  const Padding(
+                    padding: EdgeInsets.all(5),
                     child: Text(
                       " Toxikon is accessible to both the general public and specific groups of researchers or specialists.",
                       style: TextStyle(
@@ -167,20 +167,20 @@ class _infoState extends State<info> {
                       ),
                     ),
                   ),
-                  Divider(
+                  const Divider(
                     color: Color(0xff6e6d6d),
                   ),
-                  Padding(padding: EdgeInsets.all(5)),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8),
+                  const Padding(padding: EdgeInsets.all(5)),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 8),
                     child: Text(
                       "5. What is the significance and usage of SA Score and Tox Score in the program's results?",
                       style:
                           TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(5),
+                  const Padding(
+                    padding: EdgeInsets.all(5),
                     child: Text(
                       " SA Score and Tox Score provide insights into the drug's safety ,helping users interpret drug potential toxicity and its probability to be synthesized",
                       style: TextStyle(
@@ -194,6 +194,7 @@ class _infoState extends State<info> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        // ignore: avoid_unnecessary_containers
                         Container(
                           child: Padding(
                               padding: const EdgeInsets.only(left: 5.0),
@@ -202,7 +203,7 @@ class _infoState extends State<info> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => BottomNavBar()),
+                                        builder: (context) => const BottomNavBar()),
                                   );
                                 },
                                 child: Image.asset(
@@ -215,9 +216,10 @@ class _infoState extends State<info> {
                           onTap: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => robot()),
+                              MaterialPageRoute(builder: (context) => const robot()),
                             );
                           },
+                          // ignore: avoid_unnecessary_containers
                           child: Container(
                             child: Image.asset(
                               "assets/Animation3.gif",

@@ -7,9 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
 
+// ignore: camel_case_types
 class Chat_Page extends StatefulWidget {
   const Chat_Page({Key? key}) : super(key: key);
   @override
+  // ignore: library_private_types_in_public_api
   _ChatPageState createState() => _ChatPageState();
 }
 
@@ -61,15 +63,16 @@ class _ChatPageState extends State<Chat_Page> {
         }
       }
     } on Exception {
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          backgroundColor: Color(0xFF1D5D9B),
-          duration: Duration(milliseconds: 90),
+          backgroundColor: const Color(0xFF1D5D9B),
+          duration: const Duration(milliseconds: 90),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
-            side: BorderSide(color: Colors.white, width: 2),
+            side: const BorderSide(color: Colors.white, width: 2),
           ),
-          content: Text(
+          content: const Text(
             "Some error occurred, please try again!",
             style: TextStyle(
               fontSize: 17,
@@ -86,7 +89,7 @@ class _ChatPageState extends State<Chat_Page> {
     return Scaffold(
       body: Column(
         children: [
-          Padding(padding: EdgeInsets.only(top: 10)),
+          const Padding(padding: EdgeInsets.only(top: 10)),
           Row(
             children: [
               GestureDetector(
@@ -94,8 +97,8 @@ class _ChatPageState extends State<Chat_Page> {
                   ///main page of Chat
                   Navigator.pop(context);
                 },
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 10),
+                child: const Padding(
+                  padding: EdgeInsets.only(left: 10),
                   child: Icon(
                     Icons.arrow_back_ios_new_outlined,
                     color: Colors.black,
@@ -108,7 +111,7 @@ class _ChatPageState extends State<Chat_Page> {
                 width: 80,
                 fit: BoxFit.fill,
               ),
-              Text(
+              const Text(
                 'Mr. Tox',
                 style: TextStyle(
                   fontSize: 20,
@@ -122,7 +125,7 @@ class _ChatPageState extends State<Chat_Page> {
                    onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => info()),
+                MaterialPageRoute(builder: (context) => const info()),
               );
             },
             child: Padding(
@@ -135,7 +138,7 @@ class _ChatPageState extends State<Chat_Page> {
               ),
             ],
           ),
-          Divider(
+          const Divider(
             thickness: 0.9,
             color: Colors.blueGrey,
           ),
@@ -154,11 +157,11 @@ class _ChatPageState extends State<Chat_Page> {
                                 text: messagesList[0].message,
                                 isSender: true,
                                 color: Colors.blue.shade100,
-                                textStyle: TextStyle(color: Colors.white),
+                                textStyle: const TextStyle(color: Colors.white),
                                 
                               ),
                                Padding(
-                                padding: EdgeInsets.only(left: 16, top: 4),
+                                padding: const EdgeInsets.only(left: 16, top: 4),
                                 child: Align(
                                     alignment: Alignment.centerLeft,
                                     child: SizedBox(
@@ -173,8 +176,8 @@ class _ChatPageState extends State<Chat_Page> {
                             text: messagesList[index].message,
                             isSender: messagesList[index].isSender,
                             color: messagesList[index].isSender
-                                ? Color(0xFF1D5D9B)
-                                : Color(0xFFB5B5B5),
+                                ? const Color(0xFF1D5D9B)
+                                : const Color(0xFFB5B5B5),
                             textStyle: TextStyle(
                               fontSize: 17,
                               color: messagesList[index].isSender
@@ -197,25 +200,25 @@ class _ChatPageState extends State<Chat_Page> {
               },
               decoration: InputDecoration(
                 hintText: 'Write your message',
-                hintStyle: TextStyle(
+                hintStyle: const TextStyle(
                   color: Color(0xffA2A2A2),
                 ),
                 suffixIcon: IconButton(
-                  icon: Icon(Icons.send_rounded),
-                  color: Color(0xFF047EB0),
+                  icon: const Icon(Icons.send_rounded),
+                  color: const Color(0xFF047EB0),
                   onPressed: () {
                     _sendMessage();
                   },
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(32),
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     color: Color(0xFF047EB0),
                   ),
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(16),
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     color: Color(0xFF88AACA),
                   ),
                 ),

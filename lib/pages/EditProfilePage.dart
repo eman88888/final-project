@@ -1,11 +1,11 @@
+// ignore_for_file: file_names
+
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:finalproject/screens/bottomnavbar.dart';
 
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/widgets.dart';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -16,8 +16,9 @@ import '../widget/custom_TextFormField1.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+// ignore: camel_case_types
 class EditProfile_Page extends StatefulWidget {
-  EditProfile_Page({super.key});
+  const EditProfile_Page({super.key});
 
   @override
   State<EditProfile_Page> createState() => _PickImageState();
@@ -58,11 +59,12 @@ class _PickImageState extends State<EditProfile_Page> {
     }
   }
 
-  TextEditingController _userNameController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _JobController = TextEditingController();
-  TextEditingController _countryController = TextEditingController();
-  TextEditingController _mobileController = TextEditingController();
+  final TextEditingController _userNameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  // ignore: non_constant_identifier_names
+  final TextEditingController _JobController = TextEditingController();
+  final TextEditingController _countryController = TextEditingController();
+  final TextEditingController _mobileController = TextEditingController();
   String? url;
   final Stream<QuerySnapshot> documentStream = FirebaseFirestore.instance
       .collection('users')
@@ -133,12 +135,14 @@ class _PickImageState extends State<EditProfile_Page> {
                   SetOptions(merge: true),
                 )
                 .then((value) =>
+                    // ignore: avoid_print
                     print("'full_name' & 'age' merged with existing data!"))
+                // ignore: avoid_print
                 .catchError((error) => print("Failed to merge data: $error"));
           }
 
           return Scaffold(
-            backgroundColor: Color(0xFF1D5D9B),
+            backgroundColor: const Color(0xFF1D5D9B),
             body: Padding(
               padding: const EdgeInsets.only(top: 30.0),
               child: Column(
@@ -150,7 +154,7 @@ class _PickImageState extends State<EditProfile_Page> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => BottomNavBar()),
+                              builder: (context) => const BottomNavBar()),
                         );
                       },
                       icon: const Icon(
@@ -169,13 +173,13 @@ class _PickImageState extends State<EditProfile_Page> {
                                   backgroundImage: NetworkImage(
                                       snapshot.data!.docs.last['url']),
                                 )
-                              : CircleAvatar(
+                              : const CircleAvatar(
                                   radius: 90,
                                   backgroundImage: AssetImage(
                                     "assets/profile.png",
                                   ),
                                 )
-                          : CircleAvatar(
+                          : const CircleAvatar(
                               radius: 90,
                               backgroundImage: AssetImage(
                                 "assets/profile.png",
@@ -197,7 +201,7 @@ class _PickImageState extends State<EditProfile_Page> {
                                 BorderRadius.circular(30), // Border radius
                           ),
                           child: IconButton(
-                            color: Color(0xFF1D5D9B),
+                            color: const Color(0xFF1D5D9B),
                             iconSize: 20,
                             onPressed: () {
                               showImagePickerOption(context);
@@ -217,7 +221,7 @@ class _PickImageState extends State<EditProfile_Page> {
                     child: Text(
                       //name from signup
                       _userName,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 30,
                         fontFamily: 'Pacifico',
                         color: Colors.white,
@@ -225,8 +229,8 @@ class _PickImageState extends State<EditProfile_Page> {
                     ),
                   ),
 
-                  Padding(padding: EdgeInsets.only(bottom: 3)),
-                  Text(
+                  const Padding(padding: EdgeInsets.only(bottom: 3)),
+                  const Text(
                     'Researcher',
                     style: TextStyle(
                       fontSize: 20,
@@ -235,11 +239,11 @@ class _PickImageState extends State<EditProfile_Page> {
                       fontFamily: 'Space Mono',
                     ),
                   ),
-                  Padding(padding: EdgeInsets.only(bottom: 5)),
+                  const Padding(padding: EdgeInsets.only(bottom: 5)),
                   ///////////////////Container with TextField UserName
                   Expanded(
                     child: Container(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(20.0),
@@ -249,7 +253,7 @@ class _PickImageState extends State<EditProfile_Page> {
                       child: SingleChildScrollView(
                         child: Column(
                           children: [
-                            Padding(padding: EdgeInsets.only(top: 32)),
+                            const Padding(padding: EdgeInsets.only(top: 32)),
                             Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 16),
@@ -259,17 +263,17 @@ class _PickImageState extends State<EditProfile_Page> {
                                   decoration: InputDecoration(
                                     filled: true,
                                     fillColor:
-                                        Color.fromARGB(255, 228, 233, 251),
+                                        const Color.fromARGB(255, 228, 233, 251),
                                     floatingLabelBehavior:
                                         FloatingLabelBehavior.always,
-                                    suffixIcon: Icon(
+                                    suffixIcon: const Icon(
                                       Icons.edit_outlined,
                                       color: Color(0xFF1D5D9B),
                                     ),
-                                    contentPadding: EdgeInsets.symmetric(
+                                    contentPadding: const EdgeInsets.symmetric(
                                         horizontal: 30, vertical: 5),
                                     label: const Text('Name'),
-                                    labelStyle: TextStyle(
+                                    labelStyle: const TextStyle(
                                       color: Color(0xFF1D5D9B),
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20,
@@ -280,17 +284,17 @@ class _PickImageState extends State<EditProfile_Page> {
                                             .instance.currentUser!.displayName,
                                     focusedBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(16),
-                                      borderSide: BorderSide(
+                                      borderSide: const BorderSide(
                                         color: Color(0xFF047EB0),
                                       ),
                                     ),
                                     enabledBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(16),
-                                      borderSide: BorderSide(
+                                      borderSide: const BorderSide(
                                         color: Color(0xFF88AACA),
                                       ),
                                     ),
-                                    border: OutlineInputBorder(
+                                    border: const OutlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0xFF88AACA),
                                       ),
@@ -306,7 +310,7 @@ class _PickImageState extends State<EditProfile_Page> {
                               ),
                             ),
 
-                            Padding(
+                            const Padding(
                               padding: EdgeInsets.only(bottom: 25),
                             ),
 
@@ -315,7 +319,7 @@ class _PickImageState extends State<EditProfile_Page> {
                               controller: _emailController,
                               iconData: Icons.edit_outlined,
                               labelText: 'Email',
-                              labelColor: Color(0xFF1D5D9B),
+                              labelColor: const Color(0xFF1D5D9B),
                               labelFontSize: 20,
                               labelFontWeight: FontWeight.bold,
                               hintText: snapshot.data!.docs.isNotEmpty
@@ -323,21 +327,21 @@ class _PickImageState extends State<EditProfile_Page> {
                                   : FirebaseAuth.instance.currentUser!.email,
                             ),
 
-                            Padding(
+                            const Padding(
                               padding: EdgeInsets.only(bottom: 30),
                             ), /////////////////// TextField Job
                             CustomTextFormField(
                                 controller: _JobController,
                                 iconData: Icons.edit_outlined,
                                 labelText: 'Job Description',
-                                labelColor: Color(0xFF1D5D9B),
+                                labelColor: const Color(0xFF1D5D9B),
                                 labelFontSize: 20,
                                 labelFontWeight: FontWeight.bold,
                                 hintText: snapshot.data!.docs.isNotEmpty
                                     ? snapshot.data!.docs.last['job']
                                     : ' '),
 
-                            Padding(
+                            const Padding(
                               padding: EdgeInsets.only(bottom: 30),
                             ),
 
@@ -346,14 +350,14 @@ class _PickImageState extends State<EditProfile_Page> {
                                 controller: _countryController,
                                 iconData: Icons.edit_outlined,
                                 labelText: 'Country',
-                                labelColor: Color(0xFF1D5D9B),
+                                labelColor: const Color(0xFF1D5D9B),
                                 labelFontSize: 20,
                                 labelFontWeight: FontWeight.bold,
                                 hintText: snapshot.data!.docs.isNotEmpty
                                     ? snapshot.data!.docs.last['country']
                                     : ' '),
 
-                            Padding(
+                            const Padding(
                               padding: EdgeInsets.only(bottom: 30),
                             ),
 
@@ -362,14 +366,14 @@ class _PickImageState extends State<EditProfile_Page> {
                                 controller: _mobileController,
                                 iconData: Icons.edit_outlined,
                                 labelText: 'Mobile',
-                                labelColor: Color(0xFF1D5D9B),
+                                labelColor: const Color(0xFF1D5D9B),
                                 labelFontSize: 20,
                                 labelFontWeight: FontWeight.bold,
                                 hintText: snapshot.data!.docs.isNotEmpty
                                     ? snapshot.data!.docs.last['phone']
                                     : ' '),
 
-                            Padding(
+                            const Padding(
                               padding: EdgeInsets.only(bottom: 40),
                             ),
 
@@ -381,11 +385,11 @@ class _PickImageState extends State<EditProfile_Page> {
                               child: Container(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
-                                  color: Color(0xFFF1CF5F),
+                                  color: const Color(0xFFF1CF5F),
                                 ),
                                 width: 348,
                                 height: 60,
-                                child: Center(
+                                child: const Center(
                                   child: Text(
                                     'Update Profile',
                                     style: TextStyle(
@@ -436,12 +440,14 @@ class _PickImageState extends State<EditProfile_Page> {
                         var imageUrl = await snapshot.ref.getDownloadURL();
                         // ignore: unnecessary_null_comparison
                         if (imageUrl != null) {
+                          // ignore: avoid_print
                           print('Image uploaded successfully. URL: $imageUrl');
                           setState(() {
                             url = imageUrl;
                           });
                         }
                       } catch (e) {
+                        // ignore: avoid_print
                         print(e);
                       }
                     }
