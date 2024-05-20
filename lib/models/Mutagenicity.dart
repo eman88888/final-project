@@ -1,7 +1,6 @@
+// ignore: file_names
 import 'dart:convert';
 import 'dart:io';
-import 'dart:ui';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:file_picker/file_picker.dart';
@@ -21,6 +20,7 @@ import 'package:http/http.dart' as http;
 DateTime dateToday = DateTime.now();
 String date = dateToday.toString().substring(0, 10);
 
+// ignore: camel_case_types
 class mutagenicity extends StatefulWidget {
   const mutagenicity({super.key});
 
@@ -28,7 +28,9 @@ class mutagenicity extends StatefulWidget {
   State<mutagenicity> createState() => _mutagenicityState();
 }
 
+// ignore: camel_case_types
 class _mutagenicityState extends State<mutagenicity> {
+  // ignore: prefer_final_fields
   TextEditingController _smilesController = TextEditingController();
   String fileName = 'input.sdf';
 
@@ -57,6 +59,7 @@ class _mutagenicityState extends State<mutagenicity> {
         throw Exception('Failed to fetch result: ${response.statusCode}');
       }
     } catch (e) {
+      // ignore: avoid_print
       print('Error fetching result: $e');
       throw Exception('Failed to fetch result');
     }
@@ -85,6 +88,7 @@ class _mutagenicityState extends State<mutagenicity> {
         resultsmile = response.statusCode.toString();
       }
     } catch (e) {
+      // ignore: avoid_print
       print(e);
     }
   }
@@ -108,6 +112,7 @@ class _mutagenicityState extends State<mutagenicity> {
         resultimg = imgStr;
       });
     } else {
+      // ignore: avoid_print
       print('Request failed with status: ${response.statusCode}.');
     }
   }
@@ -121,7 +126,7 @@ class _mutagenicityState extends State<mutagenicity> {
       if (kIsWeb) {
         request.files.add(http.MultipartFile.fromBytes(
           'file',
-          fileBytes as List<int>,
+          fileBytes,
           filename: fileName,
         ));
       } else {
@@ -147,11 +152,14 @@ class _mutagenicityState extends State<mutagenicity> {
         setState(() {
           // Set state or handle the result as needed
         });
+        // ignore: avoid_print
         print('Results from server: $serverResult');
       } else {
+        // ignore: avoid_print
         print('Failed to upload file: ${response.statusCode}');
       }
     } catch (e) {
+      // ignore: avoid_print
       print('Exception while uploading file: $e');
     }
   }
@@ -177,14 +185,17 @@ class _mutagenicityState extends State<mutagenicity> {
 
       if (response.statusCode == 200) {
         String smile = await response.stream.bytesToString();
+        // ignore: avoid_print
         print('Converted SMILES: $smile');
         setState(() {
           resultSmi = smile; // Assuming resultSmiles is a state variable
         });
       } else {
+        // ignore: avoid_print
         print('Failed to convert SDF to SMILES: ${response.reasonPhrase}');
       }
     } catch (e) {
+      // ignore: avoid_print
       print('Error converting SDF to SMILES: $e');
     }
   }
@@ -201,10 +212,13 @@ class _mutagenicityState extends State<mutagenicity> {
         await uploadFile(fileBytes);
         await convertSdfToSmiles(fileBytes);
 
+        // ignore: avoid_print
         print('Mutagenicity Prediction: $serverResult');
+        // ignore: avoid_print
         print('SMILES Conversion: $resultSmi');
       }
     } catch (e) {
+      // ignore: avoid_print
       print('Error picking file: $e');
     }
   }
@@ -227,6 +241,7 @@ class _mutagenicityState extends State<mutagenicity> {
         gester = result;
       });
     } else {
+      // ignore: avoid_print
       print('Request failed with status: ${response.statusCode}.');
     }
   }
@@ -247,8 +262,10 @@ class _mutagenicityState extends State<mutagenicity> {
         'category': 'Mutagenicity',
         'id': FirebaseAuth.instance.currentUser!.uid,
       });
+      // ignore: avoid_print
       print('History added successfully');
     } catch (e) {
+      // ignore: avoid_print
       print('Failed to add history: $e');
     }
   }
@@ -261,6 +278,7 @@ class _mutagenicityState extends State<mutagenicity> {
         bottomNavigationBar: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            // ignore: avoid_unnecessary_containers
             Container(
               child: Padding(
                   padding: const EdgeInsets.only(left: 5.0),
@@ -281,9 +299,10 @@ class _mutagenicityState extends State<mutagenicity> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => robot()),
+                  MaterialPageRoute(builder: (context) => const robot()),
                 );
               },
+              // ignore: avoid_unnecessary_containers
               child: Container(
                 child: Image.asset(
                   "assets/Animation3.gif",
@@ -299,7 +318,7 @@ class _mutagenicityState extends State<mutagenicity> {
           children: [
             Container(
               height: 200,
-              color: Color(0xff1D5D9B),
+              color: const Color(0xff1D5D9B),
             ),
             Container(
               alignment: Alignment.topLeft,
@@ -322,7 +341,7 @@ class _mutagenicityState extends State<mutagenicity> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => convertScreen()),
+                    MaterialPageRoute(builder: (context) => const convertScreen()),
                   );
                 },
                 icon: Image.asset(
@@ -351,15 +370,15 @@ class _mutagenicityState extends State<mutagenicity> {
                 child: Container(
                   width: screenSize.width,
                   height: screenSize.height,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(20))),
                   child: Column(
                     children: [
                       Container(
-                        padding: EdgeInsets.only(left: 30, top: 30, bottom: 10),
+                        padding: const EdgeInsets.only(left: 30, top: 30, bottom: 10),
                         alignment: Alignment.centerLeft,
-                        child: Text(
+                        child: const Text(
                           "Input Smile",
                           style: TextStyle(
                               fontSize: 24, fontWeight: FontWeight.w700),
@@ -368,6 +387,7 @@ class _mutagenicityState extends State<mutagenicity> {
                       Padding(
                         padding: const EdgeInsets.only(
                             left: 4, right: 4, bottom: 10),
+                        // ignore: sized_box_for_whitespace
                         child: Container(
                           //change
                           width: 326,
@@ -395,18 +415,18 @@ class _mutagenicityState extends State<mutagenicity> {
                         ),
                       ),
                       Container(
-                        padding: EdgeInsets.only(left: 20, top: 30, bottom: 10),
+                        padding: const EdgeInsets.only(left: 20, top: 30, bottom: 10),
                         alignment: Alignment.centerLeft,
-                        child: Text(
+                        child: const Text(
                           "Or",
                           style: TextStyle(
                               fontSize: 24, fontWeight: FontWeight.w700),
                         ),
                       ),
                       Container(
-                        padding: EdgeInsets.only(left: 20, top: 30, bottom: 10),
+                        padding: const EdgeInsets.only(left: 20, top: 30, bottom: 10),
                         alignment: Alignment.centerLeft,
-                        child: Text(
+                        child: const Text(
                           "Upload SDF ",
                           style: TextStyle(
                               fontSize: 24, fontWeight: FontWeight.w700),
@@ -418,11 +438,6 @@ class _mutagenicityState extends State<mutagenicity> {
                         height: 60,
                         width: 300,
                         child: MaterialButton(
-                            child: const Text(
-                              'Submit',
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
-                            ),
                             color: const Color(0xffF4D160),
                             textColor: Colors.black,
                             shape: RoundedRectangleBorder(
@@ -460,6 +475,7 @@ class _mutagenicityState extends State<mutagenicity> {
                               }
 
                               Navigator.push(
+                                // ignore: use_build_context_synchronously
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => MutResult(
@@ -471,7 +487,12 @@ class _mutagenicityState extends State<mutagenicity> {
                                   ),
                                 ),
                               );
-                            }),
+                            },
+                            child: const Text(
+                              'Submit',
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            )),
                       ),
                     ],
                   ),
@@ -490,18 +511,18 @@ class _mutagenicityState extends State<mutagenicity> {
               padding: const EdgeInsets.only(top: 30, left: 10, right: 10),
               child: DottedBorder(
                 borderType: BorderType.RRect,
-                radius: Radius.circular(10),
-                dashPattern: [10, 4],
+                radius: const Radius.circular(10),
+                dashPattern: const [10, 4],
                 strokeCap: StrokeCap.round,
-                color: Color(0xff1D5D9B),
+                color: const Color(0xff1D5D9B),
                 child: Container(
                   width: double.infinity,
                   height: 150,
                   decoration: BoxDecoration(
-                    color: Color(0xfff8fafb),
+                    color: const Color(0xfff8fafb),
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: Column(
+                  child: const Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(

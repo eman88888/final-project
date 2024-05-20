@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_unnecessary_containers
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finalproject/pages/convert.dart';
 import 'package:finalproject/pages/robot.dart';
@@ -15,6 +17,7 @@ import 'package:http/http.dart' as http;
 DateTime dateToday = DateTime.now();
 String date = dateToday.toString().substring(0, 10);
 
+// ignore: camel_case_types
 class liver extends StatefulWidget {
   //const liver({Key? key}) : super(key: key);
   const liver({super.key});
@@ -23,7 +26,9 @@ class liver extends StatefulWidget {
   State<liver> createState() => _liverState();
 }
 
+// ignore: camel_case_types
 class _liverState extends State<liver> {
+  // ignore: prefer_final_fields
   TextEditingController _smilesController = TextEditingController();
 
   @override
@@ -32,7 +37,8 @@ class _liverState extends State<liver> {
     super.dispose();
   }
 
-/////////////predict liver
+   /////////////predict liver
+  // ignore: non_constant_identifier_names
   bool Resultrox = true;
 
   Future<bool> fetchResultFromServer(String smiles) async {
@@ -56,6 +62,7 @@ class _liverState extends State<liver> {
         throw Exception('Failed to fetch result: ${response.statusCode}');
       }
     } catch (e) {
+      // ignore: avoid_print
       print('Error fetching result: $e');
       throw Exception('Failed to fetch result');
     }
@@ -80,6 +87,7 @@ class _liverState extends State<liver> {
         resultimg = imgStr;
       });
     } else {
+      // ignore: avoid_print
       print('Request failed with status: ${response.statusCode}.');
     }
   }
@@ -108,6 +116,7 @@ class _liverState extends State<liver> {
         resultsmile = response.statusCode.toString();
       }
     } catch (e) {
+      // ignore: avoid_print
       print(e);
     }
   }
@@ -130,6 +139,7 @@ class _liverState extends State<liver> {
         gester = result;
       });
     } else {
+      // ignore: avoid_print
       print('Request failed with status: ${response.statusCode}.');
     }
   }
@@ -150,8 +160,10 @@ class _liverState extends State<liver> {
         'category': 'Liver Toxicity',
         'id': FirebaseAuth.instance.currentUser!.uid,
       });
+      // ignore: avoid_print
       print('History added successfully');
     } catch (e) {
+      // ignore: avoid_print
       print('Failed to add history: $e');
     }
   }
@@ -273,6 +285,7 @@ class _liverState extends State<liver> {
                   Padding(
                     padding:
                         const EdgeInsets.only(left: 4, right: 4, bottom: 10),
+                    // ignore: sized_box_for_whitespace
                     child: Container(
                       //change
                       width: 326,
@@ -307,11 +320,6 @@ class _liverState extends State<liver> {
                     height: 60,
                     width: 300,
                     child: MaterialButton(
-                        child: const Text(
-                          'Submit',
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                        ),
                         color: const Color(0xffF4D160),
                         textColor: Colors.black,
                         shape: RoundedRectangleBorder(
@@ -335,6 +343,7 @@ class _liverState extends State<liver> {
                           );
 
                           Navigator.push(
+                            // ignore: use_build_context_synchronously
                             context,
                             MaterialPageRoute(
                               builder: (context) => livresult(
@@ -346,11 +355,17 @@ class _liverState extends State<liver> {
                               ),
                             ),
                           );
-                        }),
+                        },
+                        child: const Text(
+                          'Submit',
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        )),
                   ),
                   Container(
                       child: Padding(
                     padding: const EdgeInsets.only(top: 80),
+                    // ignore: sized_box_for_whitespace
                     child: Container(
                       width: 370,
                       child: Image.asset("assets/image14.png"),

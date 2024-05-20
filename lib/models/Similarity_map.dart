@@ -1,6 +1,8 @@
+// ignore: file_names
 import 'package:finalproject/result/similarty_result.dart';
 import 'package:flutter/material.dart';
 
+// ignore: camel_case_types
 class similarity extends StatefulWidget {
   const similarity({Key? key}) : super(key: key);
 
@@ -8,12 +10,14 @@ class similarity extends StatefulWidget {
   State<similarity> createState() => _similarityState();
 }
 
+// ignore: camel_case_types
 class _similarityState extends State<similarity> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: [
+          // ignore: sized_box_for_whitespace
           Container(
             height: 450,
             width: 499,
@@ -53,7 +57,7 @@ class _similarityState extends State<similarity> {
             margin: const EdgeInsets.only(top: 30, bottom: 30),
             height: 65,
             width: 200,
-            decoration: BoxDecoration(boxShadow: [
+            decoration: const BoxDecoration(boxShadow: [
               BoxShadow(
                 color: Colors.grey,
                 offset: Offset(0, 40),
@@ -62,10 +66,6 @@ class _similarityState extends State<similarity> {
               )
             ]),
             child: MaterialButton(
-                child: const Text(
-                  'Start',
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                ),
                 color: const Color(0xffF4D160),
                 textColor: Colors.black,
                 shape: RoundedRectangleBorder(
@@ -74,9 +74,13 @@ class _similarityState extends State<similarity> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => simresult()),
+                    MaterialPageRoute(builder: (context) => const simresult()),
                   );
-                }),
+                },
+                child: const Text(
+                  'Start',
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                )),
           ),
         ],
       ),

@@ -27,6 +27,7 @@ class ConvertCubit extends Cubit<ConvertState> {
         final data = jsonDecode(response.body);
         sdf2dData = data['sdf2d'];
         emit(sdfsucsses());
+        // ignore: avoid_print
         print('...........$sdf2dData');
 
         // Get the directory for saving files
@@ -39,11 +40,13 @@ class ConvertCubit extends Cubit<ConvertState> {
         sdf2dData = 'Molecule data saved successfully';
         emit(sdfsucssessave());
       } else {
+        // ignore: avoid_print
         print('Error: ${response.statusCode}');
         sdf2dData = 'Error: ${response.statusCode}';
         emit(sdffailed());
       }
     } catch (e) {
+      // ignore: avoid_print
       print('Error: $e');
       sdf2dData = 'Error: $e';
       emit(sdffailedsave());
@@ -74,11 +77,13 @@ class ConvertCubit extends Cubit<ConvertState> {
         pdbData = 'Molecule data saved to molecule.pdb';
         emit(pdbsucsesssave());
       } else {
+        // ignore: avoid_print
         print('Error: ${response.statusCode}');
         pdbData = 'Error: ${response.statusCode}';
         emit(pdpfailed());
       }
     } catch (e) {
+      // ignore: avoid_print
       print('Error: $e');
       pdbData = 'Error: $e';
       emit(pdpfailedsave());
@@ -111,6 +116,7 @@ class ConvertCubit extends Cubit<ConvertState> {
       if (response.statusCode == 200) {
         // Handle successful conversion
         // For other platforms, show a SnackBar with download message
+        // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('File downloaded successfully'),
@@ -118,6 +124,7 @@ class ConvertCubit extends Cubit<ConvertState> {
         );
       } else {
         // Handle other status codes
+        // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Error: ${response.statusCode}'),
@@ -126,6 +133,7 @@ class ConvertCubit extends Cubit<ConvertState> {
       }
     } catch (e) {
       // Handle errors
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Error: $e'),
