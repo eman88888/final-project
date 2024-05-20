@@ -1,3 +1,4 @@
+// ignore: file_names
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finalproject/pages/convert.dart';
 import 'package:finalproject/pages/robot.dart';
@@ -15,6 +16,7 @@ import 'package:http/http.dart' as http;
 DateTime dateToday = DateTime.now();
 String date = dateToday.toString().substring(0, 10);
 
+// ignore: camel_case_types
 class ToxicityofMolecules_Screen extends StatefulWidget {
   const ToxicityofMolecules_Screen({super.key});
 
@@ -23,11 +25,14 @@ class ToxicityofMolecules_Screen extends StatefulWidget {
       _ToxicityofMolecules_ScreenState();
 }
 
+// ignore: camel_case_types
 class _ToxicityofMolecules_ScreenState
     extends State<ToxicityofMolecules_Screen> {
+  // ignore: prefer_final_fields
   TextEditingController _smilesController = TextEditingController();
 //////predict toxcicty
 
+  // ignore: non_constant_identifier_names
   bool Resultrox = true;
 
   Future<bool> fetchResultFromServer(String smiles) async {
@@ -51,6 +56,7 @@ class _ToxicityofMolecules_ScreenState
         throw Exception('Failed to fetch result: ${response.statusCode}');
       }
     } catch (e) {
+      // ignore: avoid_print
       print('Error fetching result: $e');
       throw Exception('Failed to fetch result');
     }
@@ -63,7 +69,7 @@ class _ToxicityofMolecules_ScreenState
 
   Future<void> _predictMolecule() async {
     try {
-      final String apiUrl = 'http://127.0.0.1:5000/predictmol';
+      const String apiUrl = 'http://127.0.0.1:5000/predictmol';
       final String smiles = _smilesController.text;
 
       // Check if input is empty
@@ -85,15 +91,19 @@ class _ToxicityofMolecules_ScreenState
           final toxicityScore = result['toxicity_score'];
           setState(() {
             _toxicityScore = double.parse(toxicityScore.toString());
+            // ignore: avoid_print
             print('Toxicity Score: $_toxicityScore');
           });
         } else {
+          // ignore: avoid_print
           print('Failed to predict toxicity: Invalid response format');
         }
       } else {
+        // ignore: avoid_print
         print('Failed to predict toxicity: ${response.statusCode}');
       }
     } catch (e) {
+      // ignore: avoid_print
       print('Error predicting toxicity: $e');
     }
   }
@@ -112,15 +122,19 @@ class _ToxicityofMolecules_ScreenState
         if (saScoreNormalized != null) {
           setState(() {
             _saScore = double.parse(saScoreNormalized.toString());
+            // ignore: avoid_print
             print('SA Score: $_saScore');
           });
         } else {
+          // ignore: avoid_print
           print('SA score is null');
         }
       } else {
+        // ignore: avoid_print
         print('Failed to calculate SA score: ${result['error']}');
       }
     } else {
+      // ignore: avoid_print
       print('Failed to calculate SA score: ${response.statusCode}');
     }
   }
@@ -149,6 +163,7 @@ class _ToxicityofMolecules_ScreenState
         resultsmile = response.statusCode.toString();
       }
     } catch (e) {
+      // ignore: avoid_print
       print(e);
     }
   }
@@ -172,6 +187,7 @@ class _ToxicityofMolecules_ScreenState
         resultimg = imgStr;
       });
     } else {
+      // ignore: avoid_print
       print('Request failed with status: ${response.statusCode}.');
     }
   }
@@ -194,6 +210,7 @@ class _ToxicityofMolecules_ScreenState
         gester = result;
       });
     } else {
+      // ignore: avoid_print
       print('Request failed with status: ${response.statusCode}.');
     }
   }
@@ -214,8 +231,10 @@ class _ToxicityofMolecules_ScreenState
         'category': 'Toxicity of Molecules',
         'id': FirebaseAuth.instance.currentUser!.uid,
       });
+      // ignore: avoid_print
       print('History added successfully');
     } catch (e) {
+      // ignore: avoid_print
       print('Failed to add history: $e');
     }
   }
@@ -228,6 +247,7 @@ class _ToxicityofMolecules_ScreenState
         bottomNavigationBar: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            // ignore: avoid_unnecessary_containers
             Container(
               child: Padding(
                   padding: const EdgeInsets.only(left: 5.0),
@@ -248,9 +268,10 @@ class _ToxicityofMolecules_ScreenState
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => robot()),
+                  MaterialPageRoute(builder: (context) => const robot()),
                 );
               },
+              // ignore: avoid_unnecessary_containers
               child: Container(
                 child: Image.asset(
                   "assets/Animation3.gif",
@@ -266,7 +287,7 @@ class _ToxicityofMolecules_ScreenState
           children: [
             Container(
               height: 200,
-              color: Color(0xff1D5D9B),
+              color: const Color(0xff1D5D9B),
             ),
             Container(
               alignment: Alignment.topLeft,
@@ -289,7 +310,7 @@ class _ToxicityofMolecules_ScreenState
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => convertScreen()),
+                    MaterialPageRoute(builder: (context) => const convertScreen()),
                   );
                 },
                 icon: Image.asset(
@@ -318,15 +339,15 @@ class _ToxicityofMolecules_ScreenState
                 child: Container(
                   width: screenSize.width,
                   height: screenSize.height,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(20))),
                   child: Column(
                     children: [
                       Container(
-                        padding: EdgeInsets.only(left: 30, top: 30, bottom: 10),
+                        padding: const EdgeInsets.only(left: 30, top: 30, bottom: 10),
                         alignment: Alignment.centerLeft,
-                        child: Text(
+                        child: const Text(
                           "Input",
                           style: TextStyle(
                               fontSize: 24, fontWeight: FontWeight.w700),
@@ -335,6 +356,7 @@ class _ToxicityofMolecules_ScreenState
                       Padding(
                         padding: const EdgeInsets.only(
                             left: 4, right: 4, bottom: 10),
+                        // ignore: sized_box_for_whitespace
                         child: Container(
                           //change
                           width: 326,
@@ -371,11 +393,6 @@ class _ToxicityofMolecules_ScreenState
                         height: 60,
                         width: 300,
                         child: MaterialButton(
-                            child: const Text(
-                              'Submit',
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
-                            ),
                             color: const Color(0xffF4D160),
                             textColor: Colors.black,
                             shape: RoundedRectangleBorder(
@@ -398,6 +415,7 @@ class _ToxicityofMolecules_ScreenState
                               );
 
                               Navigator.push(
+                                // ignore: use_build_context_synchronously
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => ToxResult_Screen(
@@ -411,11 +429,18 @@ class _ToxicityofMolecules_ScreenState
                                   ),
                                 ),
                               );
-                            }),
+                            },
+                            child: const Text(
+                              'Submit',
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            )),
                       ),
+                      // ignore: avoid_unnecessary_containers
                       Container(
                           child: Padding(
                         padding: const EdgeInsets.only(top: 80),
+                        // ignore: sized_box_for_whitespace
                         child: Container(
                           width: 370,
                           child:
