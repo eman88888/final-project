@@ -25,39 +25,10 @@ class EditProfile_Page extends StatefulWidget {
 }
 
 class _PickImageState extends State<EditProfile_Page> {
-  /////////////UserName
+
+  // ignore: unused_field
   String _userName = '';
-/////////////////
-  @override
-  void initState() {
-    super.initState();
-    // Call a function to fetch user data
-    fetchUserData();
-  }
 
-  Future<void> fetchUserData() async {
-    // Get the currently authenticated user
-    User? user = FirebaseAuth.instance.currentUser;
-
-    if (user != null) {
-      // Retrieve the document with the user's ID
-      DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
-          .collection('users')
-          .doc(user.uid)
-          .get();
-
-      // Check if the document exists
-      if (documentSnapshot.exists) {
-        // Get user data from the document
-        Map<String, dynamic> userData =
-            documentSnapshot.data() as Map<String, dynamic>;
-
-        setState(() {
-          _userName = userData['name'] ?? '';
-        });
-      }
-    }
-  }
 
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -87,11 +58,6 @@ class _PickImageState extends State<EditProfile_Page> {
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
             return const Text('Something went wrong');
-          }
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(color: Colors.black),
-            );
           }
           CollectionReference users =
               FirebaseFirestore.instance.collection('users');
@@ -220,7 +186,9 @@ class _PickImageState extends State<EditProfile_Page> {
                     padding: const EdgeInsets.only(top: 10, bottom: 7),
                     child: Text(
                       //name from signup
-                      _userName,
+                       snapshot.data!.docs.isNotEmpty
+                    ? snapshot.data!.docs.last['full_name']
+                    : FirebaseAuth.instance.currentUser!.displayName,
                       style: const TextStyle(
                         fontSize: 30,
                         fontFamily: 'Pacifico',
