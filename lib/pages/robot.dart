@@ -1,3 +1,4 @@
+//robot
 import 'package:finalproject/pages/chat.dart';
 import 'package:finalproject/screens/bottomnavbar.dart';
 import 'package:flutter/material.dart';
@@ -130,7 +131,7 @@ class _robotState extends State<robot> {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return const Chat_Page();
+                        return const ChatPage();
                       },
                     ),
                   );
