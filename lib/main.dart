@@ -1,6 +1,7 @@
 import 'package:finalproject/cubit/convert_cubit.dart';
 import 'package:finalproject/pages/login_screen.dart';
 import 'package:finalproject/pages/startscreen.dart';
+import 'package:finalproject/screens/bottomnavbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -34,7 +35,7 @@ class _appState extends State<Tox_app> {
     return GetMaterialApp(
       theme: ThemeData(fontFamily: 'Poppins'),
       debugShowCheckedModeBanner: false,
-      home: const startscreen(),
+      home: const BottomNavBar(),
     );
   }
 }

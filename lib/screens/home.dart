@@ -27,12 +27,12 @@ class _tocState extends State<home> {
           color: const Color(0xff1D5D9B),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 35),
+          padding: const EdgeInsets.only(top: 10),
           child: Container(
             alignment: Alignment.topCenter,
             child: SizedBox(
-              height: 80,
-              width: 150,
+              height: 120,
+              width: 170,
               child: Image.asset(
                 "assets/screen logo.png",
                 fit: BoxFit.fill,
