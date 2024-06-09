@@ -39,7 +39,7 @@ class _CustomTextFieldState extends State<CustomTextFormField2> {
               ? IconButton(
                   // Only show suffix icon if obscureText is true
                   icon: Icon(
-                      _isObscure ? Icons.visibility : Icons.visibility_off),
+                      _isObscure ? Icons.visibility_off : Icons.visibility),
                   onPressed: () {
                     setState(() {
                       _isObscure = !_isObscure;
