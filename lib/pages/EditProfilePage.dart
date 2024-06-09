@@ -1,3 +1,4 @@
+//Edit Profile
 // ignore_for_file: file_names
 
 import 'dart:io';
@@ -9,6 +10,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 ////////////
 import '../widget/custom_TextFormField1.dart';
@@ -25,10 +27,8 @@ class EditProfile_Page extends StatefulWidget {
 }
 
 class _PickImageState extends State<EditProfile_Page> {
-
   // ignore: unused_field
   String _userName = '';
-
 
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -57,11 +57,16 @@ class _PickImageState extends State<EditProfile_Page> {
         stream: documentStream,
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
-            return const Text('Something went wrong');
-          }
-          CollectionReference users =
-              FirebaseFirestore.instance.collection('users');
-
+                    return const Text('Something went wrong');
+                  }
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                       child: ModalProgressHUD(inAsyncCall: true,child: SizedBox.shrink(),),
+                    );
+                  }
+                  CollectionReference users =
+                      FirebaseFirestore.instance.collection('users');
+                      
           Future<void>? addUser() {
             return users
                 .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -186,9 +191,10 @@ class _PickImageState extends State<EditProfile_Page> {
                     padding: const EdgeInsets.only(top: 10, bottom: 7),
                     child: Text(
                       //name from signup
-                       snapshot.data!.docs.isNotEmpty
-                    ? snapshot.data!.docs.last['full_name']
-                    : FirebaseAuth.instance.currentUser!.displayName,
+                      snapshot.hasData && snapshot.data!.docs.isNotEmpty
+                          ? snapshot.data!.docs.last['full_name']
+                          : (FirebaseAuth.instance.currentUser?.displayName ??
+                              ''),
                       style: const TextStyle(
                         fontSize: 30,
                         fontFamily: 'Pacifico',
@@ -230,8 +236,8 @@ class _PickImageState extends State<EditProfile_Page> {
                                   controller: _userNameController,
                                   decoration: InputDecoration(
                                     filled: true,
-                                    fillColor:
-                                        const Color.fromARGB(255, 228, 233, 251),
+                                    fillColor: const Color.fromARGB(
+                                        255, 228, 233, 251),
                                     floatingLabelBehavior:
                                         FloatingLabelBehavior.always,
                                     suffixIcon: const Icon(

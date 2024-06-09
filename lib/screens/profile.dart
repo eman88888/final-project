@@ -1,7 +1,9 @@
+//Profile
 import 'package:finalproject/pages/history.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -66,9 +68,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return StreamBuilder(
         stream: documentStream,
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (snapshot.hasError) {
-            return const Text('Something went wrong');
-          }
+         if (snapshot.hasError) {
+                    return const Text('Something went wrong');
+                  }
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                       child: ModalProgressHUD(inAsyncCall: true,child: SizedBox.shrink(),),
+                    );
+                  }
+                  
+                      
           return Scaffold(
             body: Stack(
               children: [
@@ -84,11 +93,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               Container(
                                 margin: const EdgeInsets.only(
                                     left: 120, right: 120, top: 80),
-                                child: const CircleAvatar(
-                                  radius: 90,
-                                  backgroundImage:
-                                      AssetImage("assets/profile.png"),
-                                ),
+                                child: snapshot.data!.docs.isNotEmpty
+                                    ? snapshot.data!.docs.last['url'] != ''
+                                        ? CircleAvatar(
+                                            radius: 90,
+                                            backgroundImage: NetworkImage(
+                                                snapshot
+                                                    .data!.docs.last['url']),
+                                          )
+                                        : const CircleAvatar(
+                                            radius: 90,
+                                            backgroundImage: AssetImage(
+                                              "assets/profile.png",
+                                            ),
+                                          )
+                                    : const CircleAvatar(
+                                        radius: 90,
+                                        backgroundImage: AssetImage(
+                                          "assets/profile.png",
+                                        ),
+                                      ),
                               ),
                               Positioned(
                                 bottom: 80,
@@ -99,11 +123,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   children: [
                                     /////// Display name and text Researcher
                                     Text(
-                                      snapshot.data!.docs.isNotEmpty
+                                      snapshot.hasData &&
+                                              snapshot.data!.docs.isNotEmpty
                                           ? snapshot
                                               .data!.docs.last['full_name']
-                                          : FirebaseAuth.instance.currentUser!
-                                              .displayName,
+                                          : (FirebaseAuth.instance.currentUser
+                                                  ?.displayName ??
+                                              ''),
                                       style: const TextStyle(
                                         fontSize: 30,
                                         fontFamily: 'Pacifico',
@@ -166,9 +192,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             size: 30,
                           ),
                           title: Text(
-                             snapshot.data!.docs.isNotEmpty
-                    ? snapshot.data!.docs.last['full_name']
-                    : FirebaseAuth.instance.currentUser!.displayName,
+                            snapshot.hasData && snapshot.data!.docs.isNotEmpty
+                                ? snapshot.data!.docs.last['full_name']
+                                : (FirebaseAuth
+                                        .instance.currentUser?.displayName ??
+                                    ''),
                             style: const TextStyle(
                               fontSize: 16,
                               color: Colors.black,

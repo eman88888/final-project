@@ -12,6 +12,7 @@ class Message {
   Message({required this.message, required this.isSender});
 }
 
+// ignore: constant_identifier_names
 const String GEMINI_API_KEY = 'AIzaSyD_YN09H-umI4NGz2VvsoESthhMk9zC2JY';
 
 class ChatPage extends StatefulWidget {
@@ -121,7 +122,7 @@ class _ChatPage extends State<ChatPage> {
                           isSender: messagesList[index].isSender,
                           color: messagesList[index].isSender
                               ? const Color(0xFF1D5D9B)
-                              : Color.fromARGB(255, 212, 207, 207),
+                              : const Color.fromARGB(255, 212, 207, 207),
                           textStyle: TextStyle(
                             fontSize: 17,
                             color: messagesList[index].isSender
