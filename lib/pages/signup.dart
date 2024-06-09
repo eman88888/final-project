@@ -19,10 +19,6 @@ class Signup_Screen extends StatefulWidget {
 
 // ignore: camel_case_types
 class _Signup_ScreenState extends State<Signup_Screen> {
-  //text editing controller
-  // ignore: non_constant_identifier_names
-  final FullNameController = TextEditingController();
-
   final userController = TextEditingController();
 
   final passController = TextEditingController();
@@ -57,12 +53,12 @@ class _Signup_ScreenState extends State<Signup_Screen> {
                       clipper: MyClipper(),
                       child: Container(
                         width: 500,
-                        height: 250,
+                        height: 300,
                         color: const Color(0xFFF1F4FF),
                       ),
                     ),
                     Positioned(
-                      top: 80,
+                      top: 110,
                       right: 60,
                       child: Transform.rotate(
                         angle: 0, // 45 degrees in radians
@@ -77,7 +73,7 @@ class _Signup_ScreenState extends State<Signup_Screen> {
                       ),
                     ),
                     Positioned(
-                      top: 140,
+                      top: 165,
                       right: 72,
                       child: Transform.rotate(
                         angle: 0, // 45 degrees in radians
@@ -94,21 +90,9 @@ class _Signup_ScreenState extends State<Signup_Screen> {
                   ],
                 ),
 
-                ////Textfield for Full Name
-                CustomTextFormField2(
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your name';
-                    }
-                    return null;
-                  },
-                  controller: FullNameController,
-                  hintText: 'Full Name',
-                ),
-
                 ////Textfield for Email
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  padding: const EdgeInsets.only(top: 20, bottom: 20),
                   child: CustomTextFormField2(
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -125,7 +109,7 @@ class _Signup_ScreenState extends State<Signup_Screen> {
 
                 ////Textfield for Password
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 16),
+                  padding: const EdgeInsets.only(bottom: 20),
                   child: CustomTextFormField2(
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -181,7 +165,6 @@ class _Signup_ScreenState extends State<Signup_Screen> {
                               .collection('users')
                               .doc(credential.user!.uid)
                               .set({
-                            'name': FullNameController.text,
                             'email': userController.text,
                           });
                           Navigator.push(
@@ -393,7 +376,7 @@ class MyClipper extends CustomClipper<Path> {
     final path = Path();
     path.moveTo(size.width, 0); // Move to top-right corner
     path.lineTo(size.width, size.height);
-    path.quadraticBezierTo(-140, 160, size.height * 0.9, -300);
+    path.quadraticBezierTo(-120, 150, size.height * 0.9, -300);
     path.close();
     return path;
   }
